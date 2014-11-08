@@ -70,7 +70,7 @@ namespace Charity.Web.App_Start
             kernel.Bind<IIdentity>().ToMethod(c => HttpContext.Current.User.Identity);
 
             kernel.Bind(typeof(IDeletableEntityRepository<>))
-                .To(typeof(DeletableEntityRepository<>));
+            .To(typeof(DeletableEntityRepository<>));
 
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
         }        
