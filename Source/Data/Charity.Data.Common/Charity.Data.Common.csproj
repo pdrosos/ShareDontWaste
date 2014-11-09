@@ -47,26 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\AuditInfo.cs" />
+    <Compile Include="Models\DeletableEntity.cs" />
     <Compile Include="Models\IAuditInfo.cs" />
     <Compile Include="Models\IDeletableEntity.cs" />
     <Compile Include="Models\IOrderable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\DeletableEntityRepository.cs" />
-    <Compile Include="Repository\DonorRepository.cs" />
-    <Compile Include="Repository\GenericRepository.cs" />
-    <Compile Include="Repository\IDeletableEntityRepository.cs" />
-    <Compile Include="Repository\IDonorRepository.cs" />
-    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repositories\IDeletableEntityRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Charity.Data.Models\Charity.Data.Models.csproj">
-      <Project>{91e1772f-729d-4a1a-ab81-f62131a2c0b6}</Project>
-      <Name>Charity.Data.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

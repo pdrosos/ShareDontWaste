@@ -17,9 +17,16 @@
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }
 
+        public IDbSet<City> Cities { get; set; }
+
         public IDbSet<Administrator> Administrators { get; set; }
 
         public IDbSet<Donor> Donors { get; set; }
+
+        public IDbSet<RecipientType> RecipientTypes { get; set; }
+
+        public IDbSet<Recipient> Recipients { get; set; }
+
 
         public static ApplicationDbContext Create()
         {

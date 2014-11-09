@@ -10,7 +10,13 @@
     {
         IDbSet<ApplicationUser> Users { get; set; }
 
+        IDbSet<City> Cities { get; set; }
+
         IDbSet<Administrator> Administrators { get; set; }
+
+        IDbSet<RecipientType> RecipientTypes { get; set; }
+
+        IDbSet<Recipient> Recipients { get; set; }
 
         int SaveChanges();
 

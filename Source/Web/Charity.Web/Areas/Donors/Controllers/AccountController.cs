@@ -1,4 +1,4 @@
-﻿namespace Charity.Web.Controllers
+﻿namespace Charity.Web.Areas.Donors.Controllers
 {
     using System;
     using System.Linq;
@@ -11,7 +11,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
-    using Charity.Data.Common.Repository;
+    using Charity.Data.Common.Repositories;
 
     [Authorize]
     public class AccountController : Controller
@@ -19,7 +19,7 @@
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager _signInManager;
 
-        private readonly IRepository<Donor> donors;
+        //private readonly IRepository<Donor> donors;
 
         public AccountController()
         {

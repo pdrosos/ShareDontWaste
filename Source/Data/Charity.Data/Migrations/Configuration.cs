@@ -37,7 +37,7 @@ namespace Charity.Data.Migrations
             this.SeedAdminUser(context);
         }
 
-        protected void SeedRoles(ApplicationDbContext context)
+        private void SeedRoles(ApplicationDbContext context)
         {
             if (context.Roles.Any())
             {
@@ -51,7 +51,7 @@ namespace Charity.Data.Migrations
             context.SaveChanges();
         }
 
-        protected void SeedAdminUser(ApplicationDbContext context)
+        private void SeedAdminUser(ApplicationDbContext context)
         {
             if (context.Administrators.Any())
             {
@@ -75,10 +75,10 @@ namespace Charity.Data.Migrations
             var administratorUser = new ApplicationUser();
             administratorUser.UserName = "admin";
             administratorUser.Email = "admin@admin.com";
+            administratorUser.CreatedOn = DateTime.Now;
             string password = "111";
 
             var result = userManager.Create(administratorUser, password);
-            userManager.SetLockoutEnabled(administratorUser.Id, false);
 
             // Add Admin User to Admin Role
             if (result.Succeeded)
@@ -93,7 +93,7 @@ namespace Charity.Data.Migrations
             context.SaveChanges();
         }
 
-        protected UserManager<ApplicationUser> CreateUserManager(ApplicationDbContext context)
+        private UserManager<ApplicationUser> CreateUserManager(ApplicationDbContext context)
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 

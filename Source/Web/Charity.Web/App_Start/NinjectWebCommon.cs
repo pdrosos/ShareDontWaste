@@ -8,7 +8,8 @@ namespace Charity.Web.App_Start
     using System.Security.Principal;
     using System.Web;
     using Charity.Data;
-    using Charity.Data.Common.Repository;
+    using Charity.Data.Common.Repositories;
+    using Charity.Data.Repositories;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;

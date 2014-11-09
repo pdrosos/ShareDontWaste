@@ -1,13 +1,15 @@
-﻿namespace Charity.Data.Common.Repository
+namespace Charity.Data.Repositories
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Linq;
+    using Charity.Data.Common.Repositories;
 
+    
     public class GenericRepository<T> : IRepository<T> where T : class
     {
-        public GenericRepository(DbContext context)
+        public GenericRepository(IApplicationDbContext context)
         {
             if (context == null)
             {
@@ -20,7 +22,7 @@
 
         protected IDbSet<T> DbSet { get; set; }
 
-        protected DbContext Context { get; set; }
+        protected IApplicationDbContext Context { get; set; }
 
         public virtual IQueryable<T> All()
         {
