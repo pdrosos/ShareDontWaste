@@ -75,10 +75,10 @@ namespace Charity.Data.Migrations
             var administratorUser = new ApplicationUser();
             administratorUser.UserName = "admin";
             administratorUser.Email = "admin@admin.com";
+            administratorUser.CreatedOn = DateTime.Now;
             string password = "111";
 
             var result = userManager.Create(administratorUser, password);
-            userManager.SetLockoutEnabled(administratorUser.Id, false);
 
             // Add Admin User to Admin Role
             if (result.Succeeded)

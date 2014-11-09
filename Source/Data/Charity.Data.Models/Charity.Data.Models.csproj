@@ -55,10 +55,19 @@
     <Compile Include="Administrator.cs" />
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="City.cs" />
+    <Compile Include="Recipient.cs" />
+    <Compile Include="RecipientType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Charity.Data.Common\Charity.Data.Common.csproj">
+      <Project>{600cab58-a374-449b-8ddd-36623b0af1a7}</Project>
+      <Name>Charity.Data.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
