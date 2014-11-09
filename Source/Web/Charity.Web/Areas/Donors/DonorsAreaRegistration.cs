@@ -15,9 +15,10 @@ namespace Charity.Web.Areas.Donors
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Donors_default",
-                "Donors/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                name: "Donors_default",
+                url: "Donors/{controller}/{action}/{id}",
+                defaults: new { action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "Charity.Web.Areas.Donors.Controllers" }
             );
         }
     }
