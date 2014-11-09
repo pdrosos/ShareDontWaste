@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +56,7 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="IApplicationDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\Seed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +64,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Charity.Common\Charity.Common.csproj">
+      <Project>{C7DF8CC9-64E6-423C-8895-EC7B55FFEEDB}</Project>
+      <Name>Charity.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Charity.Data.Common\Charity.Data.Common.csproj">
       <Project>{600cab58-a374-449b-8ddd-36623b0af1a7}</Project>
       <Name>Charity.Data.Common</Name>

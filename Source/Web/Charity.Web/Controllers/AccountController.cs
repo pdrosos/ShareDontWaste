@@ -70,9 +70,27 @@
                 return View(model);
             }
 
+            // If username is different from e-mail
+            // and we want login by e-mail and password we need to get the user by his e-mail first
+            // and authenticate him by username and password
+            var userForEmail = await UserManager.FindByEmailAsync(model.Email);
+            string username = string.Empty;
+
+            if (userForEmail != null)
+            {
+                username = userForEmail.UserName;
+            }
+            else
+            {
+                ModelState.AddModelError("", "Invalid email or password.");
+                return View(model);
+            }
+            // ---
+
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(username, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
