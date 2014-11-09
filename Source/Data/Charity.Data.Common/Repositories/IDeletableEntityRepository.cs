@@ -1,4 +1,4 @@
-﻿namespace Charity.Data.Common.Repository
+﻿namespace Charity.Data.Common.Repositories
 {
     using System.Linq;
 

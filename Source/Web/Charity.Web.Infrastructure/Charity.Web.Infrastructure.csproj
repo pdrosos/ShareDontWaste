@@ -73,6 +73,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\Charity.Data.Common\Charity.Data.Common.csproj">
+      <Project>{600cab58-a374-449b-8ddd-36623b0af1a7}</Project>
+      <Name>Charity.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Charity.Data.Models\Charity.Data.Models.csproj">
       <Project>{91e1772f-729d-4a1a-ab81-f62131a2c0b6}</Project>
       <Name>Charity.Data.Models</Name>
