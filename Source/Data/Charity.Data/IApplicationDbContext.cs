@@ -10,6 +10,8 @@
     {
         IDbSet<ApplicationUser> Users { get; set; }
 
+        IDbSet<Administrator> Administrators { get; set; }
+
         int SaveChanges();
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;

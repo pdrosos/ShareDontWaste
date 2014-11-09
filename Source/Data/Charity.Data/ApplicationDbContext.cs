@@ -17,6 +17,8 @@
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }
 
+        public IDbSet<Administrator> Administrators { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
