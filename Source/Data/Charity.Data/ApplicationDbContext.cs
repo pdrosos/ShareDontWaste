@@ -19,6 +19,8 @@
 
         public IDbSet<Administrator> Administrators { get; set; }
 
+        public IDbSet<Donor> Donors { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
