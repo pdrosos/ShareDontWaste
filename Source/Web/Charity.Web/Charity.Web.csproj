@@ -197,7 +197,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Donors\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Donors\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Donors\DonorsAreaRegistration.cs" />
+    <Compile Include="Areas\Donors\Models\AccountDetailsViewModel.cs" />
+    <Compile Include="Areas\Donors\Models\DonorDetailsViewModel.cs" />
     <Compile Include="Areas\Donors\Models\DonorRegisterViewModel.cs" />
     <Compile Include="Areas\Recipients\RecipientsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -232,6 +235,9 @@
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="Areas\Donors\Views\Account\Register.cshtml" />
     <Content Include="Areas\Donors\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Donors\Views\Profile\Delete.cshtml" />
+    <Content Include="Areas\Donors\Views\Profile\Details.cshtml" />
+    <Content Include="Areas\Donors\Views\Profile\Edit.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

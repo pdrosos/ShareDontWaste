@@ -1,11 +1,11 @@
 ﻿namespace Charity.Web.Areas.Donors.Models
 {
-    using Charity.Data.Models;
-    using Charity.Web.Infrastructure.Mapping;
-    using Charity.Web.Models;
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+    using Charity.Data.Models;
+    using Charity.Web.Infrastructure.Mapping;
+    using Charity.Web.Models;
 
     public class DonorRegisterViewModel : IMapFrom<Donor>
     {
