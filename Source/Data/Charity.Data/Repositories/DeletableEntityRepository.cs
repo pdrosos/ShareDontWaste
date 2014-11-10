@@ -1,13 +1,14 @@
 ﻿namespace Charity.Data.Repositories
 {
     using System;
-    using System.Linq;
     using System.Data.Entity;
-    using Charity.Data.Common.Models;
+    using System.Linq;
+    using Charity.Data.Common;
     using Charity.Data.Common.Repositories;
+    using Charity.Data.Models.Common;
 
     public class DeletableEntityRepository<T> : GenericRepository<T>, IDeletableEntityRepository<T>
-        where T : class, IDeletableEntity
+        where T : class, ISoftDeletable
     {
         public DeletableEntityRepository(IApplicationDbContext context)
             : base(context)

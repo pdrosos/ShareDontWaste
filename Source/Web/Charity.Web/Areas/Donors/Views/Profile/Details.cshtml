@@ -31,7 +31,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.City)
+            @Html.DisplayFor(model => model.City.Name)
         </dd>
 
         <dt>
@@ -68,7 +68,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { username = Model.AccountDetailsViewModel.UserName }) |
-    @Html.ActionLink("Delete", "Delete", new { username = Model.AccountDetailsViewModel.UserName }) |
+    @Html.ActionLink("Edit", "Edit") |
     @Html.ActionLink("Back to Home Page", "Index", "Home", new { Area = ""}, new{})
 </p>

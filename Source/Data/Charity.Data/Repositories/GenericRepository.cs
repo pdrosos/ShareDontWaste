@@ -4,8 +4,8 @@ namespace Charity.Data.Repositories
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Linq;
+    using Charity.Data.Common;
     using Charity.Data.Common.Repositories;
-
     
     public class GenericRepository<T> : IRepository<T> where T : class
     {

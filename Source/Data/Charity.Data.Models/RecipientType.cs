@@ -4,9 +4,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using Charity.Data.Common.Models;
 
-    public class RecipientType : DeletableEntity
+    public class RecipientType : SoftDeletable
     {
         private ICollection<Recipient> recipients;
 

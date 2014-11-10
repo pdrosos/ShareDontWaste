@@ -1,13 +1,13 @@
 ﻿namespace Charity.Data
 {
     using System;
-    using System.Linq;
     using System.Data.Entity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-
+    using System.Linq;
+    using Charity.Data.Common;
     using Charity.Data.Migrations;
-    using Charity.Data.Common.Models;
     using Charity.Data.Models;
+    using Charity.Data.Models.Common;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
@@ -77,9 +77,9 @@
             foreach (
                 var entry in
                     this.ChangeTracker.Entries()
-                        .Where(e => e.Entity is IDeletableEntity && (e.State == EntityState.Deleted)))
+                        .Where(e => e.Entity is ISoftDeletable && (e.State == EntityState.Deleted)))
             {
-                var entity = (IDeletableEntity)entry.Entity;
+                var entity = (ISoftDeletable)entry.Entity;
 
                 entity.DeletedOn = DateTime.Now;
                 entity.IsDeleted = true;
