@@ -1,10 +1,11 @@
 ﻿namespace Charity.Data.Models
 {
+    using Charity.Data.Common.Models;
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public class Donor
+    public class Donor : DeletableEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }

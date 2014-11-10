@@ -1,27 +1,18 @@
 ﻿namespace Charity.Web.Areas.Donors.Models
 {
-    using Charity.Data.Models;
-    using Charity.Web.Infrastructure.Mapping;
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+    using Charity.Data.Models;
+    using Charity.Web.Infrastructure.Mapping;
+    using Charity.Web.Models;
 
     public class DonorRegisterViewModel : IMapFrom<Donor>
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [StringLength(100, ErrorMessage = "The {0} must not be longer than {1} symbols.")]
+        [Display(Name = "Organization Name")]
+        public string OrganizationName { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        public RegisterViewModel RegisterViewModel { get; set; }
     }
 }

@@ -11,7 +11,9 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
-    using Charity.Data.Common.Repositories;
+    using Charity.Data.Repositories;
+    using AutoMapper;
+    using Charity.Common;
 
     [Authorize]
     public class AccountController : Controller
@@ -19,17 +21,18 @@
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager _signInManager;
 
-        //private readonly IRepository<Donor> donors;
+        private readonly DonorRepository donors;
 
-        public AccountController()
+        public AccountController(DonorRepository donors)
         {
+            this.donors = donors;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
+        //public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        //{
+        //    UserManager = userManager;
+        //    SignInManager = signInManager;
+        //}
 
         public ApplicationUserManager UserManager
         {
@@ -105,7 +108,7 @@
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View("~/Views/Account/Register");
+            return View();
         }
 
         //
@@ -117,8 +120,9 @@
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.RegisterViewModel.UserName, Email = model.RegisterViewModel.Email };
+                user.CreatedOn = DateTime.Now;
+                var result = await UserManager.CreateAsync(user, model.RegisterViewModel.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -131,7 +135,13 @@
 
                     Donor donor = new Donor();
                     donor.ApplicationUserId = user.Id;
+                    Mapper.Map<DonorRegisterViewModel, Donor>(model, donor);
+
+                    this.UserManager.AddToRole(user.Id, GlobalConstants.DonorRoleName);
+
                     //this.donorService.Add(donor);
+                    this.donors.Add(donor);
+                    this.donors.SaveChanges();
 
                     return RedirectToAction("Index", "Home", new { area = "" });
                 }
