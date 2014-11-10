@@ -1,9 +1,10 @@
-﻿namespace Charity.Data.Common.Models
+﻿namespace Charity.Data.Models
 {
+    using Charity.Data.Models.Common;
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public abstract class DeletableEntity : AuditInfo, IDeletableEntity
+    public abstract class SoftDeletable : AuditInfo, ISoftDeletable
     {
         [Display(Name = "Deleted?")]
         [Editable(false)]

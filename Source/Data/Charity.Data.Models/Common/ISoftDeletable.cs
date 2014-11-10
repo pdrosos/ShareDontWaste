@@ -1,8 +1,8 @@
-﻿namespace Charity.Data.Common.Models
+﻿namespace Charity.Data.Models.Common
 {
     using System;
 
-    public interface IDeletableEntity
+    public interface ISoftDeletable
     {
         bool IsDeleted { get; set; }
 

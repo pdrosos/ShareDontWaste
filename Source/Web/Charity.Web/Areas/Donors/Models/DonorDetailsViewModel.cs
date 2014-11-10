@@ -5,6 +5,8 @@
     using System.Linq;
     using Charity.Data.Models;
     using Charity.Web.Infrastructure.Mapping;
+    using System.Web.Mvc;
+    using System.Collections.Generic;
 
     public class DonorDetailsViewModel : IMapFrom<Donor>
     {
@@ -12,16 +14,23 @@
 
         [Required]
         [StringLength(100, ErrorMessage = "The organization name must not be more than {1} characters.")]
+        [Display(Name = "Organization Name")]
         public string OrganizationName { get; set; }
 
         [StringLength(250, ErrorMessage = "The {0} must not be more than {1} characters.")]
         public string Address { get; set; }
+                
+        public City City { get; set; }
 
-        [StringLength(50, ErrorMessage = "The {0} must not be more than {1} characters.")]
-        public string City { get; set; }
+        [Required]
+        [Display(Name = "City")]        
+        public int CityId { get; set; }
+
+        public IEnumerable<SelectListItem> Cities { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The contact name must not be more than {1} characters.")]
+        [Display(Name = "Contact Name")]
         public string ContactName { get; set; }
 
         public AccountDetailsViewModel AccountDetailsViewModel { get; set; }

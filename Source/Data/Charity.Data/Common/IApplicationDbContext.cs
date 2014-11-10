@@ -1,4 +1,4 @@
-﻿namespace Charity.Data
+﻿namespace Charity.Data.Common
 {
     using System;
     using System.Data.Entity;

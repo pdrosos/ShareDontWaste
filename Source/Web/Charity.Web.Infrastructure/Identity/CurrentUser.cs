@@ -2,9 +2,9 @@
 {
     using System.Security.Principal;
     using Microsoft.AspNet.Identity;
-
-    using Charity.Data;
+    
     using Charity.Data.Models;
+    using Charity.Data.Common;
     
     public class CurrentUser : ICurrentUser
     {

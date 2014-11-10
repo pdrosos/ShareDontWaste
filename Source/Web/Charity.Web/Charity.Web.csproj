@@ -236,7 +236,6 @@
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="Areas\Donors\Views\Account\Register.cshtml" />
     <Content Include="Areas\Donors\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Donors\Views\Profile\Delete.cshtml" />
     <Content Include="Areas\Donors\Views\Profile\Details.cshtml" />
     <Content Include="Areas\Donors\Views\Profile\Edit.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
@@ -311,10 +310,6 @@
     <ProjectReference Include="..\..\Charity.Common\Charity.Common.csproj">
       <Project>{c7df8cc9-64e6-423c-8895-ec7b55ffeedb}</Project>
       <Name>Charity.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Charity.Data.Common\Charity.Data.Common.csproj">
-      <Project>{600CAB58-A374-449B-8DDD-36623B0AF1A7}</Project>
-      <Name>Charity.Data.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\Charity.Data.Models\Charity.Data.Models.csproj">
       <Project>{91e1772f-729d-4a1a-ab81-f62131a2c0b6}</Project>

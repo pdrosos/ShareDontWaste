@@ -54,6 +54,11 @@
   <ItemGroup>
     <Compile Include="Administrator.cs" />
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="AuditInfo.cs" />
+    <Compile Include="Common\IAuditInfo.cs" />
+    <Compile Include="Common\ISoftDeletable.cs" />
+    <Compile Include="Common\IOrderable.cs" />
+    <Compile Include="SoftDeletable.cs" />
     <Compile Include="Donor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="City.cs" />
@@ -64,12 +69,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Charity.Data.Common\Charity.Data.Common.csproj">
-      <Project>{600cab58-a374-449b-8ddd-36623b0af1a7}</Project>
-      <Name>Charity.Data.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

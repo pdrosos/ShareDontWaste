@@ -35,6 +35,8 @@ namespace Charity.Data.Migrations
 
             this.SeedRoles(context);
             this.SeedAdminUser(context);
+            this.SeedCities(context);
+            this.SeedRecipientTypes(context);
         }
 
         private void SeedRoles(ApplicationDbContext context)
@@ -116,6 +118,46 @@ namespace Charity.Data.Migrations
             };
 
             return userManager;
+        }
+
+        private void SeedCities(ApplicationDbContext context)
+        {
+            var city = new City();
+            city.Name = "Sofia";
+            city.CreatedOn = DateTime.Now;
+            context.Cities.Add(city);
+
+            city = new City();
+            city.Name = "Plovdiv";
+            city.CreatedOn = DateTime.Now;
+            context.Cities.Add(city);
+
+            city = new City();
+            city.Name = "Varna";
+            city.CreatedOn = DateTime.Now;
+            context.Cities.Add(city);
+
+            context.SaveChanges();
+        }
+
+        private void SeedRecipientTypes(ApplicationDbContext context)
+        {
+            var type = new RecipientType();
+            type.Name = "Homeless Centre";
+            type.CreatedOn = DateTime.Now;
+            context.RecipientTypes.Add(type);
+
+            type = new RecipientType();
+            type.Name = "Crisis Accommodation";
+            type.CreatedOn = DateTime.Now;
+            context.RecipientTypes.Add(type);
+
+            type = new RecipientType();
+            type.Name = "School";
+            type.CreatedOn = DateTime.Now;
+            context.RecipientTypes.Add(type);
+
+            context.SaveChanges();
         }
     }
 }

@@ -2,9 +2,8 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
-    using Charity.Data.Common.Models;
 
-    public class Administrator : DeletableEntity
+    public class Administrator : SoftDeletable
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }

@@ -1,11 +1,10 @@
 ﻿namespace Charity.Data.Models
 {
-    using Charity.Data.Common.Models;
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public class Donor : DeletableEntity
+    public class Donor : SoftDeletable
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
@@ -16,7 +15,9 @@
 
         public string Address { get; set; }
 
-        public string City { get; set; }
+        public int? CityId { get; set; }
+
+        public virtual City City { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
 

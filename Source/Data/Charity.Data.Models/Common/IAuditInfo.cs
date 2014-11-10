@@ -1,4 +1,4 @@
-﻿namespace Charity.Data.Common.Models
+﻿namespace Charity.Data.Models.Common
 {
     using System;
 

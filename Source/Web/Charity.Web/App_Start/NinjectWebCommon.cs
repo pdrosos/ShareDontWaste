@@ -8,11 +8,13 @@ namespace Charity.Web.App_Start
     using System.Security.Principal;
     using System.Web;
     using Charity.Data;
+    using Charity.Data.Common;
     using Charity.Data.Common.Repositories;
     using Charity.Data.Repositories;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
+    using Charity.Web.Infrastructure.Identity;
 
     public static class NinjectWebCommon 
     {
@@ -70,10 +72,23 @@ namespace Charity.Web.App_Start
 
             kernel.Bind<IIdentity>().ToMethod(c => HttpContext.Current.User.Identity);
 
+            kernel.Bind<ICurrentUser>().To<CurrentUser>();
+
             kernel.Bind(typeof(IDeletableEntityRepository<>))
             .To(typeof(DeletableEntityRepository<>));
 
             kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
+
+            kernel.Bind<ICityRepository>().To<CityRepository>();
+
+            kernel.Bind<IApplicationUserRepository>().To<ApplicationUserRepository>();
+
+            kernel.Bind<IAdministratorRepository>().To<AdministratorRepository>();
+
+            kernel.Bind<IDonorRepository>().To<DonorRepository>();
+
+            kernel.Bind<IRecipientTypeRepository>().To<RecipientTypeRepository>();
+            kernel.Bind<IRecipientRepository>().To<RecipientRepository>();                        
         }        
     }
 }
