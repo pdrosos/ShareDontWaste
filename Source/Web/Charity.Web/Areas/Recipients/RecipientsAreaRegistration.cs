@@ -17,7 +17,8 @@ namespace Charity.Web.Areas.Recipients
             context.MapRoute(
                 "Recipients_default",
                 "Recipients/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "Charity.Web.Areas.Recipients.Controllers" }
             );
         }
     }
