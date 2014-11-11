@@ -1,17 +1,15 @@
 ﻿namespace Charity.Web.Areas.Donors.Controllers
 {
     using System;
-    using System.Data.Entity;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using AutoMapper;
-    using Charity.Data;
+    using Charity.Common;
     using Charity.Data.Models;
+    using Charity.Services;
     using Charity.Web.Areas.Donors.Models;
     using Charity.Web.Infrastructure.Identity;
-    using Charity.Services;
-    using Charity.Common;
-    using System.Collections.Generic;
 
     [Authorize(Roles = GlobalConstants.DonorRoleName)]
     public class ProfileController : Controller
@@ -53,8 +51,8 @@
                 return HttpNotFound();
             }
 
-            DonorDetailsViewModel model = Mapper.Map<Donor, DonorDetailsViewModel>(donor);
-            model.AccountDetailsViewModel = Mapper.Map<ApplicationUser, AccountDetailsViewModel>(donor.ApplicationUser);
+            DonorDetailsEditModel model = Mapper.Map<Donor, DonorDetailsEditModel>(donor);
+            model.AccountDetailsEditModel = Mapper.Map<ApplicationUser, AccountDetailsEditModel>(donor.ApplicationUser);
             model.Cities = this.GetCities();
 
             return View(model);
@@ -63,15 +61,15 @@
         // POST: Donors/Profile/Edit/username
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(DonorDetailsViewModel model)
+        public ActionResult Edit(DonorDetailsEditModel model)
         {
             ApplicationUser user = currentUserProvider.Get();
             Donor donor = this.donorProfileService.GetByApplicationUserId(user.Id);
             
             if (ModelState.IsValid)
             {
-                Mapper.Map<DonorDetailsViewModel, Donor>(model, donor);
-                Mapper.Map<AccountDetailsViewModel, ApplicationUser>(model.AccountDetailsViewModel, donor.ApplicationUser);
+                Mapper.Map<DonorDetailsEditModel, Donor>(model, donor);
+                Mapper.Map<AccountDetailsEditModel, ApplicationUser>(model.AccountDetailsEditModel, donor.ApplicationUser);
                 
                 this.donorProfileService.Update(donor);
 

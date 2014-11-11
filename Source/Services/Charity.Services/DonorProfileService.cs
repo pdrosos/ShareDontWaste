@@ -34,5 +34,11 @@
             this.donorRepository.Update(donor);
             this.donorRepository.SaveChanges();
         }
+
+        public void Add(Donor donor)
+        {
+            this.donorRepository.Add(donor);
+            this.donorRepository.SaveChanges();
+        }
     }
 }

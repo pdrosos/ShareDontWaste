@@ -122,6 +122,11 @@ namespace Charity.Data.Migrations
 
         private void SeedCities(ApplicationDbContext context)
         {
+            if (context.Administrators.Any())
+            {
+                return;
+            }
+
             var city = new City();
             city.Name = "Sofia";
             city.CreatedOn = DateTime.Now;
@@ -142,6 +147,11 @@ namespace Charity.Data.Migrations
 
         private void SeedRecipientTypes(ApplicationDbContext context)
         {
+            if (context.Administrators.Any())
+            {
+                return;
+            }
+
             var type = new RecipientType();
             type.Name = "Homeless Centre";
             type.CreatedOn = DateTime.Now;

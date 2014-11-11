@@ -19,9 +19,9 @@
 
         public virtual City City { get; set; }
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
-
         public string ApplicationUserId { get; set; }
+
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
         //public virtual ICollection<Food> Food { get; set; }
     }

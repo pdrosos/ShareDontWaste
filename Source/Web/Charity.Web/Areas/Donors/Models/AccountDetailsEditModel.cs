@@ -6,17 +6,8 @@
     using Charity.Data.Models;
     using Charity.Web.Infrastructure.Mapping;
 
-    public class AccountDetailsViewModel : IMapFrom<ApplicationUser>
+    public class AccountDetailsEditModel : IMapFrom<ApplicationUser>
     {
-        [Required]
-        [Display(Name = "Username")]
-        public string UserName { get; set; }
-
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
         [Phone]
         public string PhoneNumber { get; set; }
     }

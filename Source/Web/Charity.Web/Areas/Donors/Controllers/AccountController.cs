@@ -14,6 +14,7 @@
     using Charity.Data.Repositories;
     using AutoMapper;
     using Charity.Common;
+using Charity.Services;
 
     [Authorize]
     public class AccountController : Controller
@@ -21,11 +22,11 @@
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager _signInManager;
 
-        private readonly DonorRepository donors;
+        private readonly DonorProfileService donorProfileService;
 
-        public AccountController(DonorRepository donors)
+        public AccountController(DonorProfileService donorProfileService)
         {
-            this.donors = donors;
+            this.donorProfileService = donorProfileService;
         }
 
         //public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -139,9 +140,7 @@
 
                     this.UserManager.AddToRole(user.Id, GlobalConstants.DonorRoleName);
 
-                    //this.donorService.Add(donor);
-                    this.donors.Add(donor);
-                    this.donors.SaveChanges();
+                    this.donorProfileService.Add(donor);
 
                     return RedirectToAction("Index", "Home", new { area = "" });
                 }
