@@ -122,7 +122,7 @@ namespace Charity.Data.Migrations
 
         private void SeedCities(ApplicationDbContext context)
         {
-            if (context.Administrators.Any())
+            if (context.Cities.Any())
             {
                 return;
             }
@@ -147,7 +147,7 @@ namespace Charity.Data.Migrations
 
         private void SeedRecipientTypes(ApplicationDbContext context)
         {
-            if (context.Administrators.Any())
+            if (context.RecipientTypes.Any())
             {
                 return;
             }
