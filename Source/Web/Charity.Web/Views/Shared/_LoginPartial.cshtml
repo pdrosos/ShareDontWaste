@@ -1,13 +1,26 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using Charity.Common
+@using Microsoft.AspNet.Identity
+
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", new { Area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { Area = ""}, htmlAttributes: new { title = "Manage" })
+            @if (User.IsInRole(GlobalConstants.DonorRoleName))
+            {
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Details", "Profile", new { Area = "Donors" }, htmlAttributes: new { title = "Profile" })
+            }
+            else if (User.IsInRole(GlobalConstants.RecipientRoleName))
+            {
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Details", "Profile", new { Area = "Recipients" }, htmlAttributes: new { title = "Profile" })
+            }
+            else
+            {
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { Area = "" }, htmlAttributes: new { title = "Manage" })
+            }
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
