@@ -1,0 +1,54 @@
+﻿@using Charity.Web.Areas.Administration.Models
+@model IEnumerable<DonorListViewModel>
+
+@{
+    ViewBag.Title = "Search Results (Donors)";
+}
+
+<h3>@ViewBag.Title</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrganizationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+    </tr>
+    @foreach (var donor in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => donor.OrganizationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => donor.ContactName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => donor.CityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => donor.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => donor.PhoneNumber)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { username = donor.UserName }) |
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+                @Html.ActionLink("Details", "Details", new { username = donor.UserName }) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+            </td>
+        </tr>
+    }
+</table>

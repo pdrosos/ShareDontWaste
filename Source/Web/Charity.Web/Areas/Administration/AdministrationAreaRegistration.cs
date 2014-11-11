@@ -14,6 +14,13 @@ namespace Charity.Web.Areas.Administration
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+             context.MapRoute(
+                name: "Administration_donors_edit",
+                url: "Administration/{controller}/{action}/{username}",
+                defaults: new { controller = "Donors", action = "Edit", username = "" },
+                namespaces: new string[] { "Charity.Web.Areas.Administration.Controllers" }
+            );
+
             context.MapRoute(
                 name: "Administration_default",
                 url: "Administration/{controller}/{action}/{id}",

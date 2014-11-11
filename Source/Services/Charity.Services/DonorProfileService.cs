@@ -14,7 +14,7 @@
             this.donorRepository = donorRepository;
         }
         
-        public Donor GetById(string id)
+        public Donor GetById(Guid id)
         {
             return this.donorRepository.GetById(id);
         }
@@ -39,6 +39,18 @@
         {
             this.donorRepository.Add(donor);
             this.donorRepository.SaveChanges();
+        }
+
+        public IQueryable<Donor> All()
+        {
+            return this.donorRepository.All();
+        }
+
+        //TODO: Move method's content in DonorRepository. 
+        public IQueryable<Donor> SearchByOrganizationName(string searchString)
+        {
+            var query = this.donorRepository.All().Where(donor => donor.OrganizationName.Contains(searchString));
+            return query;
         }
     }
 }
