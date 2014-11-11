@@ -199,7 +199,9 @@
     <Compile Include="Areas\Donors\Controllers\AccountController.cs" />
     <Compile Include="Areas\Donors\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Donors\DonorsAreaRegistration.cs" />
+    <Compile Include="Areas\Donors\Models\AccountDetailsEditModel.cs" />
     <Compile Include="Areas\Donors\Models\AccountDetailsViewModel.cs" />
+    <Compile Include="Areas\Donors\Models\DonorDetailsEditModel.cs" />
     <Compile Include="Areas\Donors\Models\DonorDetailsViewModel.cs" />
     <Compile Include="Areas\Donors\Models\DonorRegisterViewModel.cs" />
     <Compile Include="Areas\Recipients\Controllers\AccountController.cs" />
