@@ -12,7 +12,7 @@
         {
         }
 
-        public Donor GetById(string id)
+        public Donor GetById(Guid id)
         {
             return this.DbSet.Find(id);
         }

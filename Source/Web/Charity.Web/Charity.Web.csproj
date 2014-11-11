@@ -196,6 +196,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\Controllers\DonorsController.cs" />
+    <Compile Include="Areas\Administration\Models\AccountDetailsEditModel.cs" />
+    <Compile Include="Areas\Administration\Models\AccountDetailsViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\DonorDetailsEditModel.cs" />
+    <Compile Include="Areas\Administration\Models\DonorDetailsViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\DonorListViewModel.cs" />
     <Compile Include="Areas\Donors\Controllers\AccountController.cs" />
     <Compile Include="Areas\Donors\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Donors\DonorsAreaRegistration.cs" />
@@ -240,6 +248,13 @@
     <Content Include="Areas\Donors\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Donors\Views\Profile\Details.cshtml" />
     <Content Include="Areas\Donors\Views\Profile\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administration\Views\Donors\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Donors\_DonorSearchForm.cshtml" />
+    <Content Include="Areas\Administration\Views\Donors\Search.cshtml" />
+    <Content Include="Areas\Administration\Views\Donors\Details.cshtml" />
+    <Content Include="Areas\Administration\Views\Donors\Edit.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -297,8 +312,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Controllers\" />
-    <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Areas\Donors\Views\Shared\" />
     <Folder Include="Areas\Recipients\Models\" />
