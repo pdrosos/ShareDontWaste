@@ -37,6 +37,7 @@ namespace Charity.Data.Migrations
             this.SeedAdminUser(context);
             this.SeedCities(context);
             this.SeedRecipientTypes(context);
+            this.SeedFoodCategories(context);
         }
 
         private void SeedRoles(ApplicationDbContext context)
@@ -142,6 +143,11 @@ namespace Charity.Data.Migrations
             city.CreatedOn = DateTime.Now;
             context.Cities.Add(city);
 
+            city = new City();
+            city.Name = "Burgas";
+            city.CreatedOn = DateTime.Now;
+            context.Cities.Add(city);
+
             context.SaveChanges();
         }
 
@@ -166,6 +172,76 @@ namespace Charity.Data.Migrations
             type.Name = "School";
             type.CreatedOn = DateTime.Now;
             context.RecipientTypes.Add(type);
+
+            type = new RecipientType();
+            type.Name = "Animal shelter";
+            type.CreatedOn = DateTime.Now;
+            context.RecipientTypes.Add(type);
+
+            type = new RecipientType();
+            type.Name = "Other";
+            type.CreatedOn = DateTime.Now;
+            context.RecipientTypes.Add(type);
+
+            context.SaveChanges();
+        }
+
+        private void SeedFoodCategories(ApplicationDbContext context)
+        {
+            if (context.FoodCategories.Any())
+            {
+                return;
+            }
+
+            var type = new FoodCategory();
+            type.Name = "Meat";
+            type.CreatedOn = DateTime.Now;
+            context.FoodCategories.Add(type);
+
+            type = new FoodCategory();
+            type.Name = "Seafood";
+            type.CreatedOn = DateTime.Now;
+            context.FoodCategories.Add(type);
+
+            type = new FoodCategory();
+            type.Name = "Egg Products";
+            type.CreatedOn = DateTime.Now;
+            context.FoodCategories.Add(type);
+
+            type = new FoodCategory();
+            type.Name = "Dairy Products";
+            type.CreatedOn = DateTime.Now;
+            context.FoodCategories.Add(type);
+
+            type = new FoodCategory();
+            type.Name = "Fresh fruits and vegetables";
+            type.CreatedOn = DateTime.Now;
+            context.FoodCategories.Add(type);
+
+            type = new FoodCategory();
+            type.Name = "Nuts, Grains and Beans";
+            type.CreatedOn = DateTime.Now;
+            context.FoodCategories.Add(type);
+
+            type = new FoodCategory();
+            type.Name = "Ready meals";
+            type.CreatedOn = DateTime.Now;
+            context.FoodCategories.Add(type);
+
+            type = new FoodCategory();
+            type.Name = "Baby food";
+            type.CreatedOn = DateTime.Now;
+            context.FoodCategories.Add(type);
+
+            type = new FoodCategory();
+            type.Name = "Pet food";
+            type.CreatedOn = DateTime.Now;
+            context.FoodCategories.Add(type);
+
+            type = new FoodCategory();
+            type.Name = "Other";
+            type.CreatedOn = DateTime.Now;
+            context.FoodCategories.Add(type);
 
             context.SaveChanges();
         }

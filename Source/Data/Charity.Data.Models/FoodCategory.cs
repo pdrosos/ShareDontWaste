@@ -2,34 +2,24 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
 
-    public class Donor : SoftDeletable
+    public class FoodCategory : SoftDeletable
     {
         private ICollection<FoodDonation> foodDonations;
 
-        public Donor()
+        public FoodCategory()
         {
             this.foodDonations = new HashSet<FoodDonation>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
-        public string ApplicationUserId { get; set; }
-
-        public virtual ApplicationUser ApplicationUser { get; set; }
-        
-        public string OrganizationName { get; set; }
-
-        public string ContactName { get; set; }
-
-        public string Address { get; set; }
-
-        public int? CityId { get; set; }
-
-        public virtual City City { get; set; }        
+        [Required]
+        [MaxLength(50)]
+        [Index(IsUnique = true)]
+        public string Name { get; set; }
 
         public virtual ICollection<FoodDonation> FoodDonations
         {

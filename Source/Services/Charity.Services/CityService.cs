@@ -17,7 +17,7 @@
 
         public IEnumerable<City> GetAll()
         {
-            return this.cityRepository.All().OrderBy(c => c.Name).AsEnumerable();
+            return this.cityRepository.All().OrderBy(c => c.Id).AsEnumerable();
         }
     }
 }

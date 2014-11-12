@@ -1,11 +1,19 @@
 ﻿namespace Charity.Data.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
     public class Recipient : SoftDeletable
     {
+        private ICollection<FoodRequest> foodRequests;
+
+        public Recipient()
+        {
+            this.foodRequests = new HashSet<FoodRequest>();
+        }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
@@ -28,5 +36,18 @@
         public int? CityId { get; set; }
 
         public virtual City City { get; set; }
+
+        public virtual ICollection<FoodRequest> FoodRequests
+        {
+            get
+            {
+                return this.foodRequests;
+            }
+
+            set
+            {
+                this.foodRequests = value;
+            }
+        }
     }
 }
