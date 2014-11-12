@@ -1,7 +1,7 @@
-﻿@model Charity.Web.Areas.Donors.Models.DonorDetailsViewModel
+﻿@model Charity.Web.Areas.Administration.Models.RecipientDetailsViewModel
 
 @{
-    ViewBag.Title = " Donor Details";
+    ViewBag.Title = " Recipient Details";
 }
 
 <h2>Details</h2>
@@ -16,6 +16,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.OrganizationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecipientType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecipientType.Name)
         </dd>
 
         <dt>
@@ -68,7 +76,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit") |
-    @Html.ActionLink("Manage authentication details", "Index", "Manage", new { Area = "" }, new { }) |
-    @Html.ActionLink("Back to Home Page", "Index", "Home", new { Area = "" }, new { })
+    @Html.ActionLink("Edit", "Edit", new { username = Model.AccountDetailsViewModel.UserName }, null) |
+    @Html.ActionLink("Back", "Index", "Recipients")
 </p>

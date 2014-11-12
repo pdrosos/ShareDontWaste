@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     public class Recipient : SoftDeletable
     {
@@ -12,9 +13,9 @@
 
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-        public int? TypeId { get; set; }
+        public int? RecipientTypeId { get; set; }
 
-        public virtual RecipientType Type { get; set; }
+        public virtual RecipientType RecipientType { get; set; }
 
         public string OrganizationName { get; set; }
         

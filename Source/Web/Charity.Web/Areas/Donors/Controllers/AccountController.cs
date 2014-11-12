@@ -5,16 +5,15 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
+    using AutoMapper;
+    using Charity.Common;
     using Charity.Data.Models;
+    using Charity.Services;
     using Charity.Web.Areas.Donors.Models;
     using Charity.Web.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
-    using Charity.Data.Repositories;
-    using AutoMapper;
-    using Charity.Common;
-using Charity.Services;
 
     [Authorize]
     public class AccountController : Controller
@@ -126,6 +125,7 @@ using Charity.Services;
                 var result = await UserManager.CreateAsync(user, model.RegisterViewModel.Password);
                 if (result.Succeeded)
                 {
+                    this.UserManager.AddToRole(user.Id, GlobalConstants.DonorRoleName);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -137,8 +137,6 @@ using Charity.Services;
                     Donor donor = new Donor();
                     donor.ApplicationUserId = user.Id;
                     Mapper.Map<DonorRegisterViewModel, Donor>(model, donor);
-
-                    this.UserManager.AddToRole(user.Id, GlobalConstants.DonorRoleName);
 
                     this.donorProfileService.Add(donor);
 

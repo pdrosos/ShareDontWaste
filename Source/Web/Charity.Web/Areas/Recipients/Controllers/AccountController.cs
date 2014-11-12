@@ -7,24 +7,31 @@
     using System.Web.Mvc;
     using Charity.Data.Models;
     using Charity.Web.Models;
+    using Charity.Web.Areas.Recipients.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
+    using Charity.Common;
+    using AutoMapper;
+    using Charity.Services;
 
     [Authorize]
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        private readonly RecipientProfileService recipientProfileService;
+
+        public AccountController(RecipientProfileService recipientProfileService)
         {
+            this.recipientProfileService = recipientProfileService;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
+        //public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        //{
+        //    UserManager = userManager;
+        //    SignInManager = signInManager;
+        //}
 
         public ApplicationUserManager UserManager
         {
@@ -110,23 +117,31 @@
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RecipientRegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.RegisterViewModel.UserName, Email = model.RegisterViewModel.Email };
+                user.CreatedOn = DateTime.Now;
+                var result = await UserManager.CreateAsync(user, model.RegisterViewModel.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    this.UserManager.AddToRole(user.Id, GlobalConstants.RecipientRoleName);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    Recipient recipient = new Recipient();
+                    recipient.ApplicationUserId = user.Id;
+                    Mapper.Map<RecipientRegisterViewModel, Recipient>(model, recipient);
+
+                    this.recipientProfileService.Add(recipient);
+
+                    return RedirectToAction("Index", "Home", new { area = "" });
                 }
                 AddErrors(result);
             }
