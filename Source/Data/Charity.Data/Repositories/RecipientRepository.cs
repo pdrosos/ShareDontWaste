@@ -12,5 +12,10 @@
             : base(context)
         {
         }
+
+        public Recipient GetById(Guid id)
+        {
+            return this.DbSet.Find(id);
+        }
     }
 }

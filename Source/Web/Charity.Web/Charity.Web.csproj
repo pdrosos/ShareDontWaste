@@ -196,14 +196,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
-    <Compile Include="Areas\Administration\Controllers\AccountController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\DonorsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\RecipientsController.cs" />
     <Compile Include="Areas\Administration\Models\AccountDetailsEditModel.cs" />
     <Compile Include="Areas\Administration\Models\AccountDetailsViewModel.cs" />
     <Compile Include="Areas\Administration\Models\DonorDetailsEditModel.cs" />
     <Compile Include="Areas\Administration\Models\DonorDetailsViewModel.cs" />
     <Compile Include="Areas\Administration\Models\DonorListViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\RecipientDetailsEditModel.cs" />
+    <Compile Include="Areas\Administration\Models\RecipientDetailsViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\RecipientListViewModel.cs" />
     <Compile Include="Areas\Donors\Controllers\AccountController.cs" />
     <Compile Include="Areas\Donors\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Donors\DonorsAreaRegistration.cs" />
@@ -213,6 +216,12 @@
     <Compile Include="Areas\Donors\Models\DonorDetailsViewModel.cs" />
     <Compile Include="Areas\Donors\Models\DonorRegisterViewModel.cs" />
     <Compile Include="Areas\Recipients\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Recipients\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Recipients\Models\AccountDetailsEditModel.cs" />
+    <Compile Include="Areas\Recipients\Models\AccountDetailsViewModel.cs" />
+    <Compile Include="Areas\Recipients\Models\RecipientDetailsEditModel.cs" />
+    <Compile Include="Areas\Recipients\Models\RecipientDetailsViewModel.cs" />
+    <Compile Include="Areas\Recipients\Models\RecipientRegisterViewModel.cs" />
     <Compile Include="Areas\Recipients\RecipientsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -255,6 +264,15 @@
     <Content Include="Areas\Administration\Views\Donors\Search.cshtml" />
     <Content Include="Areas\Administration\Views\Donors\Details.cshtml" />
     <Content Include="Areas\Administration\Views\Donors\Edit.cshtml" />
+    <Content Include="Areas\Recipients\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Recipients\Views\Account\Register.cshtml" />
+    <Content Include="Areas\Recipients\Views\Profile\Details.cshtml" />
+    <Content Include="Areas\Recipients\Views\Profile\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Recipients\Details.cshtml" />
+    <Content Include="Areas\Administration\Views\Recipients\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Recipients\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Recipients\Search.cshtml" />
+    <Content Include="Areas\Administration\Views\Recipients\_RecipientSearchForm.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -314,7 +332,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Areas\Donors\Views\Shared\" />
-    <Folder Include="Areas\Recipients\Models\" />
     <Folder Include="Areas\Recipients\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

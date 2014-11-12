@@ -1,17 +1,20 @@
-﻿@model IEnumerable<Charity.Web.Areas.Administration.Models.DonorListViewModel>
+﻿@model IEnumerable<Charity.Web.Areas.Administration.Models.RecipientListViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h3>Donors list</h3>
+<h3>Recipients list</h3>
 
-@Html.Partial("_DonorSearchForm")
+@Html.Partial("_RecipientSearchForm")
 
 <table class="table" id="students-list">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.OrganizationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RecipientType)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ContactName)
@@ -29,28 +32,31 @@
         </th>
     </tr>
 
-    @foreach (var donor in Model)
+    @foreach (var recipient in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => donor.OrganizationName)
+                @Html.DisplayFor(modelItem => recipient.OrganizationName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => donor.ContactName)
+                @Html.DisplayFor(modelItem => recipient.RecipientType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => donor.CityName)
+                @Html.DisplayFor(modelItem => recipient.ContactName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => donor.Email)
+                @Html.DisplayFor(modelItem => recipient.CityName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => donor.PhoneNumber)
+                @Html.DisplayFor(modelItem => recipient.Email)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { username = donor.UserName }, null) |
+                @Html.DisplayFor(modelItem => recipient.PhoneNumber)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { username = recipient.UserName }, null) |
                 @*@Html.ActionLink("Edit", "Edit", new { id = donor.Id }) |*@
-                @Html.ActionLink("Details", "Details", new { username = donor.UserName }, null) |
+                @Html.ActionLink("Details", "Details", new { username = recipient.UserName }, null) |
                 @*@Html.ActionLink("Details", "Details", new { id = donor.Id }) |*@
             </td>
         </tr>

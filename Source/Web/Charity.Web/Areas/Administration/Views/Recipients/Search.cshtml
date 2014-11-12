@@ -1,0 +1,60 @@
+﻿@using Charity.Web.Areas.Administration.Models
+@model IEnumerable<RecipientListViewModel>
+
+@{
+    ViewBag.Title = "Search Results (Recipients)";
+}
+
+<h3>@ViewBag.Title</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrganizationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RecipientType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+    </tr>
+    @foreach (var recipient in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => recipient.OrganizationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => recipient.RecipientType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => recipient.ContactName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => recipient.CityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => recipient.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => recipient.PhoneNumber)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { username = recipient.UserName }) |
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+                @Html.ActionLink("Details", "Details", new { username = recipient.UserName }) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+            </td>
+        </tr>
+    }
+</table>

@@ -68,6 +68,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", "Donors") |
+    @Html.ActionLink("Edit", "Edit", new { username = Model.AccountDetailsViewModel.UserName }, null) |
     @Html.ActionLink("Back", "Index", "Donors")
 </p>

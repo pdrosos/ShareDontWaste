@@ -10,6 +10,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
+    using Charity.Common;
 
     [Authorize]
     public class AccountController : Controller
@@ -91,19 +92,65 @@
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             var result = await SignInManager.PasswordSignInAsync(username, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+
+            if (result == SignInStatus.Success)
             {
-                case SignInStatus.Success:
+                if (String.IsNullOrEmpty(returnUrl))
+                {
+                    if (UserManager.IsInRole(userForEmail.Id, GlobalConstants.RecipientRoleName))
+                    {
+                        return RedirectToAction("Details", "Profile", new { Area = "Recipients" });
+                    }
+
+                    if (UserManager.IsInRole(userForEmail.Id, GlobalConstants.DonorRoleName))
+                    {
+                        return RedirectToAction("Details", "Profile", new { Area = "Donors" });
+                    }
+
+                    if (UserManager.IsInRole(userForEmail.Id, GlobalConstants.AdministratorRoleName))
+                    {
+                        return RedirectToAction("Index", "Home", new { Area = "Administration" });
+                    }
+                }
+                else
+                {
                     return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                }
             }
+            else if (result == SignInStatus.LockedOut)
+            {
+                return View("Lockout");
+            }
+            else if (result == SignInStatus.RequiresVerification)
+            {
+                return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+            }
+            else if (result == SignInStatus.Failure)
+            {
+                ModelState.AddModelError("", "Invalid username or password.");
+                return View(model);
+            }
+            else
+            {
+                ModelState.AddModelError("", "Invalid login attempt.");
+                return View(model);
+            }
+
+            return View(model);
+
+            //switch (result)
+            //{
+            //    case SignInStatus.Success:
+            //        return RedirectToLocal(returnUrl);
+            //    case SignInStatus.LockedOut:
+            //        return View("Lockout");
+            //    case SignInStatus.RequiresVerification:
+            //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+            //    case SignInStatus.Failure:
+            //    default:
+            //        ModelState.AddModelError("", "Invalid login attempt.");
+            //        return View(model);
+            //}
         }
 
         //
