@@ -27,6 +27,10 @@
 
         public IDbSet<Recipient> Recipients { get; set; }
 
+        public IDbSet<FoodCategory> FoodCategories { get; set; }
+
+        public IDbSet<FoodDonation> FoodDonations { get; set; }
+
 
         public static ApplicationDbContext Create()
         {

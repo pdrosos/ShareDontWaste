@@ -18,6 +18,10 @@
 
         IDbSet<Recipient> Recipients { get; set; }
 
+        IDbSet<FoodCategory> FoodCategories { get; set; }
+
+        IDbSet<FoodDonation> FoodDonations { get; set; }
+
         int SaveChanges();
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;

@@ -58,6 +58,9 @@
     <Compile Include="Common\IAuditInfo.cs" />
     <Compile Include="Common\ISoftDeletable.cs" />
     <Compile Include="Common\IOrderable.cs" />
+    <Compile Include="FoodRequest.cs" />
+    <Compile Include="FoodCategory.cs" />
+    <Compile Include="FoodDonation.cs" />
     <Compile Include="SoftDeletable.cs" />
     <Compile Include="Donor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

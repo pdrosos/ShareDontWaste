@@ -88,7 +88,11 @@ namespace Charity.Web.App_Start
             kernel.Bind<IDonorRepository>().To<DonorRepository>();
 
             kernel.Bind<IRecipientTypeRepository>().To<RecipientTypeRepository>();
-            kernel.Bind<IRecipientRepository>().To<RecipientRepository>();                        
+            kernel.Bind<IRecipientRepository>().To<RecipientRepository>();
+
+            kernel.Bind<IFoodCategoryRepository>().To<FoodCategoryRepository>();
+            kernel.Bind<IFoodDonationRepository>().To<FoodDonationRepository>();
+            kernel.Bind<IFoodRequestRepository>().To<FoodRequestRepository>();
         }        
     }
 }
