@@ -18,13 +18,11 @@
     {
         private readonly DonorProfileService donorProfileService;
         private readonly CityService cityService;
-        private readonly ICurrentUser currentUserProvider;
 
-        public DonorsController(DonorProfileService donorProfileService, CityService cityService, ICurrentUser currentUserProvider)
+        public DonorsController(DonorProfileService donorProfileService, CityService cityService)
         {
             this.donorProfileService = donorProfileService;
             this.cityService = cityService;
-            this.currentUserProvider = currentUserProvider;
         }
 
 

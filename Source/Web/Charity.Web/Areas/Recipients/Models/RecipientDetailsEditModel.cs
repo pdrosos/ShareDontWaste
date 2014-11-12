@@ -20,15 +20,11 @@
         [StringLength(250, ErrorMessage = "The {0} must not be more than {1} characters.")]
         public string Address { get; set; }
 
-        public City City { get; set; }
-
         [Required]
         [Display(Name = "City")]
         public int CityId { get; set; }
 
         public IEnumerable<SelectListItem> Cities { get; set; }
-
-        public RecipientType RecipientType { get; set; }
 
         [Required]
         [Display(Name = "Recipient Type")]

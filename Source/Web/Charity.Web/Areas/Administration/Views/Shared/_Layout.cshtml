@@ -22,12 +22,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new {})</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new {})</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new {})</li>
-                    @if (User.IsInRole(Charity.Common.GlobalConstants.AdministratorRoleName))
-                    {
-                        <li>@Html.ActionLink("Dashboard", "Index", "Home", new { area = "Administration" }, new { })</li>
-                    }
+                    <li>@Html.ActionLink("Dashboard", "Index", "Home", new { area = "Administration" }, new { })</li>
+                    <li>@Html.ActionLink("Donors", "Index", "Donors", new { area = "Administration" }, new { })</li>
+                    <li>@Html.ActionLink("Recipients", "Index", "Recipients", new { area = "Administration" }, new { })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

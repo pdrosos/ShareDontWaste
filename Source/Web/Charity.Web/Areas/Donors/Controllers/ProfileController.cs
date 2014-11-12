@@ -73,7 +73,7 @@
                 
                 this.donorProfileService.Update(donor);
 
-                return RedirectToAction("Index", "Home", new { area = ""});
+                return RedirectToAction("Details", "Profile", new { area = "Donors"});
             }
 
             model.Cities = this.GetCities();

@@ -1,4 +1,4 @@
-Share, Don't Waste
+FoodShare
 ==================
 
 Telerik Academy ASP.NET MVC Project

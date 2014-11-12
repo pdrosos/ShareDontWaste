@@ -8,16 +8,12 @@
 
     public class AccountDetailsViewModel : IMapFrom<ApplicationUser>
     {
-        [Required]
         [Display(Name = "Username")]
         public string UserName { get; set; }
 
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
-        [Phone]
         public string PhoneNumber { get; set; }
     }
 }

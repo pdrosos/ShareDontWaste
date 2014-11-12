@@ -258,7 +258,6 @@
     <Content Include="Areas\Donors\Views\Profile\Details.cshtml" />
     <Content Include="Areas\Donors\Views\Profile\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\Donors\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Donors\_DonorSearchForm.cshtml" />
     <Content Include="Areas\Administration\Views\Donors\Search.cshtml" />
@@ -273,6 +272,9 @@
     <Content Include="Areas\Administration\Views\Recipients\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Recipients\Search.cshtml" />
     <Content Include="Areas\Administration\Views\Recipients\_RecipientSearchForm.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -330,7 +332,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Areas\Donors\Views\Shared\" />
     <Folder Include="Areas\Recipients\Views\Shared\" />
   </ItemGroup>

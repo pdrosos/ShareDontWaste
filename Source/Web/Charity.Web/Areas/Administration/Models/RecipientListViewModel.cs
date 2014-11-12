@@ -26,7 +26,7 @@
         [Display(Name = "Username")]
         public string UserName { get; set; }
 
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
         [Display(Name = "Phone number")]

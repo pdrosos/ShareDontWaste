@@ -79,7 +79,7 @@
 
                 this.recipientProfileService.Update(recipient);
 
-                return RedirectToAction("Index", "Home", new { area = ""});
+                return RedirectToAction("Details", "Profile", new { area = "Recipients"});
             }
 
             model.Cities = this.GetCities();
