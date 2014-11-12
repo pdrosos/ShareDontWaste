@@ -12,6 +12,7 @@
     using Charity.Services;
     using Charity.Web.Areas.Administration.Models;
     using Charity.Web.Infrastructure.Identity;
+    using PagedList;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class RecipientsController : Controller
@@ -34,11 +35,15 @@
         }
 
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             var allRecipients = this.recipientProfileService.All().Project().To<RecipientListViewModel>();
-            IEnumerable<RecipientListViewModel> allRecipientsEnumerable = allRecipients.AsEnumerable();
-            return View(allRecipientsEnumerable);
+
+            int pageSize = 3;
+            int pageIndex = (page ?? 1);
+
+            //IEnumerable<RecipientListViewModel> allRecipientsEnumerable = allRecipients.AsEnumerable();
+            return View(allRecipients.OrderBy(o => o.OrganizationName).ToPagedList(pageIndex, pageSize));
         }
 
         public ActionResult Details(string username)

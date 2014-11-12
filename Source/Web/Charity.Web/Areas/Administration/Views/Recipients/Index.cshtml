@@ -1,64 +1,74 @@
 ﻿@model IEnumerable<Charity.Web.Areas.Administration.Models.RecipientListViewModel>
+@using PagedList.Mvc;
+@using PagedList;
 
 @{
     ViewBag.Title = "Index";
+    var pagedlist = (IPagedList)Model;
 }
 
 <h3>Recipients list</h3>
 
 @Html.Partial("_RecipientSearchForm")
 
-<table class="table" id="students-list">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.OrganizationName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RecipientType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContactName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CityName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-        <th>
-        </th>
-    </tr>
-
-    @foreach (var recipient in Model)
-    {
+<div class="table-list">
+    <table class="table" id="recipients-list">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => recipient.OrganizationName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => recipient.RecipientType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => recipient.ContactName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => recipient.CityName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => recipient.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => recipient.PhoneNumber)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { username = recipient.UserName }, null) |
-                @*@Html.ActionLink("Edit", "Edit", new { id = donor.Id }) |*@
-                @Html.ActionLink("Details", "Details", new { username = recipient.UserName }, null) |
-                @*@Html.ActionLink("Details", "Details", new { id = donor.Id }) |*@
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.OrganizationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RecipientType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+            </th>
         </tr>
-    }
-</table>
+
+        @foreach (var recipient in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => recipient.OrganizationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => recipient.RecipientType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => recipient.ContactName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => recipient.CityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => recipient.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => recipient.PhoneNumber)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { username = recipient.UserName }, null) |
+                    @*@Html.ActionLink("Edit", "Edit", new { id = donor.Id }) |*@
+                    @Html.ActionLink("Details", "Details", new { username = recipient.UserName }, null) |
+                    @*@Html.ActionLink("Details", "Details", new { id = donor.Id }) |*@
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<br />
+Page @(pagedlist.PageCount < pagedlist.PageNumber ? 0 : pagedlist.PageNumber) of @pagedlist.PageCount
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))

@@ -22,3 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.table-list {
+    min-height: 300px;
+}

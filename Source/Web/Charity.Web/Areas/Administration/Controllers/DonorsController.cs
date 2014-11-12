@@ -11,7 +11,7 @@
     using Charity.Data.Models;
     using Charity.Services;
     using Charity.Web.Areas.Administration.Models;
-    using Charity.Web.Infrastructure.Identity;
+    using PagedList;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class DonorsController : Controller
@@ -26,11 +26,15 @@
         }
 
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             var allDonors = this.donorProfileService.All().Project().To<DonorListViewModel>();
-            IEnumerable<DonorListViewModel> allDonorsEnumerable = allDonors.AsEnumerable();
-            return View(allDonorsEnumerable);
+
+            int pageSize = 3;
+            int pageIndex = (page ?? 1);
+
+            //IEnumerable<DonorListViewModel> allDonorsEnumerable = allDonors.AsEnumerable();
+            return View(allDonors.OrderBy(o => o.OrganizationName).ToPagedList(pageIndex, pageSize));
         }
 
         public ActionResult Details(string username)
