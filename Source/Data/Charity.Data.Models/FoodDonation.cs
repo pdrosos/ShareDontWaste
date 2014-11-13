@@ -17,7 +17,7 @@
         public int Id { get; set; }
 
         [Required]
-        public string DonorId { get; set; }
+        public Guid DonorId { get; set; }
 
         public virtual Donor Donor { get; set; }
 
