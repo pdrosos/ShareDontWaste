@@ -17,7 +17,7 @@
         public int Id { get; set; }
 
         [Required]
-        public string RecipientId { get; set; }
+        public Guid RecipientId { get; set; }
 
         public virtual Recipient Recipient { get; set; }
 
