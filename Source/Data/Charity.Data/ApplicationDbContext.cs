@@ -31,7 +31,12 @@
 
         public IDbSet<FoodDonation> FoodDonations { get; set; }
 
+        public IDbSet<FoodDonationComment> FoodDonationComments { get; set; }
 
+        public IDbSet<FoodRequest> FoodRequests { get; set; }
+
+        public IDbSet<FoodRequestComment> FoodRequestComments { get; set; }
+        
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

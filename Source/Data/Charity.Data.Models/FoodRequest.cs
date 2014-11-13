@@ -1,11 +1,19 @@
 ﻿namespace Charity.Data.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
 
     public class FoodRequest : SoftDeletable
     {
+        private ICollection<FoodRequestComment> comments;
+
+        public FoodRequest()
+        {
+            this.comments = new HashSet<FoodRequestComment>();
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -32,5 +40,18 @@
         public string AdminNotes { get; set; }
 
         public bool IsCompleted { get; set; }
+
+        public virtual ICollection<FoodRequestComment> Comments
+        {
+            get
+            {
+                return this.comments;
+            }
+
+            set
+            {
+                this.comments = value;
+            }
+        }
     }
 }

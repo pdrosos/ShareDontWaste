@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FoodRequestCommentService.cs" />
+    <Compile Include="FoodDonationCommentService.cs" />
     <Compile Include="FoodRequestService.cs" />
     <Compile Include="FoodDonationService.cs" />
     <Compile Include="FoodCategoryService.cs" />

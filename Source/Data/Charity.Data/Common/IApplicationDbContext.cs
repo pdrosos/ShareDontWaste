@@ -22,6 +22,12 @@
 
         IDbSet<FoodDonation> FoodDonations { get; set; }
 
+        IDbSet<FoodDonationComment> FoodDonationComments { get; set; }
+
+        IDbSet<FoodRequest> FoodRequests { get; set; }
+
+        IDbSet<FoodRequestComment> FoodRequestComments { get; set; }
+
         int SaveChanges();
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;

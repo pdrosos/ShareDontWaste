@@ -91,8 +91,12 @@ namespace Charity.Web.App_Start
             kernel.Bind<IRecipientRepository>().To<RecipientRepository>();
 
             kernel.Bind<IFoodCategoryRepository>().To<FoodCategoryRepository>();
+
             kernel.Bind<IFoodDonationRepository>().To<FoodDonationRepository>();
+            kernel.Bind<IFoodDonationCommentRepository>().To<FoodDonationCommentRepository>();
+
             kernel.Bind<IFoodRequestRepository>().To<FoodRequestRepository>();
+            kernel.Bind<IFoodRequestCommentRepository>().To<FoodRequestCommentRepository>();
         }        
     }
 }

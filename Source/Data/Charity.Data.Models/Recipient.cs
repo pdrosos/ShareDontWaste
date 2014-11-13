@@ -7,10 +7,13 @@
 
     public class Recipient : SoftDeletable
     {
+        private ICollection<FoodCategory> foodCategories;
+
         private ICollection<FoodRequest> foodRequests;
 
         public Recipient()
         {
+            this.foodCategories = new HashSet<FoodCategory>();
             this.foodRequests = new HashSet<FoodRequest>();
         }
 
@@ -36,6 +39,19 @@
         public int? CityId { get; set; }
 
         public virtual City City { get; set; }
+
+        public virtual ICollection<FoodCategory> FoodCategories
+        {
+            get
+            {
+                return this.foodCategories;
+            }
+
+            set
+            {
+                this.foodCategories = value;
+            }
+        }
 
         public virtual ICollection<FoodRequest> FoodRequests
         {
