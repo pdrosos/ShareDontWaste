@@ -26,3 +26,7 @@ textarea {
 .table-list {
     min-height: 300px;
 }
+
+.input-group {
+    margin: 15px 0;
+}

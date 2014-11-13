@@ -25,16 +25,53 @@
             this.cityService = cityService;
         }
 
-
-        public ActionResult Index(int? page)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var allDonors = this.donorProfileService.All().Project().To<DonorListViewModel>();
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.OrganizationNameSortParam = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.ContactNameSortParam = sortOrder == "ContactName" ? "contactname_desc" : "ContactName";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var donors = this.donorProfileService.All();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                donors = donors.Where(d => d.OrganizationName.Contains(searchString)
+                                       || d.ContactName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    donors = donors.OrderByDescending(d => d.OrganizationName);
+                    break;
+                case "ContactName":
+                    donors = donors.OrderBy(d => d.ContactName);
+                    break;
+                case "contactname_desc":
+                    donors = donors.OrderByDescending(d => d.ContactName);
+                    break;
+                default:
+                    donors = donors.OrderBy(d => d.OrganizationName);
+                    break;
+            }
+
+            var sortedDonors = donors.Project().To<DonorListViewModel>();
 
             int pageSize = 3;
             int pageIndex = (page ?? 1);
 
-            //IEnumerable<DonorListViewModel> allDonorsEnumerable = allDonors.AsEnumerable();
-            return View(allDonors.OrderBy(o => o.OrganizationName).ToPagedList(pageIndex, pageSize));
+            return View(sortedDonors.ToPagedList(pageIndex, pageSize));
         }
 
         public ActionResult Details(string username)

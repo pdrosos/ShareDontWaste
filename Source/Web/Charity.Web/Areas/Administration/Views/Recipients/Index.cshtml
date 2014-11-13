@@ -9,16 +9,32 @@
 
 <h3>Recipients list</h3>
 
-@Html.Partial("_RecipientSearchForm")
+@using (Html.BeginForm("Index", "Recipients", FormMethod.Get))
+{
+    <div class="input-group">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+
+        <span class="input-group-btn pull-left">
+            <button class="btn btn-default" type="submit">Search</button>
+        </span>
+    </div>
+}
 
 <div class="table-list">
     <table class="table" id="recipients-list">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.OrganizationName)
+                @Html.ActionLink("Organization Name", "Index",
+                    new { sortOrder = ViewBag.OrganizationNameSortParam, currentFilter = ViewBag.CurrentFilter })
             </th>
+
             <th>
-                @Html.DisplayNameFor(model => model.RecipientType)
+                @Html.ActionLink("Recipient Type", "Index",
+                    new { sortOrder = ViewBag.RecipientTypeSortParam, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ContactName)
@@ -71,4 +87,5 @@
 <br />
 Page @(pagedlist.PageCount < pagedlist.PageNumber ? 0 : pagedlist.PageNumber) of @pagedlist.PageCount
 
-@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+@Html.PagedListPager((IPagedList)Model,
+    page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

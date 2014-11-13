@@ -34,17 +34,64 @@
             this.currentUserProvider = currentUserProvider;
         }
 
-
-        public ActionResult Index(int? page)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var allRecipients = this.recipientProfileService.All().Project().To<RecipientListViewModel>();
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.OrganizationNameSortParam = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.RecipientTypeSortParam = sortOrder == "RecipientType" ? "recipienttype_desc" : "RecipientType";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var recipients = this.recipientProfileService.All();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                recipients = recipients.Where(r => r.OrganizationName.Contains(searchString)
+                                       || r.RecipientType.Name.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    recipients = recipients.OrderByDescending(r => r.OrganizationName);
+                    break;
+                case "RecipientType":
+                    recipients = recipients.OrderBy(r => r.RecipientType.Name);
+                    break;
+                case "recipienttype_desc":
+                    recipients = recipients.OrderByDescending(r => r.RecipientType.Name);
+                    break;
+                default:
+                    recipients = recipients.OrderBy(r => r.OrganizationName);
+                    break;
+            }
+
+            var sortedRecipients = recipients.Project().To<RecipientListViewModel>();
 
             int pageSize = 3;
             int pageIndex = (page ?? 1);
 
-            //IEnumerable<RecipientListViewModel> allRecipientsEnumerable = allRecipients.AsEnumerable();
-            return View(allRecipients.OrderBy(o => o.OrganizationName).ToPagedList(pageIndex, pageSize));
+            return View(sortedRecipients.ToPagedList(pageIndex, pageSize));
         }
+
+        //public ActionResult Index(int? page)
+        //{
+        //    var allRecipients = this.recipientProfileService.All().Project().To<RecipientListViewModel>();
+
+        //    int pageSize = 3;
+        //    int pageIndex = (page ?? 1);
+
+        //    return View(allRecipients.OrderBy(o => o.OrganizationName).ToPagedList(pageIndex, pageSize));
+        //}
 
         public ActionResult Details(string username)
         {

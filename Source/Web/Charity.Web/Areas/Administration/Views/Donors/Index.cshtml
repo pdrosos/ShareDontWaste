@@ -9,16 +9,31 @@
 
 <h3>Donors list</h3>
 
-@Html.Partial("_DonorSearchForm")
+@using (Html.BeginForm("Index", "Donors", FormMethod.Get))
+{
+    <div class="input-group">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+
+        <span class="input-group-btn pull-left">
+            <button class="btn btn-default" type="submit">Search</button>
+        </span>
+    </div>
+}
 
 <div class="table-list">
     <table class="table" id="donors-list">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.OrganizationName)
+                @Html.ActionLink("Organization Name", "Index",
+                    new { sortOrder = ViewBag.OrganizationNameSortParam, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ContactName)
+                @Html.ActionLink("Contact Name", "Index",
+                    new { sortOrder = ViewBag.ContactNameSortParam, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CityName)
@@ -29,8 +44,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.PhoneNumber)
             </th>
-            <th>
-            </th>
+            <th></th>
         </tr>
 
         @foreach (var donor in Model)
@@ -53,9 +67,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { username = donor.UserName }, null) |
-                    @*@Html.ActionLink("Edit", "Edit", new { id = donor.Id }) |*@
-                    @Html.ActionLink("Details", "Details", new { username = donor.UserName }, null) |
-                    @*@Html.ActionLink("Details", "Details", new { id = donor.Id }) |*@
+                    @Html.ActionLink("Details", "Details", new { username = donor.UserName }, null)
                 </td>
             </tr>
         }
@@ -65,4 +77,5 @@
 <br />
 Page @(pagedlist.PageCount < pagedlist.PageNumber ? 0 : pagedlist.PageNumber) of @pagedlist.PageCount
 
-@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+@Html.PagedListPager((IPagedList)Model,
+    page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
