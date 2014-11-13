@@ -1,0 +1,65 @@
+﻿@model Charity.Web.Areas.Donors.Models.FoodDonationViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FoodDonation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FoodCategory.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodCategory.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpirationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpirationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvailableFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvailableFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvailableTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvailableTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "MyDonations")
+</p>

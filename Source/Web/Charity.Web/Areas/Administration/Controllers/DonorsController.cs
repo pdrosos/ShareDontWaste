@@ -138,17 +138,6 @@
             return View(model);
         }
 
-        [HttpGet]
-        public ActionResult Search(string name)
-        {
-            var foundDonors = this.donorProfileService
-                .SearchByOrganizationName(name)
-                .Project()
-                .To<DonorListViewModel>();
-
-            return View(foundDonors.AsEnumerable());
-        }
-
         private IEnumerable<SelectListItem> GetCities()
         {
             var cities = this.cityService.GetAll()

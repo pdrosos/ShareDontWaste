@@ -13,6 +13,11 @@
         {
             this.foodDonationRepository = foodDonationRepository;
         }
+
+        public FoodDonation GetById(int id)
+        {
+            return this.foodDonationRepository.GetById(id);
+        }
         
         public void Update(FoodDonation foodDonation)
         {
@@ -29,6 +34,12 @@
         public IQueryable<FoodDonation> All()
         {
             return this.foodDonationRepository.All();
+        }
+
+        public void Delete(FoodDonation foodDonation)
+        {
+            this.foodDonationRepository.Delete(foodDonation);
+            this.foodDonationRepository.SaveChanges();
         }
     }
 }

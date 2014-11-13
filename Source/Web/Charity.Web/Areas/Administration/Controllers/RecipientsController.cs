@@ -159,17 +159,6 @@
             return View(model);
         }
 
-        [HttpGet]
-        public ActionResult Search(string name)
-        {
-            var foundRecipients = this.recipientProfileService
-                .SearchByOrganizationName(name)
-                .Project()
-                .To<RecipientListViewModel>();
-
-            return View(foundRecipients.AsEnumerable());
-        }
-
         private IEnumerable<SelectListItem> GetCities()
         {
             var cities = this.cityService.GetAll()

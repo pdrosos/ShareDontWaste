@@ -46,15 +46,9 @@
 
         public virtual ICollection<FoodDonationComment> Comments
         {
-            get
-            {
-                return this.comments;
-            }
+            get { return this.comments; }
 
-            set
-            {
-                this.comments = value;
-            }
+            set { this.comments = value; }
         }
     }
 }
