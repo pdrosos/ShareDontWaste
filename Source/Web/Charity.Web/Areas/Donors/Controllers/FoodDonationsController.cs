@@ -47,7 +47,7 @@
         {
             ApplicationUser user = this.currentUserProvider.Get();
             Donor donor = this.donorProfileService.GetByApplicationUserId(user.Id);
-            string currentDonorId = donor.Id.ToString();
+            Guid currentDonorId = donor.Id;
             
             var foodDonations = this.foodDonationService.All().Where(f => f.DonorId == currentDonorId).Project().To<FoodDonationListViewModel>();
             
@@ -90,7 +90,7 @@
             ApplicationUser user = this.currentUserProvider.Get();
             Donor donor = this.donorProfileService.GetByApplicationUserId(user.Id);
             
-            foodDonation.DonorId = donor.Id.ToString();
+            foodDonation.DonorId = donor.Id;
 
             if (ModelState.IsValid)
             {
@@ -109,7 +109,7 @@
             Donor donor = this.donorProfileService.GetByApplicationUserId(user.Id);
             FoodDonation foodDonation = this.foodDonationService.GetById((int)id);
 
-            if (donor.Id.ToString() != foodDonation.DonorId)
+            if (donor.Id != foodDonation.DonorId)
             {
                 return RedirectToAction("Index");
             }
