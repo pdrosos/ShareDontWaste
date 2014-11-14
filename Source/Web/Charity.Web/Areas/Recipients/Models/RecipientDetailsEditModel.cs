@@ -38,5 +38,8 @@
         public string ContactName { get; set; }
 
         public AccountDetailsEditModel AccountDetailsEditModel { get; set; }
+
+        [Display(Name = "What kind of food do you need?")]
+        public IList<FoodCategoryEditModel> FoodCategories { get; set; }
     }
 }

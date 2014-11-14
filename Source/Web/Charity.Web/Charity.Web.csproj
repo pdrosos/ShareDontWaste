@@ -225,6 +225,7 @@
     <Compile Include="Areas\Recipients\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Recipients\Models\AccountDetailsEditModel.cs" />
     <Compile Include="Areas\Recipients\Models\AccountDetailsViewModel.cs" />
+    <Compile Include="Areas\Recipients\Models\FoodCategoryEditModel.cs" />
     <Compile Include="Areas\Recipients\Models\RecipientDetailsEditModel.cs" />
     <Compile Include="Areas\Recipients\Models\RecipientDetailsViewModel.cs" />
     <Compile Include="Areas\Recipients\Models\RecipientRegisterViewModel.cs" />

@@ -19,5 +19,10 @@
         {
             return this.foodCategoryRepository.All().OrderBy(c => c.Id).AsEnumerable();
         }
+
+        public FoodCategory GetById(int id)
+        {
+            return this.foodCategoryRepository.GetById(id);
+        }
     }
 }

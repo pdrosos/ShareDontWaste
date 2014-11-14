@@ -1,6 +1,7 @@
 ﻿namespace Charity.Web.Areas.Recipients.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using Charity.Data.Models;
@@ -23,5 +24,8 @@
         public string ContactName { get; set; }
 
         public AccountDetailsViewModel AccountDetailsViewModel { get; set; }
+
+        [Display(Name = "Your food needs")]
+        public ICollection<FoodCategory> FoodCategories { get; set; }
     }
 }

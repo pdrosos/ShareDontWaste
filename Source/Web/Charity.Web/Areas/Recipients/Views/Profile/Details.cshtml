@@ -73,6 +73,19 @@
         <dd>
             @Html.DisplayFor(model => model.AccountDetailsViewModel.Email)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FoodCategories)
+        </dt>
+
+        <dd>
+            @foreach (var category in Model.FoodCategories)
+            {
+                <span class="label label-default" style="margin-right: 5px;">
+                    @category.Name
+                </span>
+            }
+        </dd>
     </dl>
 </div>
 <p>

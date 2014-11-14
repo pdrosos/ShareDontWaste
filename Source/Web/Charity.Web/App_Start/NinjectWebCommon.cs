@@ -66,9 +66,9 @@ namespace Charity.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<DbContext>().To<ApplicationDbContext>();
+            kernel.Bind<DbContext>().To<ApplicationDbContext>().InSingletonScope();
 
-            kernel.Bind<IApplicationDbContext>().To<ApplicationDbContext>();
+            kernel.Bind<IApplicationDbContext>().To<ApplicationDbContext>().InSingletonScope();
 
             kernel.Bind<IIdentity>().ToMethod(c => HttpContext.Current.User.Identity);
 

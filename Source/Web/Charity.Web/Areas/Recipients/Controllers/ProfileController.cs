@@ -17,17 +17,20 @@
         private readonly RecipientProfileService recipientProfileService;
         private readonly CityService cityService;
         private readonly RecipientTypeService recipientTypeService;
+        private readonly FoodCategoryService foodCategoryService;
         private readonly ICurrentUser currentUserProvider;
 
         public ProfileController(
             RecipientProfileService recipientProfileService, 
-            CityService cityService, 
-            RecipientTypeService recipientTypeService, 
+            CityService cityService,
+            RecipientTypeService recipientTypeService,
+            FoodCategoryService foodCategoryService,
             ICurrentUser currentUserProvider)
         {
             this.recipientProfileService = recipientProfileService;
             this.cityService = cityService;
             this.recipientTypeService = recipientTypeService;
+            this.foodCategoryService = foodCategoryService;
             this.currentUserProvider = currentUserProvider;
         }
         
@@ -60,7 +63,9 @@
             RecipientDetailsEditModel model = Mapper.Map<Recipient, RecipientDetailsEditModel>(recipient);
             model.AccountDetailsEditModel = Mapper.Map<ApplicationUser, AccountDetailsEditModel>(recipient.ApplicationUser);
             model.Cities = this.GetCities();
-            model.RecipientTypes = this.GetRecipientTypes();
+            // model.RecipientTypes = this.GetRecipientTypes();
+            model.RecipientTypes = new SelectList(this.recipientTypeService.GetAll(), "Id", "Name");
+            model.FoodCategories = this.GetFoodCategories(recipient);
 
             return View(model);
         }
@@ -77,13 +82,23 @@
                 Mapper.Map<RecipientDetailsEditModel, Recipient>(model, recipient);
                 Mapper.Map<AccountDetailsEditModel, ApplicationUser>(model.AccountDetailsEditModel, recipient.ApplicationUser);
 
+                var selectedCategories = model.FoodCategories.Where(c => c.IsChecked);
+                recipient.FoodCategories.Clear();
+                foreach (var categoryModel in selectedCategories)
+                {
+                    var category = this.foodCategoryService.GetById(categoryModel.Id);
+                    recipient.FoodCategories.Add(category);
+                }
+
                 this.recipientProfileService.Update(recipient);
 
                 return RedirectToAction("Details", "Profile", new { area = "Recipients"});
             }
 
             model.Cities = this.GetCities();
-            model.RecipientTypes = this.GetRecipientTypes();
+            // model.RecipientTypes = this.GetRecipientTypes();
+            model.RecipientTypes = new SelectList(this.recipientTypeService.GetAll(), "Id", "Name");
+            model.FoodCategories = this.GetFoodCategories(recipient);
 
             return View(model);
         }
@@ -98,6 +113,34 @@
                                     });
 
             return new SelectList(cities, "Value", "Text");
+        }
+
+        private IList<FoodCategoryEditModel> GetFoodCategories(Recipient recipient)
+        {
+            var recipientSelectedCategoriesIds = new HashSet<int>();
+            foreach (var recipientCategory in recipient.FoodCategories)
+            {
+                recipientSelectedCategoriesIds.Add(recipientCategory.Id);
+            }
+
+            var foodCategories = this.foodCategoryService.GetAll();
+            var foodCategoriesList = new List<FoodCategoryEditModel>();
+
+            foreach (var foodCategory in foodCategories)
+            {
+                var foodCategoryModel = new FoodCategoryEditModel();
+                foodCategoryModel.Id = foodCategory.Id;
+                foodCategoryModel.Name = foodCategory.Name;
+
+                if (recipientSelectedCategoriesIds.Contains(foodCategory.Id))
+                {
+                    foodCategoryModel.IsChecked = true;
+                }
+
+                foodCategoriesList.Add(foodCategoryModel);
+            }
+
+            return foodCategoriesList;
         }
 
         private IEnumerable<SelectListItem> GetRecipientTypes()
