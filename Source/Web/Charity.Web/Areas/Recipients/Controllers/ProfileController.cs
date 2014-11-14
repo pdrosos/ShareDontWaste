@@ -114,7 +114,11 @@
         }
 
         /// <summary>
+        /// Manual checkbox list generation
         /// http://stackoverflow.com/questions/12808936/how-do-i-render-a-group-of-checkboxes-using-mvc-4-and-view-models-strongly-type
+        /// TODO: Improved checkbox list with
+        /// https://www.nuget.org/packages/MvcCheckBoxList/ (http://mvccbl.com/Examples) or 
+        /// https://www.nuget.org/packages/Hex/ (http://staticdotnet.wordpress.com/hex/hex-creating-a-list-of-checkboxes/)
         /// </summary>
         /// <param name="recipient"></param>
         /// <returns></returns>
