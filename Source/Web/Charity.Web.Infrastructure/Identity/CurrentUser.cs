@@ -10,11 +10,11 @@
     public class CurrentUser : ICurrentUser
     {
         private readonly IIdentity currentIdentity;
-        private readonly ApplicationDbContext currentDbContext;
+        private readonly IApplicationDbContext currentDbContext;
 
         private ApplicationUser user;
 
-        public CurrentUser(IIdentity identity, ApplicationDbContext context)
+        public CurrentUser(IIdentity identity, IApplicationDbContext context)
         {
             this.currentIdentity = identity;
             this.currentDbContext = context;

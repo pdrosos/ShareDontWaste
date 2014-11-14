@@ -10,7 +10,7 @@
     public class DeletableEntityRepository<T> : GenericRepository<T>, IDeletableEntityRepository<T>
         where T : class, ISoftDeletable
     {
-        public DeletableEntityRepository(ApplicationDbContext context)
+        public DeletableEntityRepository(IApplicationDbContext context)
             : base(context)
         {
         }

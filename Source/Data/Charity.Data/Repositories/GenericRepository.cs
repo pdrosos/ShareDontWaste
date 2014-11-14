@@ -9,7 +9,7 @@ namespace Charity.Data.Repositories
     
     public class GenericRepository<T> : IRepository<T> where T : class
     {
-        public GenericRepository(ApplicationDbContext context)
+        public GenericRepository(IApplicationDbContext context)
         {
             if (context == null)
             {
@@ -22,7 +22,7 @@ namespace Charity.Data.Repositories
 
         protected IDbSet<T> DbSet { get; set; }
 
-        protected ApplicationDbContext Context { get; set; }
+        protected IApplicationDbContext Context { get; set; }
 
         public virtual IQueryable<T> All()
         {

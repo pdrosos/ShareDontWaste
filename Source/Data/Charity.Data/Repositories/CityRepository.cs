@@ -8,7 +8,7 @@
 
     public class CityRepository : DeletableEntityRepository<City>, ICityRepository
     {
-        public CityRepository(ApplicationDbContext context)
+        public CityRepository(IApplicationDbContext context)
             : base(context)
         {
         }

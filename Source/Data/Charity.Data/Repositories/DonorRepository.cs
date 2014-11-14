@@ -8,7 +8,8 @@
 
     public class DonorRepository : DeletableEntityRepository<Donor>, IDonorRepository
     {
-        public DonorRepository(ApplicationDbContext context) : base(context)
+        public DonorRepository(IApplicationDbContext context)
+            : base(context)
         {
         }
 

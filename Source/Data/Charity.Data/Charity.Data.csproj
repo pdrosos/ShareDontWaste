@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Common\IApplicationDbContext.cs" />
     <Compile Include="Common\Repositories\IDeletableEntityRepository.cs" />
     <Compile Include="Common\Repositories\IFoodRequestCommentRepository.cs" />
     <Compile Include="Common\Repositories\IFoodDonationCommentRepository.cs" />

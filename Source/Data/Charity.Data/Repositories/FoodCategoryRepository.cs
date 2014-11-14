@@ -8,7 +8,7 @@
 
     public class FoodCategoryRepository : DeletableEntityRepository<FoodCategory>, IFoodCategoryRepository
     {
-        public FoodCategoryRepository(ApplicationDbContext context)
+        public FoodCategoryRepository(IApplicationDbContext context)
             : base(context)
         {
         }

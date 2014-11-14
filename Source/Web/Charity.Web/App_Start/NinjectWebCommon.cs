@@ -13,6 +13,8 @@ namespace Charity.Web.App_Start
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
+    using System.Data.Entity;
+    using Charity.Data.Common;
 
     public static class NinjectWebCommon 
     {
@@ -64,7 +66,9 @@ namespace Charity.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
+            //kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
+
+            kernel.Bind<IApplicationDbContext>().To<ApplicationDbContext>().InRequestScope();
 
             kernel.Bind<IIdentity>().ToMethod(c => HttpContext.Current.User.Identity);
 
