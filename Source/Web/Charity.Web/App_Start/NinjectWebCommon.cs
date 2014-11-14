@@ -4,17 +4,15 @@
 namespace Charity.Web.App_Start
 {
     using System;
-    using System.Data.Entity;
     using System.Security.Principal;
     using System.Web;
     using Charity.Data;
-    using Charity.Data.Common;
     using Charity.Data.Common.Repositories;
     using Charity.Data.Repositories;
+    using Charity.Web.Infrastructure.Identity;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
-    using Charity.Web.Infrastructure.Identity;
 
     public static class NinjectWebCommon 
     {
@@ -66,37 +64,35 @@ namespace Charity.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<DbContext>().To<ApplicationDbContext>().InSingletonScope();
-
-            kernel.Bind<IApplicationDbContext>().To<ApplicationDbContext>().InSingletonScope();
+            kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
 
             kernel.Bind<IIdentity>().ToMethod(c => HttpContext.Current.User.Identity);
 
-            kernel.Bind<ICurrentUser>().To<CurrentUser>().InSingletonScope();
+            kernel.Bind<ICurrentUser>().To<CurrentUser>();
 
             kernel.Bind(typeof(IDeletableEntityRepository<>))
-            .To(typeof(DeletableEntityRepository<>)).InSingletonScope();
+            .To(typeof(DeletableEntityRepository<>));
 
-            kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>)).InSingletonScope();
+            kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
 
-            kernel.Bind<ICityRepository>().To<CityRepository>().InSingletonScope();
+            kernel.Bind<ICityRepository>().To<CityRepository>();
 
-            kernel.Bind<IApplicationUserRepository>().To<ApplicationUserRepository>().InSingletonScope();
+            kernel.Bind<IApplicationUserRepository>().To<ApplicationUserRepository>();
 
-            kernel.Bind<IAdministratorRepository>().To<AdministratorRepository>().InSingletonScope();
+            kernel.Bind<IAdministratorRepository>().To<AdministratorRepository>();
 
-            kernel.Bind<IDonorRepository>().To<DonorRepository>().InSingletonScope();
+            kernel.Bind<IDonorRepository>().To<DonorRepository>();
 
-            kernel.Bind<IRecipientTypeRepository>().To<RecipientTypeRepository>().InSingletonScope();
-            kernel.Bind<IRecipientRepository>().To<RecipientRepository>().InSingletonScope();
+            kernel.Bind<IRecipientTypeRepository>().To<RecipientTypeRepository>();
+            kernel.Bind<IRecipientRepository>().To<RecipientRepository>();
 
-            kernel.Bind<IFoodCategoryRepository>().To<FoodCategoryRepository>().InSingletonScope();
+            kernel.Bind<IFoodCategoryRepository>().To<FoodCategoryRepository>();
 
-            kernel.Bind<IFoodDonationRepository>().To<FoodDonationRepository>().InSingletonScope();
-            kernel.Bind<IFoodDonationCommentRepository>().To<FoodDonationCommentRepository>().InSingletonScope();
+            kernel.Bind<IFoodDonationRepository>().To<FoodDonationRepository>();
+            kernel.Bind<IFoodDonationCommentRepository>().To<FoodDonationCommentRepository>();
 
-            kernel.Bind<IFoodRequestRepository>().To<FoodRequestRepository>().InSingletonScope();
-            kernel.Bind<IFoodRequestCommentRepository>().To<FoodRequestCommentRepository>().InSingletonScope();
+            kernel.Bind<IFoodRequestRepository>().To<FoodRequestRepository>();
+            kernel.Bind<IFoodRequestCommentRepository>().To<FoodRequestCommentRepository>();
         }        
     }
 }

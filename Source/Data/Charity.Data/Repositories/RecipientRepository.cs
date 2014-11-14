@@ -8,7 +8,7 @@
 
     public class RecipientRepository : DeletableEntityRepository<Recipient>, IRecipientRepository
     {
-        public RecipientRepository(IApplicationDbContext context)
+        public RecipientRepository(ApplicationDbContext context)
             : base(context)
         {
         }

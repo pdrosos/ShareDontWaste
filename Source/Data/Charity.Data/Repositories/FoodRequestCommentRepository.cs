@@ -8,7 +8,7 @@
 
     public class FoodRequestCommentRepository : DeletableEntityRepository<FoodRequestComment>, IFoodRequestCommentRepository
     {
-        public FoodRequestCommentRepository(IApplicationDbContext context)
+        public FoodRequestCommentRepository(ApplicationDbContext context)
             : base(context)
         {
         }

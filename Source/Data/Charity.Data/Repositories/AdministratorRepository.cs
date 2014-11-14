@@ -8,7 +8,7 @@
 
     public class AdministratorRepository : DeletableEntityRepository<Administrator>, IAdministratorRepository
     {
-        public AdministratorRepository(IApplicationDbContext context)
+        public AdministratorRepository(ApplicationDbContext context)
             : base(context)
         {
         }

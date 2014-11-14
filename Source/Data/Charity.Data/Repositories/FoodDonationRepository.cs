@@ -8,7 +8,7 @@
 
     public class FoodDonationRepository : DeletableEntityRepository<FoodDonation>, IFoodDonationRepository
     {
-        public FoodDonationRepository(IApplicationDbContext context)
+        public FoodDonationRepository(ApplicationDbContext context)
             : base(context)
         {
         }

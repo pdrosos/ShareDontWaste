@@ -10,7 +10,7 @@
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.Data.Entity.Validation;
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

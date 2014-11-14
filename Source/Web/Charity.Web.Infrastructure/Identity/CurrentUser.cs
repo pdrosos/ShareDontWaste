@@ -5,15 +5,16 @@
     
     using Charity.Data.Models;
     using Charity.Data.Common;
+    using Charity.Data;
     
     public class CurrentUser : ICurrentUser
     {
         private readonly IIdentity currentIdentity;
-        private readonly IApplicationDbContext currentDbContext;
+        private readonly ApplicationDbContext currentDbContext;
 
         private ApplicationUser user;
 
-        public CurrentUser(IIdentity identity, IApplicationDbContext context)
+        public CurrentUser(IIdentity identity, ApplicationDbContext context)
         {
             this.currentIdentity = identity;
             this.currentDbContext = context;

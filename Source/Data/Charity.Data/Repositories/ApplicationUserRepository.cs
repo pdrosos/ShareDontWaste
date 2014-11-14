@@ -8,7 +8,7 @@
 
     public class ApplicationUserRepository : DeletableEntityRepository<ApplicationUser>, IApplicationUserRepository
     {
-        public ApplicationUserRepository(IApplicationDbContext context)
+        public ApplicationUserRepository(ApplicationDbContext context)
             : base(context)
         {
         }
