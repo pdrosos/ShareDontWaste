@@ -63,7 +63,6 @@
             RecipientDetailsEditModel model = Mapper.Map<Recipient, RecipientDetailsEditModel>(recipient);
             model.AccountDetailsEditModel = Mapper.Map<ApplicationUser, AccountDetailsEditModel>(recipient.ApplicationUser);
             model.Cities = this.GetCities();
-            // model.RecipientTypes = this.GetRecipientTypes();
             model.RecipientTypes = new SelectList(this.recipientTypeService.GetAll(), "Id", "Name");
             model.FoodCategories = this.GetFoodCategories(recipient);
 
@@ -96,7 +95,6 @@
             }
 
             model.Cities = this.GetCities();
-            // model.RecipientTypes = this.GetRecipientTypes();
             model.RecipientTypes = new SelectList(this.recipientTypeService.GetAll(), "Id", "Name");
             model.FoodCategories = this.GetFoodCategories(recipient);
 
@@ -115,6 +113,11 @@
             return new SelectList(cities, "Value", "Text");
         }
 
+        /// <summary>
+        /// http://stackoverflow.com/questions/12808936/how-do-i-render-a-group-of-checkboxes-using-mvc-4-and-view-models-strongly-type
+        /// </summary>
+        /// <param name="recipient"></param>
+        /// <returns></returns>
         private IList<FoodCategoryEditModel> GetFoodCategories(Recipient recipient)
         {
             var recipientSelectedCategoriesIds = new HashSet<int>();
@@ -141,18 +144,6 @@
             }
 
             return foodCategoriesList;
-        }
-
-        private IEnumerable<SelectListItem> GetRecipientTypes()
-        {
-            var recipientTypes = this.recipientTypeService.GetAll()
-                             .Select(r => new SelectListItem
-                             {
-                                 Value = r.Id.ToString(),
-                                 Text = r.Name
-                             });
-
-            return new SelectList(recipientTypes, "Value", "Text");
         }
     }
 }

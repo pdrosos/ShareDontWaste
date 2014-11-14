@@ -5,6 +5,6 @@
 
     public interface IFoodDonationRepository : IDeletableEntityRepository<FoodDonation>
     {
-        FoodDonation GetById(int id);
+
     }
 }

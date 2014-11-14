@@ -72,31 +72,31 @@ namespace Charity.Web.App_Start
 
             kernel.Bind<IIdentity>().ToMethod(c => HttpContext.Current.User.Identity);
 
-            kernel.Bind<ICurrentUser>().To<CurrentUser>();
+            kernel.Bind<ICurrentUser>().To<CurrentUser>().InSingletonScope();
 
             kernel.Bind(typeof(IDeletableEntityRepository<>))
-            .To(typeof(DeletableEntityRepository<>));
+            .To(typeof(DeletableEntityRepository<>)).InSingletonScope();
 
-            kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
+            kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>)).InSingletonScope();
 
-            kernel.Bind<ICityRepository>().To<CityRepository>();
+            kernel.Bind<ICityRepository>().To<CityRepository>().InSingletonScope();
 
-            kernel.Bind<IApplicationUserRepository>().To<ApplicationUserRepository>();
+            kernel.Bind<IApplicationUserRepository>().To<ApplicationUserRepository>().InSingletonScope();
 
-            kernel.Bind<IAdministratorRepository>().To<AdministratorRepository>();
+            kernel.Bind<IAdministratorRepository>().To<AdministratorRepository>().InSingletonScope();
 
-            kernel.Bind<IDonorRepository>().To<DonorRepository>();
+            kernel.Bind<IDonorRepository>().To<DonorRepository>().InSingletonScope();
 
-            kernel.Bind<IRecipientTypeRepository>().To<RecipientTypeRepository>();
-            kernel.Bind<IRecipientRepository>().To<RecipientRepository>();
+            kernel.Bind<IRecipientTypeRepository>().To<RecipientTypeRepository>().InSingletonScope();
+            kernel.Bind<IRecipientRepository>().To<RecipientRepository>().InSingletonScope();
 
-            kernel.Bind<IFoodCategoryRepository>().To<FoodCategoryRepository>();
+            kernel.Bind<IFoodCategoryRepository>().To<FoodCategoryRepository>().InSingletonScope();
 
-            kernel.Bind<IFoodDonationRepository>().To<FoodDonationRepository>();
-            kernel.Bind<IFoodDonationCommentRepository>().To<FoodDonationCommentRepository>();
+            kernel.Bind<IFoodDonationRepository>().To<FoodDonationRepository>().InSingletonScope();
+            kernel.Bind<IFoodDonationCommentRepository>().To<FoodDonationCommentRepository>().InSingletonScope();
 
-            kernel.Bind<IFoodRequestRepository>().To<FoodRequestRepository>();
-            kernel.Bind<IFoodRequestCommentRepository>().To<FoodRequestCommentRepository>();
+            kernel.Bind<IFoodRequestRepository>().To<FoodRequestRepository>().InSingletonScope();
+            kernel.Bind<IFoodRequestCommentRepository>().To<FoodRequestCommentRepository>().InSingletonScope();
         }        
     }
 }
