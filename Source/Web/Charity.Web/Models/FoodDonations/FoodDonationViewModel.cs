@@ -10,9 +10,16 @@
     {
         public int Id { get; set; }
 
+        [Display(Name = "Category")]
         public FoodCategory FoodCategory { get; set; }
 
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
         public string Quantity { get; set; }
+
+        public string ImageUrl { get; set; }
 
         [Display(Name = "Expiration Date")]
         public DateTime ExpirationDate { get; set; }

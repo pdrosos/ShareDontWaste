@@ -60,6 +60,15 @@ namespace Charity.Data.Migrations
             "Sammy Keen",
         };
 
+        private readonly List<string> images = new List<string>()
+        {
+            "http://brookingsharborfoodbank.org/wp-content/uploads/2013/06/lilac-food-basket1-999x768-960x738.jpg",
+            "http://www.kilsythcommunityfoodbank.com/uploads/1/7/8/0/17801949/2795637_orig.jpeg",
+            "http://geauganews.tekk3.netdna-cdn.com/wp-content/uploads/Food-Donation-158.jpg",
+            "http://i.huffpost.com/gen/838621/thumbs/o-DONATION-BOX-facebook.jpg",
+            "http://www.workingventures.ca/wp-content/uploads/popular-seasonal-thanksgiving-food-donation-list-thanksgiving-food-list-shopping-thanksgiving-food-list-southern-thanksgiving-food-list-in-spanish-thanksgiving-food-list-soul-food-thanksgiving-da-728x400.jpg",
+        };
+
         private readonly Random randomGenerator = new Random();
 
         public Configuration()
@@ -494,6 +503,8 @@ namespace Charity.Data.Migrations
                     foodDonation.Name = foodCategory.Name;
                     foodDonation.Quantity = j.ToString() + (j == 1 ? " item" : " items");
                     foodDonation.Description = foodCategory.Name;
+                    var imageIndex = this.randomGenerator.Next(0, images.Count);
+                    foodDonation.ImageUrl = images[imageIndex]; 
 
                     foodDonation.ExpirationDate = DateTime.Now.AddDays(j + 10);
                     foodDonation.AvailableFrom = DateTime.Now;
