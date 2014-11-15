@@ -14,7 +14,7 @@ namespace Charity.Data.Migrations
     {
         private readonly List<string> organizationNames = new List<string>()
         {
-            "Acme, inc.",
+            "Acme",
             "Universal Exports",
             "Smith and Co.",
             "Allied Biscuit",
@@ -34,6 +34,30 @@ namespace Charity.Data.Migrations
             "AnimalHope",
             "Green Planet",
             "North Central",
+        };
+
+        private readonly List<string> contactNames = new List<string>()
+        {
+            "Teddy Ferrara",
+            "Dyan Fisher",
+            "Anne Smith",
+            "Maria Finnegan",
+            "Ronnie Foltz",
+            "Eleanor Fowler",
+            "William Heller",
+            "Bobbi Canfield",
+            "Christina Buxton",
+            "Alexander Byrnes",
+            "Simon Cambell",
+            "Peter Callaghan",
+            "Ashley Hong",
+            "Hayden Jacques",
+            "Ida Jacobson",
+            "Jamie Miller",
+            "Jason Peterson",
+            "Michael Kaiser",
+            "Ivy Kearney",
+            "Sammy Keen",
         };
 
         private readonly Random randomGenerator = new Random();
@@ -69,12 +93,18 @@ namespace Charity.Data.Migrations
             this.SeedRoles(context);
             this.SeedAdminUser(context, userManager, roleManager);
 
-            this.SeedCities(context);
-            this.SeedRecipientTypes(context);
+            var cities = this.SeedCities(context);
+            var recipientTypes = this.SeedRecipientTypes(context);
             var foodCategories = this.SeedFoodCategories(context);
 
-            var donors = this.SeedDonors(context, userManager, roleManager);
-            var recipients = this.SeedRecipients(context, userManager, roleManager, foodCategories);
+            var donors = this.SeedDonors(context, userManager, roleManager, cities);
+            var recipients = this.SeedRecipients(
+                context, 
+                userManager, 
+                roleManager,
+                recipientTypes,
+                cities,
+                foodCategories);
 
             var foodDonations = this.SeedFoodDonations(context, foodCategories, donors);
             this.SeedFoodRequests(context, recipients, foodDonations);
@@ -142,7 +172,8 @@ namespace Charity.Data.Migrations
         private List<Donor> SeedDonors(
             ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            List<City> cities)
         {
             var donors = new List<Donor>();
 
@@ -155,6 +186,11 @@ namespace Charity.Data.Migrations
             {
                 var donorProfile = new Donor();
                 donorProfile.OrganizationName = this.organizationNames[i - 1];
+                donorProfile.ContactName = this.contactNames[20 - i];
+
+                var cityIndex = this.randomGenerator.Next(0, cities.Count);
+                donorProfile.City = cities[cityIndex];
+
                 donorProfile.CreatedOn = DateTime.Now;
 
                 // Create Donor Role if it does not exist
@@ -194,6 +230,8 @@ namespace Charity.Data.Migrations
             ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
+            List<RecipientType> recipientTypes,
+            List<City> cities,
             List<FoodCategory> foodCategories)
         {
             var recipients = new List<Recipient>();
@@ -207,10 +245,18 @@ namespace Charity.Data.Migrations
             {
                 var recipientProfile = new Recipient();
                 recipientProfile.OrganizationName = this.organizationNames[20 - i];
-                recipientProfile.CreatedOn = DateTime.Now;
+                recipientProfile.ContactName = this.contactNames[20 - i];
 
+                var recipientTypeIndex = this.randomGenerator.Next(0, recipientTypes.Count);
+                recipientProfile.RecipientType = recipientTypes[recipientTypeIndex];
+
+                var cityIndex = this.randomGenerator.Next(0, cities.Count);
+                recipientProfile.City = cities[cityIndex];
+                
                 foodCategories.Shuffle();
                 recipientProfile.FoodCategories = foodCategories.Take(5).ToList();
+                
+                recipientProfile.CreatedOn = DateTime.Now;
 
                 // Create Recipient Role if it does not exist
                 if (!roleManager.RoleExists(GlobalConstants.RecipientRoleName))
@@ -270,69 +316,86 @@ namespace Charity.Data.Migrations
             return userManager;
         }
 
-        private void SeedCities(ApplicationDbContext context)
+        private List<City> SeedCities(ApplicationDbContext context)
         {
+            var cities = new List<City>();
+
             if (context.Cities.Any())
             {
-                return;
+                return cities;
             }
 
             var city = new City();
             city.Name = "Sofia";
             city.CreatedOn = DateTime.Now;
+            cities.Add(city);
             context.Cities.Add(city);
 
             city = new City();
             city.Name = "Plovdiv";
             city.CreatedOn = DateTime.Now;
+            cities.Add(city);
             context.Cities.Add(city);
 
             city = new City();
             city.Name = "Varna";
             city.CreatedOn = DateTime.Now;
+            cities.Add(city);
             context.Cities.Add(city);
 
             city = new City();
             city.Name = "Burgas";
             city.CreatedOn = DateTime.Now;
+            cities.Add(city);
             context.Cities.Add(city);
 
             context.SaveChanges();
+
+            return cities;
         }
 
-        private void SeedRecipientTypes(ApplicationDbContext context)
+        private List<RecipientType> SeedRecipientTypes(ApplicationDbContext context)
         {
+            var recipientTypes = new List<RecipientType>();
+
             if (context.RecipientTypes.Any())
             {
-                return;
+                return recipientTypes;
             }
 
             var type = new RecipientType();
             type.Name = "Homeless Centre";
             type.CreatedOn = DateTime.Now;
+            recipientTypes.Add(type);
             context.RecipientTypes.Add(type);
 
             type = new RecipientType();
             type.Name = "Crisis Accommodation";
             type.CreatedOn = DateTime.Now;
+            recipientTypes.Add(type);
             context.RecipientTypes.Add(type);
 
             type = new RecipientType();
             type.Name = "School";
             type.CreatedOn = DateTime.Now;
+            recipientTypes.Add(type);
             context.RecipientTypes.Add(type);
 
             type = new RecipientType();
             type.Name = "Animal shelter";
             type.CreatedOn = DateTime.Now;
+            recipientTypes.Add(type);
             context.RecipientTypes.Add(type);
 
             type = new RecipientType();
             type.Name = "Other";
             type.CreatedOn = DateTime.Now;
+            recipientTypes.Add(type);
             context.RecipientTypes.Add(type);
 
             context.SaveChanges();
+
+            return recipientTypes;
         }
 
         private List<FoodCategory> SeedFoodCategories(ApplicationDbContext context)

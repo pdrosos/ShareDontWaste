@@ -68,7 +68,7 @@
 
             var sortedDonors = donors.Project().To<DonorListViewModel>();
 
-            int pageSize = 3;
+            int pageSize = 10;
             int pageIndex = (page ?? 1);
 
             return View(sortedDonors.ToPagedList(pageIndex, pageSize));

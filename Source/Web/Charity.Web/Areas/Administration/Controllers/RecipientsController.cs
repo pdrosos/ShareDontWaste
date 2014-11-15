@@ -73,7 +73,7 @@
 
             var sortedRecipients = recipients.Project().To<RecipientListViewModel>();
 
-            int pageSize = 3;
+            int pageSize = 10;
             int pageIndex = (page ?? 1);
 
             return View(sortedRecipients.ToPagedList(pageIndex, pageSize));
