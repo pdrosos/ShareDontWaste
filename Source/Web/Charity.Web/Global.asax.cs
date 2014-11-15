@@ -8,6 +8,8 @@
     using System.Web.Routing;
 
     using Charity.Web.Infrastructure.Mapping;
+    using System.Threading;
+    using System.Globalization;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -20,6 +22,7 @@
 
             var autoMapperConfig = new AutoMapperConfig(Assembly.GetExecutingAssembly());
             autoMapperConfig.Execute();
+
         }
     }
 }

@@ -23,10 +23,20 @@ namespace Charity.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+                    "~/Scripts/kendo/kendo.all.min.js",
+                    "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-cosmo.css",
                       "~/Content/site.css",
                       "~/Content/PagedList.css"));
+
+            bundles.Add(new StyleBundle("~/Content/kendo").Include(
+                    "~/Content/kendo/kendo.common-bootstrap.min.css",
+                    "~/Content/kendo/kendo.bootstrap.min.css"));
+
+            bundles.IgnoreList.Clear();
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

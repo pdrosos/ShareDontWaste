@@ -17,17 +17,20 @@
         public string Quantity { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
+        [UIHint("DatePicker")]
         [Display(Name = "Expiration Date")]
-        public DateTime ExpirationDate { get; set; }
+        public DateTime? ExpirationDate { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
+        [UIHint("DatePicker")]
         [Display(Name = "Available From")]
         public DateTime AvailableFrom { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
+        [UIHint("DatePicker")]
         [Display(Name = "Available To")]
         public DateTime AvailableTo { get; set; }
 
