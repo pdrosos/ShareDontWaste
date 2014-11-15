@@ -9,17 +9,17 @@
     using AutoMapper.QueryableExtensions;
     using Charity.Common;
     using Charity.Data.Models;
-    using Charity.Services;
+    using Charity.Services.Common;
     using Charity.Web.Areas.Administration.Models;
     using PagedList;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class DonorsController : Controller
     {
-        private readonly DonorProfileService donorProfileService;
-        private readonly CityService cityService;
+        private readonly IDonorProfileService donorProfileService;
+        private readonly ICityService cityService;
 
-        public DonorsController(DonorProfileService donorProfileService, CityService cityService)
+        public DonorsController(IDonorProfileService donorProfileService, ICityService cityService)
         {
             this.donorProfileService = donorProfileService;
             this.cityService = cityService;

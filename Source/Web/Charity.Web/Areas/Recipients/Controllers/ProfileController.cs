@@ -7,24 +7,24 @@
     using AutoMapper;
     using Charity.Common;
     using Charity.Data.Models;
-    using Charity.Services;
+    using Charity.Services.Common;
     using Charity.Web.Infrastructure.Identity;
     using Charity.Web.Areas.Recipients.Models;
 
     [Authorize(Roles = GlobalConstants.RecipientRoleName)]
     public class ProfileController : Controller
     {
-        private readonly RecipientProfileService recipientProfileService;
-        private readonly CityService cityService;
-        private readonly RecipientTypeService recipientTypeService;
-        private readonly FoodCategoryService foodCategoryService;
+        private readonly IRecipientProfileService recipientProfileService;
+        private readonly ICityService cityService;
+        private readonly IRecipientTypeService recipientTypeService;
+        private readonly IFoodCategoryService foodCategoryService;
         private readonly ICurrentUser currentUserProvider;
 
         public ProfileController(
-            RecipientProfileService recipientProfileService, 
-            CityService cityService,
-            RecipientTypeService recipientTypeService,
-            FoodCategoryService foodCategoryService,
+            IRecipientProfileService recipientProfileService, 
+            ICityService cityService,
+            IRecipientTypeService recipientTypeService,
+            IFoodCategoryService foodCategoryService,
             ICurrentUser currentUserProvider)
         {
             this.recipientProfileService = recipientProfileService;

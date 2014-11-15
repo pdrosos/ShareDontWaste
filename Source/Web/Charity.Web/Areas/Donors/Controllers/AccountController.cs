@@ -8,7 +8,7 @@
     using AutoMapper;
     using Charity.Common;
     using Charity.Data.Models;
-    using Charity.Services;
+    using Charity.Services.Common;
     using Charity.Web.Areas.Donors.Models;
     using Charity.Web.Models;
     using Microsoft.AspNet.Identity;
@@ -18,12 +18,12 @@
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationUserManager _userManager;
-        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager userManager;
+        private ApplicationSignInManager signInManager;
 
-        private readonly DonorProfileService donorProfileService;
+        private readonly IDonorProfileService donorProfileService;
 
-        public AccountController(DonorProfileService donorProfileService)
+        public AccountController(IDonorProfileService donorProfileService)
         {
             this.donorProfileService = donorProfileService;
         }
@@ -38,11 +38,11 @@
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
             {
-                _userManager = value;
+                userManager = value;
             }
         }
 
@@ -50,9 +50,12 @@
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return this.signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set { _signInManager = value; }
+            private set 
+            { 
+                this.signInManager = value; 
+            }
         }
 
         //

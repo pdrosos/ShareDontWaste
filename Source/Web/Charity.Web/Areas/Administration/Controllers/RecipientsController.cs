@@ -9,29 +9,25 @@
     using AutoMapper.QueryableExtensions;
     using Charity.Common;
     using Charity.Data.Models;
-    using Charity.Services;
+    using Charity.Services.Common;
     using Charity.Web.Areas.Administration.Models;
-    using Charity.Web.Infrastructure.Identity;
     using PagedList;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class RecipientsController : Controller
     {
-        private readonly RecipientProfileService recipientProfileService;
-        private readonly CityService cityService;
-        private readonly RecipientTypeService recipientTypeService;
-        private readonly ICurrentUser currentUserProvider;
+        private readonly IRecipientProfileService recipientProfileService;
+        private readonly ICityService cityService;
+        private readonly IRecipientTypeService recipientTypeService;
 
         public RecipientsController(
-            RecipientProfileService recipientProfileService,
-            RecipientTypeService recipientTypeService,
-            CityService cityService,
-            ICurrentUser currentUserProvider)
+            IRecipientProfileService recipientProfileService,
+            IRecipientTypeService recipientTypeService,
+            ICityService cityService)
         {
             this.recipientProfileService = recipientProfileService;
             this.recipientTypeService = recipientTypeService;
             this.cityService = cityService;
-            this.currentUserProvider = currentUserProvider;
         }
 
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)

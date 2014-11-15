@@ -5,8 +5,9 @@
     using System.Linq;
     using Charity.Data.Common.Repositories;
     using Charity.Data.Models;
+    using Charity.Services.Common;
 
-    public class CityService
+    public class CityService : ICityService
     {
         private readonly ICityRepository cityRepository;
 

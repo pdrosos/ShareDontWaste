@@ -4,8 +4,9 @@
     using System.Linq;
     using Charity.Data.Common.Repositories;
     using Charity.Data.Models;
+    using Charity.Services.Common;
 
-    public class DonorProfileService
+    public class DonorProfileService : IDonorProfileService
     {
         private readonly IDonorRepository donorRepository;
 

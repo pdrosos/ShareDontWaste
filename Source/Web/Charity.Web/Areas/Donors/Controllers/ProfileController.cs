@@ -7,18 +7,21 @@
     using AutoMapper;
     using Charity.Common;
     using Charity.Data.Models;
-    using Charity.Services;
+    using Charity.Services.Common;
     using Charity.Web.Areas.Donors.Models;
     using Charity.Web.Infrastructure.Identity;
 
     [Authorize(Roles = GlobalConstants.DonorRoleName)]
     public class ProfileController : Controller
     {
-        private readonly DonorProfileService donorProfileService;
-        private readonly CityService cityService;
+        private readonly IDonorProfileService donorProfileService;
+        private readonly ICityService cityService;
         private readonly ICurrentUser currentUserProvider;
 
-        public ProfileController(DonorProfileService donorProfileService, CityService cityService, ICurrentUser currentUserProvider)
+        public ProfileController(
+            IDonorProfileService donorProfileService, 
+            ICityService cityService, 
+            ICurrentUser currentUserProvider)
         {
             this.donorProfileService = donorProfileService;
             this.cityService = cityService;

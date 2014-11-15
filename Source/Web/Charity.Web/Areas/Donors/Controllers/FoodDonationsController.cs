@@ -7,33 +7,30 @@
     using System.Web.Mvc;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
+    using Charity.Common;
     using Charity.Data.Models;
-    using Charity.Services;
+    using Charity.Services.Common;
     using Charity.Web.Areas.Donors.Models;
     using Charity.Web.Infrastructure.Identity;
-    using Charity.Common;
 
     [Authorize]
     public class FoodDonationsController : Controller
     {
-        private readonly FoodDonationService foodDonationService;
-        private readonly FoodCategoryService foodCategoryService;
-        private readonly DonorProfileService donorProfileService;
-        private readonly CityService cityService;
+        private readonly IFoodDonationService foodDonationService;
+        private readonly IFoodCategoryService foodCategoryService;
+        private readonly IDonorProfileService donorProfileService;
         private readonly ICurrentUser currentUserProvider;
 
         public FoodDonationsController(
-            FoodDonationService foodDonationService,
-            FoodCategoryService foodCategoryService,
-            DonorProfileService donorProfileService,
-            CityService cityService, 
+            IFoodDonationService foodDonationService,
+            IFoodCategoryService foodCategoryService,
+            IDonorProfileService donorProfileService,
             ICurrentUser currentUserProvider
             )
         {
             this.foodDonationService = foodDonationService;
             this.foodCategoryService = foodCategoryService;
             this.donorProfileService = donorProfileService;
-            this.cityService = cityService;
             this.currentUserProvider = currentUserProvider;
         }
 

@@ -1,11 +1,12 @@
 ﻿namespace Charity.Services
 {
-    using Charity.Data.Common.Repositories;
-    using Charity.Data.Models;
     using System;
     using System.Linq;
+    using Charity.Data.Common.Repositories;
+    using Charity.Data.Models;
+    using Charity.Services.Common;
 
-    public class RecipientProfileService
+    public class RecipientProfileService : IRecipientProfileService
     {
         private readonly IRecipientRepository recipientRepository;
 

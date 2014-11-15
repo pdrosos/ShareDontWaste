@@ -5,8 +5,9 @@
     using System.Linq;
     using Charity.Data.Common.Repositories;
     using Charity.Data.Models;
+    using Charity.Services.Common;
 
-    public class RecipientTypeService
+    public class RecipientTypeService : IRecipientTypeService
     {
         private readonly IRecipientTypeRepository recipientTypeRepository;
 
