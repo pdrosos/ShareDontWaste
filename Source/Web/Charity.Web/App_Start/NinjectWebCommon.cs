@@ -111,7 +111,6 @@ namespace Charity.Web.App_Start
             kernel.Bind<IFoodCategoryRepository>().To<FoodCategoryRepository>();
 
             kernel.Bind<IFoodDonationRepository>().To<FoodDonationRepository>();
-            kernel.Bind<IFoodDonationCommentRepository>().To<FoodDonationCommentRepository>();
 
             kernel.Bind<IFoodRequestRepository>().To<FoodRequestRepository>();
             kernel.Bind<IFoodRequestCommentRepository>().To<FoodRequestCommentRepository>();
@@ -129,7 +128,6 @@ namespace Charity.Web.App_Start
             kernel.Bind<IFoodCategoryService>().To<FoodCategoryService>();
 
             kernel.Bind<IFoodDonationService>().To<FoodDonationService>();
-            kernel.Bind<IFoodDonationCommentService>().To<FoodDonationCommentService>();
 
             kernel.Bind<IFoodRequestService>().To<FoodRequestService>();
             kernel.Bind<IFoodRequestCommentService>().To<FoodRequestCommentService>();

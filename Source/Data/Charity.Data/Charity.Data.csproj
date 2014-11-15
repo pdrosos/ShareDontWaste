@@ -57,7 +57,6 @@
     <Compile Include="Common\IApplicationDbContext.cs" />
     <Compile Include="Common\Repositories\IDeletableEntityRepository.cs" />
     <Compile Include="Common\Repositories\IFoodRequestCommentRepository.cs" />
-    <Compile Include="Common\Repositories\IFoodDonationCommentRepository.cs" />
     <Compile Include="Common\Repositories\IFoodRequestRepository.cs" />
     <Compile Include="Common\Repositories\IFoodDonationRepository.cs" />
     <Compile Include="Common\Repositories\IFoodCategoryRepository.cs" />
@@ -73,7 +72,6 @@
     <Compile Include="Repositories\AdministratorRepository.cs" />
     <Compile Include="Repositories\DonorRepository.cs" />
     <Compile Include="Repositories\FoodRequestCommentRepository.cs" />
-    <Compile Include="Repositories\FoodDonationCommentRepository.cs" />
     <Compile Include="Repositories\FoodRequestRepository.cs" />
     <Compile Include="Repositories\FoodDonationRepository.cs" />
     <Compile Include="Repositories\FoodCategoryRepository.cs" />

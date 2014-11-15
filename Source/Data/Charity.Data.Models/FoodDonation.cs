@@ -7,11 +7,11 @@
 
     public class FoodDonation : SoftDeletable
     {
-        private ICollection<FoodDonationComment> comments;
+        private ICollection<FoodRequest> foodRequests;
 
         public FoodDonation()
         {
-            this.comments = new HashSet<FoodDonationComment>();
+            this.foodRequests = new HashSet<FoodRequest>();
         }
 
         public int Id { get; set; }
@@ -44,11 +44,11 @@
 
         public bool IsCompleted { get; set; }
 
-        public virtual ICollection<FoodDonationComment> Comments
+        public virtual ICollection<FoodRequest> FoodRequests
         {
-            get { return this.comments; }
+            get { return this.foodRequests; }
 
-            set { this.comments = value; }
+            set { this.foodRequests = value; }
         }
     }
 }

@@ -55,14 +55,12 @@
     <Compile Include="Common\ICityService.cs" />
     <Compile Include="Common\IDonorProfileService.cs" />
     <Compile Include="Common\IFoodCategoryService.cs" />
-    <Compile Include="Common\IFoodDonationCommentService.cs" />
     <Compile Include="Common\IFoodDonationService.cs" />
     <Compile Include="Common\IFoodRequestCommentService.cs" />
     <Compile Include="Common\IFoodRequestService.cs" />
     <Compile Include="Common\IRecipientProfileService.cs" />
     <Compile Include="Common\IRecipientTypeService.cs" />
     <Compile Include="FoodRequestCommentService.cs" />
-    <Compile Include="FoodDonationCommentService.cs" />
     <Compile Include="FoodRequestService.cs" />
     <Compile Include="FoodDonationService.cs" />
     <Compile Include="FoodCategoryService.cs" />
