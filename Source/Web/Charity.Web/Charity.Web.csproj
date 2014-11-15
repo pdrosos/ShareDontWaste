@@ -257,6 +257,7 @@
     <Compile Include="Areas\Recipients\Models\RecipientRegisterViewModel.cs" />
     <Compile Include="Areas\Recipients\RecipientsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FoodDonationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
@@ -264,6 +265,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\FoodDonations\FoodDonationViewModel.cs" />
+    <Compile Include="Models\FoodDonations\FoodDonationListViewModel.cs" />
+    <Compile Include="Models\FoodDonations\FoodDonationDetailsViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -310,7 +314,7 @@
     <Content Include="Areas\Donors\Views\FoodDonations\Delete.cshtml" />
     <Content Include="Areas\Donors\Views\FoodDonations\Details.cshtml" />
     <Content Include="Areas\Donors\Views\FoodDonations\Edit.cshtml" />
-    <Content Include="Areas\Donors\Views\FoodDonations\Index.cshtml" />
+    <Content Include="Views\FoodDonations\Index.cshtml" />
     <Content Include="Areas\Donors\Views\FoodDonations\MyDonations.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

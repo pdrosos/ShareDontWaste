@@ -22,9 +22,9 @@
         public virtual Recipient Recipient { get; set; }
 
         [Required]
-        public int FoodId { get; set; }
+        public int FoodDonationId { get; set; }
 
-        public virtual FoodDonation Food { get; set; }
+        public virtual FoodDonation FoodDonation { get; set; }
 
         [Required]
         public string Quantity { get; set; }

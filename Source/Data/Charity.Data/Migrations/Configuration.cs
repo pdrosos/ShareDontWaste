@@ -1,15 +1,43 @@
 namespace Charity.Data.Migrations
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
     using Charity.Common;
+    using Charity.Data.Extensions;
     using Charity.Data.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
+        private readonly List<string> organizationNames = new List<string>()
+        {
+            "Acme, inc.",
+            "Universal Exports",
+            "Smith and Co.",
+            "Allied Biscuit",
+            "Galaxy",
+            "Globex",
+            "ZiffCorp",
+            "Gringotts",
+            "Water and Power",
+            "Bluth",
+            "Praxis",
+            "Luthor",
+            "Tessier-Ashpool",
+            "Three Waters",
+            "Sto Plains",
+            "Mooby Foods",
+            "Strickland",
+            "AnimalHope",
+            "Green Planet",
+            "North Central",
+        };
+
+        private readonly Random randomGenerator = new Random();
+
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
@@ -33,11 +61,25 @@ namespace Charity.Data.Migrations
             //    );
             //
 
+            var userManager = this.CreateUserManager(context);            
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            context.Configuration.AutoDetectChangesEnabled = false;
+
             this.SeedRoles(context);
-            this.SeedAdminUser(context);
+            this.SeedAdminUser(context, userManager, roleManager);
+
             this.SeedCities(context);
             this.SeedRecipientTypes(context);
-            this.SeedFoodCategories(context);
+            var foodCategories = this.SeedFoodCategories(context);
+
+            var donors = this.SeedDonors(context, userManager, roleManager);
+            var recipients = this.SeedRecipients(context, userManager, roleManager, foodCategories);
+
+            var foodDonations = this.SeedFoodDonations(context, foodCategories, donors);
+            this.SeedFoodRequests(context, recipients, foodDonations);
+
+            context.Configuration.AutoDetectChangesEnabled = true;
         }
 
         private void SeedRoles(ApplicationDbContext context)
@@ -54,19 +96,20 @@ namespace Charity.Data.Migrations
             context.SaveChanges();
         }
 
-        private void SeedAdminUser(ApplicationDbContext context)
+        private void SeedAdminUser(
+            ApplicationDbContext context, 
+            UserManager<ApplicationUser> userManager, 
+            RoleManager<IdentityRole> roleManager)
         {
             if (context.Administrators.Any())
             {
                 return;
             }
-
-            var userManager = this.CreateUserManager(context);
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             
             var administratorProfile = new Administrator();
             administratorProfile.FirstName = "Admin";
             administratorProfile.LastName = "Admin";
+            administratorProfile.CreatedOn = DateTime.Now;
 
             // Create Admin Role if it does not exist
             if (! roleManager.RoleExists(GlobalConstants.AdministratorRoleName))
@@ -94,6 +137,112 @@ namespace Charity.Data.Migrations
             context.Administrators.Add(administratorProfile);
 
             context.SaveChanges();
+        }
+
+        private List<Donor> SeedDonors(
+            ApplicationDbContext context,
+            UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager)
+        {
+            var donors = new List<Donor>();
+
+            if (context.Donors.Any())
+            {
+                return donors;
+            }
+
+            for (int i = 1; i <= 20; i++)
+            {
+                var donorProfile = new Donor();
+                donorProfile.OrganizationName = this.organizationNames[i - 1];
+                donorProfile.CreatedOn = DateTime.Now;
+
+                // Create Donor Role if it does not exist
+                if (!roleManager.RoleExists(GlobalConstants.DonorRoleName))
+                {
+                    roleManager.Create(new IdentityRole(GlobalConstants.DonorRoleName));
+                }
+
+                // Create Donor User with password
+                var donorUser = new ApplicationUser();
+                donorUser.UserName = "donor" + i;
+                donorUser.Email = "d" + i + "@d.com";
+                donorUser.CreatedOn = DateTime.Now;
+                string password = "111";
+
+                var result = userManager.Create(donorUser, password);
+
+                // Add Donor User to Donor Role
+                if (result.Succeeded)
+                {
+                    userManager.AddToRole(donorUser.Id, GlobalConstants.DonorRoleName);
+                }
+
+                // Add Donor User to Donor Profile
+                donorProfile.ApplicationUser = donorUser;
+                context.Donors.Add(donorProfile);
+
+                donors.Add(donorProfile);
+            }
+
+            context.SaveChanges();
+
+            return donors;
+        }
+
+        private List<Recipient> SeedRecipients(
+            ApplicationDbContext context,
+            UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager,
+            List<FoodCategory> foodCategories)
+        {
+            var recipients = new List<Recipient>();
+
+            if (context.Recipients.Any())
+            {
+                return recipients;
+            }
+
+            for (int i = 1; i <= 20; i++)
+            {
+                var recipientProfile = new Recipient();
+                recipientProfile.OrganizationName = this.organizationNames[20 - i];
+                recipientProfile.CreatedOn = DateTime.Now;
+
+                foodCategories.Shuffle();
+                recipientProfile.FoodCategories = foodCategories.Take(5).ToList();
+
+                // Create Recipient Role if it does not exist
+                if (!roleManager.RoleExists(GlobalConstants.RecipientRoleName))
+                {
+                    roleManager.Create(new IdentityRole(GlobalConstants.RecipientRoleName));
+                }
+
+                // Create Recipient User with password
+                var donorUser = new ApplicationUser();
+                donorUser.UserName = "recipient" + i;
+                donorUser.Email = "r" + i + "@r.com";
+                donorUser.CreatedOn = DateTime.Now;
+                string password = "111";
+
+                var result = userManager.Create(donorUser, password);
+
+                // Add Recipient User to Recipient Role
+                if (result.Succeeded)
+                {
+                    userManager.AddToRole(donorUser.Id, GlobalConstants.RecipientRoleName);
+                }
+
+                // Add Recipient User to Recipient Profile
+                recipientProfile.ApplicationUser = donorUser;
+                context.Recipients.Add(recipientProfile);
+
+                recipients.Add(recipientProfile);
+            }
+
+            context.SaveChanges();
+
+            return recipients;
         }
 
         private UserManager<ApplicationUser> CreateUserManager(ApplicationDbContext context)
@@ -186,62 +335,147 @@ namespace Charity.Data.Migrations
             context.SaveChanges();
         }
 
-        private void SeedFoodCategories(ApplicationDbContext context)
+        private List<FoodCategory> SeedFoodCategories(ApplicationDbContext context)
         {
+            var foodCategories = new List<FoodCategory>();
+
             if (context.FoodCategories.Any())
+            {
+                return foodCategories;
+            }
+
+            var category = new FoodCategory();
+            category.Name = "Meat";
+            category.CreatedOn = DateTime.Now;
+            foodCategories.Add(category);
+            context.FoodCategories.Add(category);
+
+            category = new FoodCategory();
+            category.Name = "Seafood";
+            category.CreatedOn = DateTime.Now;
+            foodCategories.Add(category);
+            context.FoodCategories.Add(category);
+
+            category = new FoodCategory();
+            category.Name = "Egg Products";
+            category.CreatedOn = DateTime.Now;
+            foodCategories.Add(category);
+            context.FoodCategories.Add(category);
+
+            category = new FoodCategory();
+            category.Name = "Dairy Products";
+            category.CreatedOn = DateTime.Now;
+            foodCategories.Add(category);
+            context.FoodCategories.Add(category);
+
+            category = new FoodCategory();
+            category.Name = "Fresh fruits and vegetables";
+            category.CreatedOn = DateTime.Now;
+            foodCategories.Add(category);
+            context.FoodCategories.Add(category);
+
+            category = new FoodCategory();
+            category.Name = "Nuts, Grains and Beans";
+            category.CreatedOn = DateTime.Now;
+            foodCategories.Add(category);
+            context.FoodCategories.Add(category);
+
+            category = new FoodCategory();
+            category.Name = "Ready meals";
+            category.CreatedOn = DateTime.Now;
+            foodCategories.Add(category);
+            context.FoodCategories.Add(category);
+
+            category = new FoodCategory();
+            category.Name = "Baby food";
+            category.CreatedOn = DateTime.Now;
+            foodCategories.Add(category);
+            context.FoodCategories.Add(category);
+
+            category = new FoodCategory();
+            category.Name = "Pet food";
+            category.CreatedOn = DateTime.Now;
+            foodCategories.Add(category);
+            context.FoodCategories.Add(category);
+
+            category = new FoodCategory();
+            category.Name = "Other";
+            category.CreatedOn = DateTime.Now;
+            foodCategories.Add(category);
+            context.FoodCategories.Add(category);
+
+            context.SaveChanges();
+
+            return foodCategories;
+        }
+
+        private List<FoodDonation> SeedFoodDonations(ApplicationDbContext context, List<FoodCategory> foodCategories, List<Donor> donors)
+        {
+            var foodDonations = new List<FoodDonation>();
+
+            if (context.FoodDonations.Any())
+            {
+                return foodDonations;
+            }
+
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 1; j <= 20; j++)
+                {
+                    var foodDonation = new FoodDonation();
+                    var categoryIndex = this.randomGenerator.Next(0, foodCategories.Count);
+                    var foodCategory = foodCategories[categoryIndex];
+
+                    foodDonation.Donor = donors[i];
+                    foodDonation.FoodCategory = foodCategory;
+                    foodDonation.Name = foodCategory.Name;
+                    foodDonation.Quantity = j.ToString() + (j == 1 ? " item" : " items");
+                    foodDonation.Description = foodCategory.Name;
+
+                    foodDonation.ExpirationDate = DateTime.Now.AddDays(j + 10);
+                    foodDonation.AvailableFrom = DateTime.Now;
+                    foodDonation.AvailableTo = foodDonation.ExpirationDate.AddDays(-3);
+
+                    foodDonation.CreatedOn = DateTime.Now;
+
+                    context.FoodDonations.Add(foodDonation);
+                    foodDonations.Add(foodDonation);
+                }
+            }
+
+            context.SaveChanges();
+
+            return foodDonations;
+        }
+
+        private void SeedFoodRequests(ApplicationDbContext context, List<Recipient> recipients, List<FoodDonation> foodDonations)
+        {
+            if (context.FoodRequests.Any())
             {
                 return;
             }
 
-            var type = new FoodCategory();
-            type.Name = "Meat";
-            type.CreatedOn = DateTime.Now;
-            context.FoodCategories.Add(type);
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 1; j <= 20; j++)
+                {
+                    var foodRequest = new FoodRequest();
+                    var foodDonationIndex = this.randomGenerator.Next(0, foodDonations.Count);
+                    var foodDonation = foodDonations[foodDonationIndex];
 
-            type = new FoodCategory();
-            type.Name = "Seafood";
-            type.CreatedOn = DateTime.Now;
-            context.FoodCategories.Add(type);
+                    foodRequest.Recipient = recipients[i];
+                    foodRequest.FoodDonation = foodDonation;
+                    foodRequest.Quantity = j.ToString() + (j == 1 ? " item" : " items");
+                    foodRequest.Description = foodDonation.Name;
 
-            type = new FoodCategory();
-            type.Name = "Egg Products";
-            type.CreatedOn = DateTime.Now;
-            context.FoodCategories.Add(type);
+                    foodRequest.NeedFrom = DateTime.Now;
+                    foodRequest.NeedTo = foodDonation.AvailableTo;
 
-            type = new FoodCategory();
-            type.Name = "Dairy Products";
-            type.CreatedOn = DateTime.Now;
-            context.FoodCategories.Add(type);
+                    foodRequest.CreatedOn = DateTime.Now;
 
-            type = new FoodCategory();
-            type.Name = "Fresh fruits and vegetables";
-            type.CreatedOn = DateTime.Now;
-            context.FoodCategories.Add(type);
-
-            type = new FoodCategory();
-            type.Name = "Nuts, Grains and Beans";
-            type.CreatedOn = DateTime.Now;
-            context.FoodCategories.Add(type);
-
-            type = new FoodCategory();
-            type.Name = "Ready meals";
-            type.CreatedOn = DateTime.Now;
-            context.FoodCategories.Add(type);
-
-            type = new FoodCategory();
-            type.Name = "Baby food";
-            type.CreatedOn = DateTime.Now;
-            context.FoodCategories.Add(type);
-
-            type = new FoodCategory();
-            type.Name = "Pet food";
-            type.CreatedOn = DateTime.Now;
-            context.FoodCategories.Add(type);
-
-            type = new FoodCategory();
-            type.Name = "Other";
-            type.CreatedOn = DateTime.Now;
-            context.FoodCategories.Add(type);
+                    context.FoodRequests.Add(foodRequest);
+                }
+            }
 
             context.SaveChanges();
         }

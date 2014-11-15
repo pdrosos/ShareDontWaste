@@ -34,12 +34,6 @@
             this.currentUserProvider = currentUserProvider;
         }
 
-        public ActionResult Index()
-        {
-            var foodDonations = this.foodDonationService.All().Project().To<FoodDonationListViewModel>();
-            return View(foodDonations.AsEnumerable());
-        }
-
         public ActionResult MyDonations()
         {
             ApplicationUser user = this.currentUserProvider.Get();
@@ -115,8 +109,6 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
-            
 
             if (foodDonation == null)
             {
