@@ -1,0 +1,7 @@
+﻿@model DateTime?
+
+@(Html.Kendo()
+    .DatePickerFor(model => model)
+    .Value(DateTime.Today)
+    .HtmlAttributes(new { @class = "form-control" })
+)

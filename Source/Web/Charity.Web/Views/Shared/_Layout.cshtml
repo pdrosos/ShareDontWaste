@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - FoodShare</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/kendo")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
 
 </head>
 <body>
@@ -47,7 +49,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/kendo")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

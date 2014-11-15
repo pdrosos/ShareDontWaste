@@ -68,6 +68,9 @@
     <Reference Include="Hex">
       <HintPath>..\..\packages\Hex.3.1.0\lib\net40\Hex.dll</HintPath>
     </Reference>
+    <Reference Include="Kendo.Mvc">
+      <HintPath>Libraries\Kendo.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -316,6 +319,8 @@
     <Content Include="Areas\Donors\Views\FoodDonations\Edit.cshtml" />
     <Content Include="Views\FoodDonations\Index.cshtml" />
     <Content Include="Areas\Donors\Views\FoodDonations\MyDonations.cshtml" />
+    <Content Include="Areas\Donors\Views\Shared\EditorTemplates\DatePicker.cshtml" />
+    <Content Include="Areas\Donors\Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -327,6 +332,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kendo\jquery.min.js" />
+    <Content Include="Scripts\kendo\kendo.all.min.js" />
+    <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
@@ -374,11 +382,13 @@
     <Content Include="Views\FoodDonations\_FoodCategoriesMenu.cshtml" />
     <Content Include="Views\FoodDonations\Details.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ShortDateTime.cshtml" />
+    <Content Include="Scripts\kendo\jquery.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Donors\Views\Shared\" />
     <Folder Include="Areas\Recipients\Views\Shared\" />
+    <Folder Include="Content\kendo\" />
+    <Folder Include="Libraries\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
