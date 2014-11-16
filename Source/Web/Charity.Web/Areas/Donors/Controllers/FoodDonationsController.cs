@@ -49,7 +49,7 @@
 
         public ActionResult MyDonations()
         {
-            ViewData["foodcategories"] = this.foodCategoryService.GetAll();
+            ViewData["foodcategories"] = this.foodCategoryService.GetAll().Project().To<FoodCategoryViewModel>();
             return View();
         }
 
@@ -165,16 +165,24 @@
             return View(foodDonation);
         }
 
-        public JsonResult UpdateDonation([DataSourceRequest] DataSourceRequest request, FoodDonationListViewModel model)
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult UpdateDonation([DataSourceRequest] DataSourceRequest request,
+            [Bind(Prefix = "models")]IEnumerable<FoodDonationListViewModel> foodDonations)
         {
-            if (model != null && ModelState.IsValid)
+            if (foodDonations != null && ModelState.IsValid)
             {
-                var donation = this.foodDonationService.GetById(model.Id);
-                Mapper.Map<FoodDonationListViewModel, FoodDonation>(model, donation);
-                this.foodDonationService.Update(donation);
-            }
+                foreach (var modelDonation in foodDonations)
+                {
+                    var donation = this.foodDonationService.GetById(modelDonation.Id);
 
-            return Json(new[] { model }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+                    Mapper.Map<FoodDonationListViewModel, FoodDonation>(modelDonation, donation);
+                    //donation.FoodCategory = this.foodCategoryService.GetById(modelDonation.FoodCategory.Id);
+                    donation.FoodCategoryId = modelDonation.Category.Id;
+                    this.foodDonationService.Update(donation);
+                }
+            }   
+
+            return Json(foodDonations.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
         }
 
         // GET: Donors/FoodDonations/Delete/5
