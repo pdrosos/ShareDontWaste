@@ -8,6 +8,8 @@
     {
         FoodRequest GetById(int id);
 
+        FoodRequest GetByDonationIdAndRecipientId(int donationId, Guid recipientId);
+
         void Update(FoodRequest foodRequest);
 
         void Add(FoodRequest foodRequest);

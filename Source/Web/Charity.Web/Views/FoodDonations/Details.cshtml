@@ -71,16 +71,27 @@
     </dl>
 </div>
 
-@if (User.IsInRole(Charity.Common.GlobalConstants.RecipientRoleName))
+@if (User.IsInRole(Charity.Common.GlobalConstants.RecipientRoleName) && ViewBag.showRequestForm == true)
 {
     <div class="row top-buffer">
         <div class="col-lg-6">
             @Html.Partial("~/Areas/Recipients/Views/FoodRequests/_FoodRequest.cshtml", new FoodRequestRegisterModel(Model.Id))
         </div>
     </div>
-}
 
-@section scripts {
-    @Scripts.Render("~/bundles/jqueryajax")
-    @Scripts.Render("~/bundles/jqueryval")
+
+    @section scripts {
+        @Scripts.Render("~/bundles/jqueryajax")
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+}
+else if (User.IsInRole(Charity.Common.GlobalConstants.RecipientRoleName))
+{
+    <div class="row top-buffer">
+        <div class="col-lg-6">
+            <div class="well bs-component">
+                You have already requested this item
+            </div>
+        </div>
+    </div>
 }

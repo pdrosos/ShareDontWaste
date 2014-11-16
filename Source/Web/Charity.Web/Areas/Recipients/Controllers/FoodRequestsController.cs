@@ -26,8 +26,7 @@
             IFoodRequestService foodRequestService,
             IFoodDonationService foodDonationService,
             IRecipientProfileService recipientProfileService,
-            ICurrentUser currentUserProvider
-            )
+            ICurrentUser currentUserProvider)
         {
             this.foodRequestService = foodRequestService;
             this.foodDonationService = foodDonationService;
@@ -82,6 +81,12 @@
                 if (donation == null || donation.IsCompleted == true)
                 {
                     throw new HttpException(404, "Donation not found");
+                }
+
+                var existingRequest = this.foodRequestService.GetByDonationIdAndRecipientId(model.FoodDonationId, recipient.Id);
+                if (existingRequest != null)
+                {
+                    throw new HttpException(400, "The request already exists");
                 }
 
                 this.foodRequestService.Add(foodRequest);

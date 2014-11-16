@@ -20,6 +20,12 @@
             return this.foodRequestRepository.GetById(id);
         }
 
+        public FoodRequest GetByDonationIdAndRecipientId(int donationId, Guid recipientId)
+        {
+            return this.foodRequestRepository.All()
+                .FirstOrDefault(r => r.FoodDonationId == donationId && r.RecipientId == recipientId);
+        }
+
         public void Update(FoodRequest foodRequest)
         {
             this.foodRequestRepository.Update(foodRequest);

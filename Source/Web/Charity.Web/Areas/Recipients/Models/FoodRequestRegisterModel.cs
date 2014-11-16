@@ -37,6 +37,7 @@
         [Display(Name = "Need To")]
         public DateTime NeedTo { get; set; }
 
+        [Required]
         [StringLength(600, ErrorMessage = "The {0} must not be more than {1} characters.")]
         [UIHint("MultilineText")]
         public string Description { get; set; }
