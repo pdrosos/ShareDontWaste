@@ -5,10 +5,10 @@
         new AjaxOptions
         {
             HttpMethod = "POST",
-            InsertionMode = InsertionMode.InsertBefore,
-            UpdateTargetId = "comments"
+            InsertionMode = InsertionMode.ReplaceWith,
+            UpdateTargetId = "request-form"
         },
-        new { @class = "form-horizontal" }))
+        new { @id = "request-form", @class = "form-horizontal" }))
     {
         @Html.AntiForgeryToken()
 

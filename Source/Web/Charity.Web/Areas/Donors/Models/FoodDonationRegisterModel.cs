@@ -9,6 +9,11 @@
     public class FoodDonationRegisterModel : IMapFrom<FoodDonation>
     {
         [Required]
+        [Display(Name = "Title")]
+        [StringLength(250, ErrorMessage = "The {0} must not be more than {1} characters.")]
+        public string Name { get; set; }
+
+        [Required]
         [Display(Name = "Category")]
         public int FoodCategoryId { get; set; }
 

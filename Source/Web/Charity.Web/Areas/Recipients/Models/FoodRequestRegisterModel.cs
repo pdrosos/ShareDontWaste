@@ -8,6 +8,11 @@
 
     public class FoodRequestRegisterModel : IMapFrom<FoodRequest>
     {
+        public FoodRequestRegisterModel()
+        {
+
+        }
+
         public FoodRequestRegisterModel(int foodDonationId)
         {
             this.FoodDonationId = foodDonationId;

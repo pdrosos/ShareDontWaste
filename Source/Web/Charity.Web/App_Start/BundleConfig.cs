@@ -39,6 +39,10 @@ namespace Charity.Web
                     "~/Content/kendo/kendo.common-bootstrap.min.css",
                     "~/Content/kendo/kendo.bootstrap.min.css"));
 
+            //bundles.Add(new StyleBundle("~/Content/kendo").Include(
+            //        "~/Content/kendo/kendo.common.min.css",
+            //        "~/Content/kendo/kendo.black.min.css"));
+
             bundles.IgnoreList.Clear();
 
             // Set EnableOptimizations to false for debugging. For more information,

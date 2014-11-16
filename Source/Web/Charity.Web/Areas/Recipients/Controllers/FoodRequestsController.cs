@@ -12,22 +12,25 @@
     using Charity.Services.Common;
     using Charity.Web.Areas.Recipients.Models;
     using Charity.Web.Infrastructure.Identity;
+    using System.Web;
 
-    [Authorize]
-
+    [Authorize(Roles = GlobalConstants.RecipientRoleName)]
     public class FoodRequestsController : Controller
     {
         private readonly IFoodRequestService foodRequestService;
+        private readonly IFoodDonationService foodDonationService;
         private readonly IRecipientProfileService recipientProfileService;
         private readonly ICurrentUser currentUserProvider;
 
         public FoodRequestsController(
             IFoodRequestService foodRequestService,
+            IFoodDonationService foodDonationService,
             IRecipientProfileService recipientProfileService,
             ICurrentUser currentUserProvider
             )
         {
             this.foodRequestService = foodRequestService;
+            this.foodDonationService = foodDonationService;
             this.recipientProfileService = recipientProfileService;
             this.currentUserProvider = currentUserProvider;
         }
@@ -63,24 +66,30 @@
         }
 
         [HttpPost]
-        [Authorize(Roles = GlobalConstants.DonorRoleName)]
         [ValidateAntiForgeryToken]
         public ActionResult Create(FoodRequestRegisterModel model)
         {
-            var foodRequest = Mapper.Map<FoodRequestRegisterModel, FoodRequest>(model);
-
-            ApplicationUser user = this.currentUserProvider.Get();
-            Recipient recipient = this.recipientProfileService.GetByApplicationUserId(user.Id);
-
-            foodRequest.RecipientId = recipient.Id;
-
             if (ModelState.IsValid)
             {
+                var foodRequest = Mapper.Map<FoodRequestRegisterModel, FoodRequest>(model);
+
+                ApplicationUser user = this.currentUserProvider.Get();
+                Recipient recipient = this.recipientProfileService.GetByApplicationUserId(user.Id);
+
+                foodRequest.RecipientId = recipient.Id;
+
+                var donation = this.foodDonationService.GetById(model.FoodDonationId);
+                if (donation == null || donation.IsCompleted == true)
+                {
+                    throw new HttpException(404, "Donation not found");
+                }
+
                 this.foodRequestService.Add(foodRequest);
-                return RedirectToAction("Index");
+
+                return Content("Your request is sent");
             }
 
-            return View(foodRequest);
+            throw new HttpException(400, "Invalid request");
         }
 
         public ActionResult Edit(int? id)
