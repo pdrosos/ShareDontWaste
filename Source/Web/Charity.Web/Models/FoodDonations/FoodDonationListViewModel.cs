@@ -4,10 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using Charity.Data.Models;
-    using Charity.Web.Infrastructure.Mapping;
     using PagedList;
 
-    public class FoodDonationListViewModel : IMapFrom<FoodDonation>
+    public class FoodDonationListViewModel
     {
         public IEnumerable<FoodCategory> FoodCategories { get; set; }
 

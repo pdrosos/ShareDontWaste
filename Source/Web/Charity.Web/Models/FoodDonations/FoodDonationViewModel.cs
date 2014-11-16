@@ -10,6 +10,9 @@
     {
         public int Id { get; set; }
 
+        [Display(Name = "Donor")]
+        public Donor Donor { get; set; }
+
         [Display(Name = "Category")]
         public FoodCategory FoodCategory { get; set; }
 

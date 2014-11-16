@@ -1,0 +1,35 @@
+﻿@model Charity.Web.Areas.Recipients.Models.FoodRequestRegisterModel
+
+<div class="well bs-component">
+    @using (Ajax.BeginForm("Create", "FoodRequests", new { Area = "Recipients" },
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.ReplaceWith,
+            UpdateTargetId = "request-form"
+        },
+        new { @id = "request-form", @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(m => m.FoodDonationId)
+
+        <fieldset>
+            <legend>Request Food</legend>
+
+            @Html.EditorFor(m => m.Quantity)
+
+            @Html.EditorFor(m => m.NeedFrom)
+
+            @Html.EditorFor(m => m.NeedTo)
+
+            @Html.EditorFor(m => m.Description)
+
+            <div class="form-group">
+                <div class="col-lg-9 col-lg-offset-2">
+                    <button class="btn btn-primary" type="submit">Request</button>
+                </div>
+            </div>
+        </fieldset>
+    }
+</div>

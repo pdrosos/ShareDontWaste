@@ -30,6 +30,15 @@
             return this.donorRepository.All().FirstOrDefault(d => d.ApplicationUser.UserName == userName);
         }
 
+        public IQueryable<Donor> GetMostActiveDonors(int donorsCount)
+        {
+            var query = this.donorRepository.All()
+                .OrderByDescending(d => d.FoodDonations.Count)
+                .Take(donorsCount);
+
+            return query;
+        }
+
         public void Update(Donor donor)
         {
             this.donorRepository.Update(donor);
@@ -45,6 +54,14 @@
         public IQueryable<Donor> All()
         {
             return this.donorRepository.All();
+        }
+
+        public IQueryable<Donor> List()
+        {
+            var query = this.All()
+                .OrderByDescending(d => d.FoodDonations.Count);
+
+            return query;
         }
 
         //TODO: Move method's content in DonorRepository. 
