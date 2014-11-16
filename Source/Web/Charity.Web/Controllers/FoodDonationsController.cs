@@ -2,11 +2,13 @@
 {
     using System;
     using System.Linq;
+    using System.Net;
     using System.Web.Mvc;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using Charity.Data.Models;
     using Charity.Services.Common;
+    using Charity.Web.Infrastructure.Identity;
     using Charity.Web.Models.FoodDonations;
     using PagedList;
 
@@ -15,7 +17,9 @@
         private readonly IFoodDonationService foodDonationService;
         private readonly IFoodCategoryService foodCategoryService;
 
-        public FoodDonationsController(IFoodDonationService foodDonationService, IFoodCategoryService foodCategoryService)
+        public FoodDonationsController(
+            IFoodDonationService foodDonationService, 
+            IFoodCategoryService foodCategoryService)
         {
             this.foodDonationService = foodDonationService;
             this.foodCategoryService = foodCategoryService;
@@ -57,9 +61,14 @@
             return View("Index", viewModel);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            FoodDonation foodDonation = this.foodDonationService.GetById(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            FoodDonation foodDonation = this.foodDonationService.GetById((int)id);
 
             if (foodDonation == null)
             {

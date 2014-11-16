@@ -251,10 +251,15 @@
     <Compile Include="Areas\Donors\Models\FoodDonationRegisterModel.cs" />
     <Compile Include="Areas\Donors\Models\FoodDonationViewModel.cs" />
     <Compile Include="Areas\Recipients\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Recipients\Controllers\FoodRequestsController.cs" />
     <Compile Include="Areas\Recipients\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Recipients\Models\AccountDetailsEditModel.cs" />
     <Compile Include="Areas\Recipients\Models\AccountDetailsViewModel.cs" />
     <Compile Include="Areas\Recipients\Models\FoodCategoryEditModel.cs" />
+    <Compile Include="Areas\Recipients\Models\FoodRequestEditModel.cs" />
+    <Compile Include="Areas\Recipients\Models\FoodRequestViewModel.cs" />
+    <Compile Include="Areas\Recipients\Models\FoodRequestListViewModel.cs" />
+    <Compile Include="Areas\Recipients\Models\FoodRequestRegisterModel.cs" />
     <Compile Include="Areas\Recipients\Models\RecipientDetailsEditModel.cs" />
     <Compile Include="Areas\Recipients\Models\RecipientDetailsViewModel.cs" />
     <Compile Include="Areas\Recipients\Models\RecipientRegisterViewModel.cs" />
@@ -317,10 +322,12 @@
     <Content Include="Areas\Donors\Views\FoodDonations\Delete.cshtml" />
     <Content Include="Areas\Donors\Views\FoodDonations\Details.cshtml" />
     <Content Include="Areas\Donors\Views\FoodDonations\Edit.cshtml" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Views\FoodDonations\Index.cshtml" />
     <Content Include="Areas\Donors\Views\FoodDonations\MyDonations.cshtml" />
-    <Content Include="Areas\Donors\Views\Shared\EditorTemplates\DatePicker.cshtml" />
-    <Content Include="Areas\Donors\Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DatePicker.cshtml" />
+    <Content Include="Areas\Recipients\Views\FoodRequests\_FoodRequest.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -383,9 +390,18 @@
     <Content Include="Views\FoodDonations\Details.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ShortDateTime.cshtml" />
     <Content Include="Scripts\kendo\jquery.min.map" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Integer.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SinglelineText.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DatePickerLine.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Donors\Views\Shared\" />
     <Folder Include="Areas\Recipients\Views\Shared\" />
     <Folder Include="Content\kendo\" />
     <Folder Include="Libraries\" />

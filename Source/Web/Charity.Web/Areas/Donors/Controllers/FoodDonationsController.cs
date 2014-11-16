@@ -13,7 +13,7 @@
     using Charity.Web.Areas.Donors.Models;
     using Charity.Web.Infrastructure.Identity;
 
-    [Authorize]
+    [Authorize(Roles = GlobalConstants.DonorRoleName)]
     public class FoodDonationsController : Controller
     {
         private readonly IFoodDonationService foodDonationService;
@@ -64,7 +64,6 @@
             return View(model);
         }
 
-        [Authorize(Roles = GlobalConstants.DonorRoleName)]
         public ActionResult Create()
         {
             ViewBag.FoodCategoryId = new SelectList(this.foodCategoryService.GetAll(), "Id", "Name");
@@ -72,7 +71,6 @@
         }
        
         [HttpPost]
-        [Authorize(Roles = GlobalConstants.DonorRoleName)]
         [ValidateAntiForgeryToken]
         public ActionResult Create(FoodDonationRegisterModel model)
         {

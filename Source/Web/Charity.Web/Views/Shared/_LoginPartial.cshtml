@@ -22,7 +22,21 @@
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { Area = "" }, htmlAttributes: new { title = "Manage" })
             }
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        @if (User.IsInRole(GlobalConstants.DonorRoleName))
+        {
+            <li>
+                @Html.ActionLink("My Donations", "MyDonations", "FoodDonations", new { Area = "Donors" }, htmlAttributes: new { title = "My Donations" })
+            </li>
+        }
+        @if (User.IsInRole(GlobalConstants.RecipientRoleName))
+        {
+            <li>
+                @Html.ActionLink("My Requests", "MyRequests", "FoodRequests", new { Area = "Recipients" }, htmlAttributes: new { title = "My Requests" })
+            </li>
+        }
+        <li>
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+        </li>
     </ul>
     }
 }

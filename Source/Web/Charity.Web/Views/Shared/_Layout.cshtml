@@ -31,10 +31,6 @@
                     {
                         <li>@Html.ActionLink("Dashboard", "Index", "Home", new { area = "Administration" }, new { })</li>
                     }
-                    @if (User.IsInRole(Charity.Common.GlobalConstants.DonorRoleName))
-                    {
-                        <li>@Html.ActionLink("My Donations", "MyDonations", "FoodDonations", new { area = "Donors" }, new { })</li>
-                    }
                 </ul>
 
                 @Html.Partial("_LoginPartial")

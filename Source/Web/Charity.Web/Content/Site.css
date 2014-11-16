@@ -25,12 +25,14 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
+/*
 input,
 select,
 textarea 
 {
     max-width: 280px;
 }
+*/
 
 .table-list 
 {
@@ -41,6 +43,8 @@ textarea
 {
     margin: 15px 0;
 }
+
+.top-buffer { margin-top:20px; }
 
 /* Donations list */
 .glyphicon 

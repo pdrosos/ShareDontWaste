@@ -1,0 +1,17 @@
+﻿@model DateTime?
+
+<div class="form-group">
+    @Html.LabelFor(m => m, new { @class = "col-lg-3 control-label" })
+
+    <div class="col-lg-9">
+        @(Html.Kendo()
+            .DatePickerFor(model => model)
+            .Value(DateTime.Today)
+            .HtmlAttributes(new { @class = "form-control" })
+        )
+
+        <span class="help-block text-danger">
+            @Html.ValidationMessageFor(m => m)
+        </span>
+    </div>
+</div>
