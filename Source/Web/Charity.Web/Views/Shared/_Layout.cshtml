@@ -27,6 +27,7 @@
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { })</li>
                     <li>@Html.ActionLink("Donations", "Index", "FoodDonations", new { area = "" }, new { })</li>
+                    <li>@Html.ActionLink("Donors", "Index", "Donors", new { area = "" }, new { })</li>
                     @if (User.IsInRole(Charity.Common.GlobalConstants.AdministratorRoleName))
                     {
                         <li>@Html.ActionLink("Dashboard", "Index", "Home", new { area = "Administration" }, new { })</li>

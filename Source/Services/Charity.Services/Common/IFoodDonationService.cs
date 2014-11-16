@@ -14,6 +14,8 @@
 
         IQueryable<FoodDonation> All();
 
+        IQueryable<FoodDonation> GetLatestDonations(int latestDonationsCount);
+
         IQueryable<FoodDonation> List();
 
         IQueryable<FoodDonation> ListByCategory(int categoryId);

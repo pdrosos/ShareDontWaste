@@ -12,11 +12,15 @@
 
         Donor GetByUserName(string userName);
 
+        IQueryable<Donor> GetMostActiveDonors(int donorsCount);
+
         void Update(Donor donor);
 
         void Add(Donor donor);
 
         IQueryable<Donor> All();
+
+        IQueryable<Donor> List();
          
         IQueryable<Donor> SearchByOrganizationName(string searchString);
     }

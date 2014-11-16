@@ -37,6 +37,15 @@
             return this.foodDonationRepository.All();
         }
 
+        public IQueryable<FoodDonation> GetLatestDonations(int latestDonationsCount)
+        {
+            var query = this.All()
+                .OrderByDescending(d => d.Id)
+                .Take(latestDonationsCount);
+
+            return query;
+        }
+
         public IQueryable<FoodDonation> List()
         {
             var query = this.All()

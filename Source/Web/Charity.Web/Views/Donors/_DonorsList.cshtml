@@ -1,0 +1,17 @@
+﻿@using Charity.Web.Models.Donors
+
+@model IEnumerable<DonorViewModel>
+
+<div class="row list-group">
+    <ul class="list-group">
+        @foreach (var foodDonation in Model)
+        {
+            <li class="list-group-item">
+                <span class="badge">
+                    @foodDonation.DonationsCount
+                </span>
+                @foodDonation.OrganizationName (@foodDonation.CityName)
+            </li>
+        }
+    </ul>
+</div>

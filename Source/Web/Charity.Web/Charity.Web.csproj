@@ -265,6 +265,7 @@
     <Compile Include="Areas\Recipients\Models\RecipientRegisterViewModel.cs" />
     <Compile Include="Areas\Recipients\RecipientsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DonorsController.cs" />
     <Compile Include="Controllers\FoodDonationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -272,7 +273,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Donors\DonorListViewModel.cs" />
+    <Compile Include="Models\HomePageViewModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Donors\DonorDetailsViewModel.cs" />
+    <Compile Include="Models\Donors\DonorViewModel.cs" />
     <Compile Include="Models\FoodDonations\FoodDonationViewModel.cs" />
     <Compile Include="Models\FoodDonations\FoodDonationListViewModel.cs" />
     <Compile Include="Models\FoodDonations\FoodDonationDetailsViewModel.cs" />
@@ -456,6 +461,8 @@
     <Content Include="Views\Shared\EditorTemplates\SinglelineText.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DatePickerLine.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Donors\_DonorsList.cshtml" />
+    <Content Include="Views\Donors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

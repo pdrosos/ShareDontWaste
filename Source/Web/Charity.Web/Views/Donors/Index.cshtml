@@ -1,0 +1,18 @@
+﻿@using PagedList.Mvc;
+
+@model Charity.Web.Models.Donors.DonorListViewModel
+
+@{
+    ViewBag.Title = "All donors";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-lg-9">
+        @Html.Partial("_DonorsList", Model.Donors)
+    </div>
+</div>
+
+@Html.PagedListPager(Model.Donors, page => Url.Action("Index", "Donors",
+        new { page, area = "" }))
