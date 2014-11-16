@@ -12,6 +12,8 @@
     using Charity.Services.Common;
     using Charity.Web.Areas.Donors.Models;
     using Charity.Web.Infrastructure.Identity;
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
 
     [Authorize]
     public class FoodDonationsController : Controller
@@ -34,15 +36,34 @@
             this.currentUserProvider = currentUserProvider;
         }
 
+        //public ActionResult MyDonations()
+        //{
+        //    ApplicationUser user = this.currentUserProvider.Get();
+        //    Donor donor = this.donorProfileService.GetByApplicationUserId(user.Id);
+        //    Guid currentDonorId = donor.Id;
+
+        //    var foodDonations = this.foodDonationService.All().Where(f => f.DonorId == currentDonorId).Project().To<FoodDonationListViewModel>();
+
+        //    return View(foodDonations.AsEnumerable());
+        //}
+
         public ActionResult MyDonations()
+        {
+            ViewData["foodcategories"] = this.foodCategoryService.GetAll();
+            return View();
+        }
+
+        public ActionResult ReadMyDonations([DataSourceRequest] DataSourceRequest request)
         {
             ApplicationUser user = this.currentUserProvider.Get();
             Donor donor = this.donorProfileService.GetByApplicationUserId(user.Id);
             Guid currentDonorId = donor.Id;
             
-            var foodDonations = this.foodDonationService.All().Where(f => f.DonorId == currentDonorId).Project().To<FoodDonationListViewModel>();
-            
-            return View(foodDonations.AsEnumerable());
+            var foodDonations = this.foodDonationService.All()
+                .Where(f => f.DonorId == currentDonorId)
+                .Project().To<FoodDonationListViewModel>();
+
+            return Json(foodDonations.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Details(int? id)
@@ -86,7 +107,7 @@
             if (ModelState.IsValid)
             {
                 this.foodDonationService.Add(foodDonation);
-                return RedirectToAction("Index");
+                return RedirectToAction("MyDonations");
             }
 
             ViewBag.FoodCategoryId = new SelectList(this.foodCategoryService.GetAll(), "Id", "Name", foodDonation.FoodCategoryId);
@@ -142,6 +163,18 @@
             IEnumerable<FoodCategory> foodCategories = this.foodCategoryService.GetAll();
             ViewBag.FoodCategoryId = new SelectList(foodCategories, "Id", "Name", foodDonation.FoodCategoryId);
             return View(foodDonation);
+        }
+
+        public JsonResult UpdateDonation([DataSourceRequest] DataSourceRequest request, FoodDonationListViewModel model)
+        {
+            if (model != null && ModelState.IsValid)
+            {
+                var donation = this.foodDonationService.GetById(model.Id);
+                Mapper.Map<FoodDonationListViewModel, FoodDonation>(model, donation);
+                this.foodDonationService.Update(donation);
+            }
+
+            return Json(new[] { model }.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
         }
 
         // GET: Donors/FoodDonations/Delete/5
