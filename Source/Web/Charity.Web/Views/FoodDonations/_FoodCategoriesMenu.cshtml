@@ -1,0 +1,18 @@
+﻿@using Charity.Data.Models
+@model IEnumerable<FoodCategory>
+
+<div class="bs-component">
+    <ul class="list-group">
+        <li class="list-group-item">
+            @Html.ActionLink("All donations", "Index", "FoodDonations",
+                    new { area = "" }, new { })
+        </li>
+        @foreach (var category in Model)
+        {
+            <li class="list-group-item">
+                @Html.ActionLink(category.Name, "ByCategory", "FoodDonations",
+                    new { area = "", id = category.Id }, new { })
+            </li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,69 @@
+﻿@model Charity.Web.Models.FoodDonations.FoodDonationViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+<div class="row">
+    <dl class="dl-horizontal col-lg-4">
+        <dt>
+            @Html.DisplayNameFor(model => model.FoodCategory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FoodCategory.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpirationDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ExpirationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvailableFrom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AvailableFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvailableTo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AvailableTo)
+        </dd>
+    </dl>
+
+    <div class="col-lg-6">
+        <img class="group list-group-image" src="@Model.ImageUrl" alt="" />
+    </div>
+</div>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+</p>

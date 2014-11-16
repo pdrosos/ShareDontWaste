@@ -14,6 +14,10 @@
 
         IQueryable<FoodDonation> All();
 
+        IQueryable<FoodDonation> List();
+
+        IQueryable<FoodDonation> ListByCategory(int categoryId);
+
         void Delete(FoodDonation foodDonation);
     }
 }

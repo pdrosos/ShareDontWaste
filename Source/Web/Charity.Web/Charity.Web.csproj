@@ -436,6 +436,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\FoodDonations\_FoodDonation.cshtml" />
+    <Content Include="Views\FoodDonations\_FoodCategoriesMenu.cshtml" />
+    <Content Include="Views\FoodDonations\Details.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ShortDateTime.cshtml" />
     <Content Include="Scripts\kendo\jquery.min.map" />
   </ItemGroup>
   <ItemGroup>
