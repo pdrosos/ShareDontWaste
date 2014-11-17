@@ -20,6 +20,8 @@
 
         IQueryable<FoodRequest> ListByDonation(int donationId);
 
+        IQueryable<FoodRequest> ListByDonor(Guid donorId);
+
         void Delete(FoodRequest foodDonation);
     }
 }

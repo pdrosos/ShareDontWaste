@@ -39,7 +39,10 @@
             Recipient recipient = this.recipientProfileService.GetByApplicationUserId(user.Id);
             Guid currentRecipientId = recipient.Id;
 
-            var foodRequests = this.foodRequestService.All().Where(f => f.RecipientId == currentRecipientId).Project().To<FoodRequestListViewModel>();
+            var foodRequests = this.foodRequestService.All()
+                .Where(f => f.RecipientId == currentRecipientId)
+                .OrderByDescending(f => f.Id)
+                .Project().To<FoodRequestListViewModel>();
 
             return View(foodRequests.AsEnumerable());
         }
@@ -72,7 +75,7 @@
                 var foodRequest = Mapper.Map<FoodRequestRegisterModel, FoodRequest>(model);
 
                 ApplicationUser user = this.currentUserProvider.Get();
-                Recipient recipient = this.recipientProfileService.GetByApplicationUserId(user.Id);
+                var recipient = this.recipientProfileService.GetByApplicationUserId(user.Id);
 
                 foodRequest.RecipientId = recipient.Id;
 

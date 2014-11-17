@@ -61,6 +61,7 @@
             
             var foodDonations = this.foodDonationService.All()
                 .Where(f => f.DonorId == currentDonorId)
+                .OrderByDescending(f => f.Id)
                 .Project().To<FoodDonationListViewModel>();
 
             return Json(foodDonations.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);

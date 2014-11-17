@@ -2,7 +2,7 @@
 
 <div class="item col-xs-4 col-lg-4 grid-group-item">
     <div class="thumbnail">
-        @if (Model.ImageUrl != null)
+        @if (Model.ImageUrl != null && Model.ImageUrl.Length > 0)
         {
             <img class="group list-group-image" src="@Model.ImageUrl" alt="" />
         }

@@ -9,7 +9,14 @@
 
 <div class="row">
     <div class="col-lg-6">
-        <img class="group list-group-image" src="@Model.ImageUrl" alt="" />
+        @if (Model.ImageUrl != null && Model.ImageUrl.Length > 0)
+        {
+            <img class="group list-group-image" src="@Model.ImageUrl" alt="" />
+        }
+        else
+        {
+            <img class="group list-group-image" src="http://d225fqn1pkg6mt.cloudfront.net/wp-content/uploads/2013/12/How_to_start_a_charity.jpg" alt="" />
+        }
     </div>
 
     <dl class="dl-horizontal col-lg-4">

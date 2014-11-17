@@ -11,5 +11,9 @@
         void Add(FoodRequestComment comment);
 
         IQueryable<FoodRequestComment> All(int foodRequestId);
+
+        void MarkCommentsAsReadFromDonor(int foodRequestId);
+
+        void MarkCommentsAsReadFromRecipient(int foodRequestId);
     }
 }

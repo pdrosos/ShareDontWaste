@@ -46,8 +46,8 @@
         public IQueryable<FoodRequest> List()
         {
             var query = this.All()
-                .Where(d => d.IsCompleted == false)
-                .OrderByDescending(d => d.CreatedOn);
+                .Where(r => r.IsCompleted == false)
+                .OrderByDescending(r => r.CreatedOn);
 
             return query;
         }
@@ -57,6 +57,15 @@
             var query = this.All()
                 .Where(d => d.FoodDonationId == donationId)
                 .OrderByDescending(d => d.CreatedOn);
+
+            return query;
+        }
+
+        public IQueryable<FoodRequest> ListByDonor(Guid donorId)
+        {
+            var query = this.All()
+                .Where(r => r.FoodDonation.DonorId == donorId)
+                .OrderByDescending(r => r.CreatedOn);
 
             return query;
         }
