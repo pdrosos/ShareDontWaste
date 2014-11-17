@@ -2,10 +2,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>My donations</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { Area = "Donors" }, new { @class = "btn btn-default" })
 </p>
 
 @(Html.Kendo()

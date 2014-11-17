@@ -1,0 +1,80 @@
+﻿@using Charity.Web.Areas.Recipients.Models 
+@model Charity.Web.Areas.Donors.Models.FoodRequestViewModel
+
+@{
+    ViewBag.Title = "Food Request Details";
+}
+
+<h2>Food Request</h2>
+
+<div>
+    <h4>Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FoodDonation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FoodDonation.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Recipient)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Recipient.OrganizationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NeedFrom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NeedFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NeedTo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NeedTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCompleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsCompleted)
+        </dd>
+    </dl>
+</div>
+
+<h2>Comments (@Model.Comments.Count())</h2>
+
+<div class="row">
+    <div class="main-content-inner col-12 col-lg-8" id="comments">
+
+        @foreach (var comment in Model.Comments)
+        {
+            @Html.Partial("~/Areas/Recipients/Views/FoodRequests/_FoodRequestComment.cshtml", comment)
+        }
+
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-lg-8">
+            @Html.Partial("~/Areas/Recipients/Views/FoodRequests/_FoodRequestCommentCreate.cshtml", new FoodRequestCommentCreateModel(Model.Id))
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryajax")
+    @Scripts.Render("~/bundles/jqueryval")
+}

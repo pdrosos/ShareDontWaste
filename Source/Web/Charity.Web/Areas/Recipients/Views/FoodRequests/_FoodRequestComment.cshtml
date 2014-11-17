@@ -1,0 +1,20 @@
+﻿@model Charity.Web.Areas.Recipients.Models.FoodRequestCommentViewModel
+
+<div class="media-body-wrap panel">
+    <h5 class="media-heading">
+        <cite class="fn">@Model.UserName</cite>
+        <span class="says">says:</span>
+    </h5>
+
+    <p class="comment-meta">
+        <time>
+            @Html.DisplayFor(m => Model.CreatedOn)
+        </time>
+    </p>
+
+    <div class="comment-content">
+        <p>
+            @Model.Text
+        </p>
+    </div>
+</div>

@@ -18,6 +18,10 @@
 
         public virtual FoodRequest FoodRequest { get; set; }
 
+        public bool IsReadFromDonor { get; set; }
+
+        public bool IsReadFromRecipient { get; set; }
+
         [Required]
         public string Text { get; set; }
     }

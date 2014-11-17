@@ -27,6 +27,9 @@
             <li>
                 @Html.ActionLink("My Donations", "MyDonations", "FoodDonations", new { Area = "Donors" }, htmlAttributes: new { title = "My Donations" })
             </li>
+            <li>
+                @Html.ActionLink("My Requests", "MyRequests", "FoodRequests", new { Area = "Donors" }, htmlAttributes: new { title = "My Requests" })
+            </li>
         }
         @if (User.IsInRole(GlobalConstants.RecipientRoleName))
         {

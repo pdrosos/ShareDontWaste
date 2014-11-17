@@ -24,7 +24,7 @@
             this.foodDonationService = foodDonationService;
         }
 
-        [OutputCache(Duration = 60, Location = OutputCacheLocation.Server)]
+        [OutputCache(Duration = 60, Location = OutputCacheLocation.Client)]
         public ActionResult Index()
         {
             // TODO: Move this in config

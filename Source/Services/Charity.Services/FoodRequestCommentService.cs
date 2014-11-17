@@ -33,5 +33,31 @@
                 .Where(c => c.FoodRequestId == foodRequestId)
                 .OrderBy(c => c.CreatedOn);
         }
+
+        public void MarkCommentsAsReadFromDonor(int foodRequestId)
+        {
+            var comments = this.foodRequestCommentRepository.All()
+                .Where(c => c.FoodRequestId == foodRequestId);
+
+            foreach (var comment in comments)
+            {
+                comment.IsReadFromDonor = true;
+            }
+
+            this.foodRequestCommentRepository.SaveChanges();
+        }
+
+        public void MarkCommentsAsReadFromRecipient(int foodRequestId)
+        {
+            var comments = this.foodRequestCommentRepository.All()
+                .Where(c => c.FoodRequestId == foodRequestId);
+
+            foreach (var comment in comments)
+            {
+                comment.IsReadFromRecipient = true;
+            }
+
+            this.foodRequestCommentRepository.SaveChanges();
+        }
     }
 }
