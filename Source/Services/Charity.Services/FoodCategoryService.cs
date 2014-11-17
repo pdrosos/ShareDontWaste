@@ -1,7 +1,6 @@
 ﻿namespace Charity.Services
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using Charity.Data.Common.Repositories;
     using Charity.Data.Models;
@@ -16,9 +15,9 @@
             this.foodCategoryRepository = foodCategoryRepository;
         }
 
-        public IEnumerable<FoodCategory> GetAll()
+        public IQueryable<FoodCategory> GetAll()
         {
-            return this.foodCategoryRepository.All().OrderBy(c => c.Id).AsEnumerable();
+            return this.foodCategoryRepository.All().OrderBy(c => c.Id);
         }
 
         public FoodCategory GetById(int id)

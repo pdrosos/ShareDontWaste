@@ -21,7 +21,7 @@
     {
         col.Bound(fd => fd.Name);
         col.ForeignKey(
-            fd => fd.FoodCategory.Id,
+            fd => fd.Category.Id,
             (System.Collections.IEnumerable)ViewData["foodcategories"], "Id", "Name")
            .Title("Category").Sortable(false);
         
@@ -31,9 +31,15 @@
         col.Bound(fd => fd.AvailableTo).Format("{0:dd.MM.yyyy}");
         col.Bound(fd => fd.IsCompleted);
     })
+    .ToolBar(toolBar =>
+    {
+        //toolBar.Create();
+        toolBar.Save();
+    })
     .HtmlAttributes(new { style = "height: 400px;" })
     .DataSource(data => data
         .Ajax()
+        .Batch(true)
         .Sort(sort => sort.Add("Name").Ascending())
         .ServerOperation(true)
         .PageSize(10)
@@ -41,9 +47,9 @@
         .Model(m =>
             {
                 m.Id(fd => fd.Id);
-                m.Field(fd => fd.Id);
+                m.Field(fd => fd.Id).Editable(false);
                 m.Field(fd => fd.Name);
-                m.Field(fd => fd.FoodCategory.Id).DefaultValue(1);
+                m.Field(fd => fd.Category.Id).DefaultValue(1);
                 m.Field(fd => fd.Quantity);
                 m.Field(fd => fd.ExpirationDate);
                 m.Field(fd => fd.AvailableFrom);
@@ -51,7 +57,7 @@
                 m.Field(fd => fd.IsCompleted);
             })
             .Read(read => read.Action("ReadMyDonations", "FoodDonations"))
-            .Update("UpdateDonation", "FoodDonations")
+            .Update(update => update.Action("UpdateDonation", "FoodDonations"))
             //.Destroy("DeleteDonation", "FoodDonations")
     )
 )

@@ -247,6 +247,7 @@
     <Compile Include="Areas\Donors\Models\DonorDetailsEditModel.cs" />
     <Compile Include="Areas\Donors\Models\DonorDetailsViewModel.cs" />
     <Compile Include="Areas\Donors\Models\DonorRegisterViewModel.cs" />
+    <Compile Include="Areas\Donors\Models\FoodCategoryViewModel.cs" />
     <Compile Include="Areas\Donors\Models\FoodDonationEditModel.cs" />
     <Compile Include="Areas\Donors\Models\FoodDonationListViewModel.cs" />
     <Compile Include="Areas\Donors\Models\FoodDonationRegisterModel.cs" />
@@ -393,6 +394,8 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Libraries\Kendo.Mvc.dll" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Views\FoodDonations\Index.cshtml" />
     <Content Include="Areas\Donors\Views\FoodDonations\MyDonations.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DatePicker.cshtml" />
@@ -462,6 +465,10 @@
     <Content Include="Views\FoodDonations\_FoodCategoriesMenu.cshtml" />
     <Content Include="Views\FoodDonations\Details.cshtml" />
     <Content Include="Scripts\kendo\jquery.min.map" />
+    <Content Include="Scripts\kendo\kendo.all.min.js.map" />
+    <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js.map" />
+    <Content Include="Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ShortDateTime.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Integer.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
