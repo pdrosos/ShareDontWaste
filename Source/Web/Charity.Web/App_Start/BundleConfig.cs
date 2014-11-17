@@ -11,7 +11,8 @@ namespace Charity.Web
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                    "~/Scripts/jquery.validate*"));
+                    "~/Scripts/jquery.validate*",
+                    "~/Scripts/kendo/kendo-validate-date.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.js"));
@@ -27,7 +28,8 @@ namespace Charity.Web
 
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
                     "~/Scripts/kendo/kendo.all.min.js",
-                    "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
+                    "~/Scripts/kendo/kendo.aspnetmvc.min.js",
+                    "~/Scripts/kendo/cultures/kendo.culture.en-GB.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-cosmo.css",

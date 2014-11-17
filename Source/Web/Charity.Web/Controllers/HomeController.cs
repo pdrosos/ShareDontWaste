@@ -3,13 +3,12 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
-    using AutoMapper;
+    using System.Web.UI;
     using AutoMapper.QueryableExtensions;
     using Charity.Services.Common;
-    using Charity.Web.Models.FoodDonations;
-    using Charity.Web.Models.Donors;
     using Charity.Web.Models;
-    using System.Web.UI;
+    using Charity.Web.Models.Donors;
+    using Charity.Web.Models.FoodDonations;
 
     public class HomeController : Controller
     {

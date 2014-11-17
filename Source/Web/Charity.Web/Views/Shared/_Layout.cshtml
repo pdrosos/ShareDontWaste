@@ -46,6 +46,9 @@
     </div>
 
     @Scripts.Render("~/bundles/kendo")
+    <script>
+        kendo.culture("en-GB");
+    </script>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

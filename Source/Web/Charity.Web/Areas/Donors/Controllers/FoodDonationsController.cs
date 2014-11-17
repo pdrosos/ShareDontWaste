@@ -183,6 +183,25 @@
             return Json(foodDonations.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult DeleteDonation([DataSourceRequest] DataSourceRequest request,
+            [Bind(Prefix = "models")]IEnumerable<FoodDonationListViewModel> foodDonations)
+        {
+            if (foodDonations != null && ModelState.IsValid)
+            {
+                foreach (var modelDonation in foodDonations)
+                {
+                    var donation = this.foodDonationService.GetById(modelDonation.Id);
+
+                    Mapper.Map<FoodDonationListViewModel, FoodDonation>(modelDonation, donation);
+                    donation.FoodCategoryId = modelDonation.Category.Id;
+                    this.foodDonationService.Delete(donation);
+                }
+            }
+
+            return Json(foodDonations.ToDataSourceResult(request, ModelState), JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Donors/FoodDonations/Delete/5
         public ActionResult Delete(int? id)
         {

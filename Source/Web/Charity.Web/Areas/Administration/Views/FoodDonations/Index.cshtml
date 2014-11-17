@@ -4,14 +4,8 @@
 
 <h2>Index</h2>
 
-<p>
-    <button class="k-button k-button-icontext k-grid-save-changes">
-        @Html.ActionLink("Create New", "Create")
-    </button>
-</p>
-
 @(Html.Kendo()
-    .Grid<Charity.Web.Areas.Donors.Models.FoodDonationListViewModel>()
+    .Grid<Charity.Web.Areas.Administration.Models.FoodDonationListViewModel>()
     .Name("donations-grid")
     .Pageable()
     .Scrollable()
@@ -22,15 +16,16 @@
     .HtmlAttributes(new { style = "height:430px;" })
     .Columns(col =>
     {
-        col.Bound(fd => fd.Name).Width(320);
+        col.Bound(fd => fd.Name);
         col.ForeignKey(
             fd => fd.Category.Id,
             (System.Collections.IEnumerable)ViewData["foodcategories"], "Id", "Name")
-            .Title("Category").Sortable(false).Width(200);
+            .Title("Category").Sortable(false).Width(230);
 
-        col.Bound(fd => fd.Quantity).Width(160);
-        col.Bound(fd => fd.ExpirationDate).Width(160).Format("{0:dd.MM.yyyy}");
+        col.Bound(fd => fd.Quantity).Width(130);
+        col.Bound(fd => fd.ExpirationDate).Width(150).Format("{0:dd.MM.yyyy}");
         col.Bound(fd => fd.IsCompleted).Width(120);
+        col.Bound(fd => fd.DonorOrganization).Width(140);
         col.Command(command =>
             {
                 command.Custom("Edit").Click("redirectToDonationEdit");
@@ -59,10 +54,11 @@
             m.Field(fd => fd.Quantity);
             m.Field(fd => fd.ExpirationDate);
             m.Field(fd => fd.IsCompleted);
+            m.Field(fd => fd.DonorOrganization);
         })
-        .Read(read => read.Action("ReadMyDonations", "FoodDonations"))
-        .Update(update => update.Action("UpdateDonation", "FoodDonations"))
-        .Destroy(delete => delete.Action("DeleteDonation", "FoodDonations"))
+        .Read(read => read.Action("ReadDonations", "FoodDonations"))
+        .Update(update => update.Action("UpdateDonations", "FoodDonations"))
+        .Destroy(delete => delete.Action("DeleteDonations", "FoodDonations"))
     )
 )
 
@@ -71,8 +67,8 @@
         e.preventDefault();
         var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
         var donationId = dataItem.Id;
-        var url = "@Url.Action("Edit","FoodDonations", new { id = "don-id" })";
-        window.location.href = url.replace('don-id', donationId);
+        var url = "@Url.Action("Edit","FoodDonations", new { id = "donation-id" })";
+        window.location.href = url.replace('donation-id', donationId);
     }
 </script>
 

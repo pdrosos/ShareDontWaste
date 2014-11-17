@@ -226,6 +226,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\FoodDonationsController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\DonorsController.cs" />
     <Compile Include="Areas\Administration\Controllers\RecipientsController.cs" />
@@ -234,6 +235,10 @@
     <Compile Include="Areas\Administration\Models\DonorDetailsEditModel.cs" />
     <Compile Include="Areas\Administration\Models\DonorDetailsViewModel.cs" />
     <Compile Include="Areas\Administration\Models\DonorListViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\FoodCategoryViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\FoodDonationEditModel.cs" />
+    <Compile Include="Areas\Administration\Models\FoodDonationListViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\FoodDonationViewModel.cs" />
     <Compile Include="Areas\Administration\Models\RecipientDetailsEditModel.cs" />
     <Compile Include="Areas\Administration\Models\RecipientDetailsViewModel.cs" />
     <Compile Include="Areas\Administration\Models\RecipientListViewModel.cs" />
@@ -293,6 +298,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\donor-icon.png" />
     <Content Include="Content\kendo\Bootstrap\editor.png" />
     <Content Include="Content\kendo\Bootstrap\imagebrowser.png" />
     <Content Include="Content\kendo\Bootstrap\indeterminate.gif" />
@@ -385,15 +391,20 @@
     <Content Include="Areas\Donors\Views\FoodDonations\Delete.cshtml" />
     <Content Include="Areas\Donors\Views\FoodDonations\Details.cshtml" />
     <Content Include="Areas\Donors\Views\FoodDonations\Edit.cshtml" />
+    <Content Include="Scripts\globalize.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Libraries\Kendo.Mvc.dll" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\kendo\cultures\kendo.culture.en-GB.min.js" />
+    <Content Include="Scripts\kendo\kendo-validate-date.js" />
     <Content Include="Views\FoodDonations\Index.cshtml" />
     <Content Include="Areas\Donors\Views\FoodDonations\MyDonations.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DatePicker.cshtml" />
     <Content Include="Areas\Recipients\Views\FoodRequests\_FoodRequest.cshtml" />
+    <Content Include="Areas\Administration\Views\FoodDonations\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\FoodDonations\Edit.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -458,7 +469,6 @@
     <Content Include="Scripts\kendo\kendo.all.min.js.map" />
     <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js.map" />
     <Content Include="Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\ShortDateTime.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Integer.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />

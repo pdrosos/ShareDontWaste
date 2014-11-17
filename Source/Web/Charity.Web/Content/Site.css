@@ -25,14 +25,12 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-/*
-input,
-select,
-textarea 
+
+input, select, textarea 
 {
     max-width: 280px;
 }
-*/
+
 
 .table-list 
 {
@@ -64,8 +62,15 @@ textarea
 .list-group-image
 {
     height: 250px!important;
-    width: 400px;
+    width: 290px;
 }
+
+.item {
+    height: 380px;
+    width: 290px;
+    margin: 10px 10px;
+}
+
 
 .item.list-group-item
 {

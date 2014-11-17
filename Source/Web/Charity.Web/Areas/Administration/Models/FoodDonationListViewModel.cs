@@ -1,4 +1,4 @@
-﻿namespace Charity.Web.Areas.Donors.Models
+﻿namespace Charity.Web.Areas.Administration.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -13,6 +13,9 @@
 
         [Display(Name = "Title")]
         public string Name { get; set; }
+
+        [Display(Name = "Donor")]
+        public string DonorOrganization { get; set; }
 
         [UIHint("GridForeignKey")]
         public FoodCategoryViewModel Category { get; set; }
@@ -29,7 +32,8 @@
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<FoodDonation, FoodDonationListViewModel>()
-                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.FoodCategory));
+                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.FoodCategory))
+                .ForMember(dest => dest.DonorOrganization, opt => opt.MapFrom(src => src.Donor.OrganizationName));
         }
     }
 }

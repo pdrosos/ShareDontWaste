@@ -2,7 +2,7 @@
 
 <div class="item col-xs-4 col-lg-4 grid-group-item">
     <div class="thumbnail">
-        @if (Model.ImageUrl.Length > 0)
+        @if (Model.ImageUrl != null)
         {
             <img class="group list-group-image" src="@Model.ImageUrl" alt="" />
         }
@@ -19,12 +19,12 @@
                 @Model.Description
             </p>
             <div class="row">
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12 col-md-7">
                     <p class="lead">
                         @Model.Quantity
                     </p>
                 </div>
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12 col-md-3">
                     @Html.ActionLink("Details", "Details", "FoodDonations",
                         new { area = "", id = Model.Id }, new { @class = "btn btn-success" })
                 </div>

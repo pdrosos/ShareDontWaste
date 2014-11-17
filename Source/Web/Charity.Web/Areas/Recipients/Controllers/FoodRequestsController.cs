@@ -1,9 +1,9 @@
 ﻿namespace Charity.Web.Areas.Recipients.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
+    using System.Web;
     using System.Web.Mvc;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
@@ -12,7 +12,6 @@
     using Charity.Services.Common;
     using Charity.Web.Areas.Recipients.Models;
     using Charity.Web.Infrastructure.Identity;
-    using System.Web;
 
     [Authorize(Roles = GlobalConstants.RecipientRoleName)]
     public class FoodRequestsController : Controller
