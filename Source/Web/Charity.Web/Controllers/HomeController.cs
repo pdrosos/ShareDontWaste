@@ -28,7 +28,7 @@
         {
             // TODO: Move this in config
             var donorsCount = 10;
-            var latestDonationsCount = 6;
+            var latestDonationsCount = 8;
 
             var mostActiveDonors = this.donorProfileService.GetMostActiveDonors(donorsCount)
                 .Project().To<DonorViewModel>();

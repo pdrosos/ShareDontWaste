@@ -70,6 +70,15 @@
             return query;
         }
 
+        public IQueryable<FoodRequest> ListByRecipient(Guid recipientId)
+        {
+            var query = this.All()
+                .Where(r => r.RecipientId == recipientId)
+                .OrderByDescending(r => r.CreatedOn);
+
+            return query;
+        }
+
         public void Delete(FoodRequest foodRequest)
         {
             this.foodRequestRepository.Delete(foodRequest);

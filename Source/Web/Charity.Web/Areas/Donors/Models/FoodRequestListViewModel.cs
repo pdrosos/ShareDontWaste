@@ -3,9 +3,9 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
-    using Charity.Data.Models;
-    using Charity.Web.Infrastructure.Mapping;
     using AutoMapper;
+    using Charity.Data.Models;
+    using Charity.Web.Infrastructure.Mapping;    
 
     public class FoodRequestListViewModel : IMapFrom<FoodRequest>, IHaveCustomMappings
     {

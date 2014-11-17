@@ -1,5 +1,5 @@
 ﻿@using Charity.Web.Areas.Recipients.Models 
-@model Charity.Web.Areas.Donors.Models.FoodRequestViewModel
+@model FoodRequestViewModel
 
 @{
     ViewBag.Title = "Food Request Details";
@@ -19,10 +19,10 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Recipient)
+            @Html.DisplayNameFor(model => model.Donor)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Recipient.OrganizationName)
+            @Html.DisplayFor(model => model.Donor.OrganizationName)
         </dd>
 
         <dt>
@@ -62,14 +62,14 @@
 
         @foreach (var comment in Model.Comments)
         {
-            @Html.Partial("~/Areas/Recipients/Views/FoodRequests/_FoodRequestComment.cshtml", comment)
+            @Html.Partial("_FoodRequestComment", comment)
         }
 
     </div>
 
     <div class="row top-buffer">
         <div class="col-lg-5">
-            @Html.Partial("~/Areas/Recipients/Views/FoodRequests/_FoodRequestCommentCreate.cshtml", new FoodRequestCommentCreateModel(Model.Id))
+            @Html.Partial("_FoodRequestCommentCreate", new FoodRequestCommentCreateModel(Model.Id))
         </div>
     </div>
 </div>
