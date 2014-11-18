@@ -3,7 +3,7 @@ FoodShare
 
 Telerik Academy ASP.NET MVC Project
 
-This is a charity website which goal is to connect donors and recipients, and to smooth the donnation process. There are 4 main sections in the website:
+This is a charity website which goal is to connect donors and recipients, and to smooth the donation process. There are 4 main sections in the website:
 
 - Public 
 
@@ -15,12 +15,11 @@ Log in and add a donation from 'My Donations' area. In the same area they are ab
 
 - Recipients
 
-Recipients register from the public section of the website, click on Donations, then Details and fill in the request form. From "My Requests" section they are able to see their all requests up to now. From the Unread Comments link they can add comment to the request to a donation they have already made. 
-
+Recipients register from the public section of the website, click on Donations, then Details and fill in the request form. From "My Requests" section they are able to see their all requests up to now. From the Unread Comments link they can add comment to the request to a donation they have already made.
 
 - Administration
 
-Admininstrators are able to see a list of all donors, recipients, donations and donation requests in Grid list View. They can also edit the details of all these entities.
+Administrators are able to see a list of all donors, recipients, donations and donation requests in Grid list View. They can also edit the details of all these entities.
 
 ----------------------
 
