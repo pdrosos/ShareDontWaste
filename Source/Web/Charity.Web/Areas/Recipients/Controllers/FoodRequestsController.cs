@@ -7,11 +7,12 @@
     using System.Web.Mvc;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
+    using PagedList;
     using Charity.Common;
     using Charity.Data.Models;
     using Charity.Services.Common;
     using Charity.Web.Areas.Recipients.Models;
-    using Charity.Web.Infrastructure.Identity;
+    using Charity.Web.Infrastructure.Identity;    
 
     [Authorize(Roles = GlobalConstants.RecipientRoleName)]
     public class FoodRequestsController : Controller
@@ -20,31 +21,36 @@
         private readonly IFoodDonationService foodDonationService;
         private readonly IRecipientProfileService recipientProfileService;
         private readonly ICurrentUser currentUserProvider;
+        private readonly IFoodRequestCommentService foodRequestCommentService;
 
         public FoodRequestsController(
             IFoodRequestService foodRequestService,
             IFoodDonationService foodDonationService,
             IRecipientProfileService recipientProfileService,
-            ICurrentUser currentUserProvider)
+            ICurrentUser currentUserProvider,
+            IFoodRequestCommentService foodRequestCommentService)
         {
             this.foodRequestService = foodRequestService;
             this.foodDonationService = foodDonationService;
             this.recipientProfileService = recipientProfileService;
             this.currentUserProvider = currentUserProvider;
+            this.foodRequestCommentService = foodRequestCommentService;
         }
 
-        public ActionResult MyRequests()
+        public ActionResult MyRequests(int? page)
         {
+            int pageSize = 10;
+            int pageIndex = (page ?? 1);
+
             ApplicationUser user = this.currentUserProvider.Get();
             Recipient recipient = this.recipientProfileService.GetByApplicationUserId(user.Id);
-            Guid currentRecipientId = recipient.Id;
 
-            var foodRequests = this.foodRequestService.All()
-                .Where(f => f.RecipientId == currentRecipientId)
-                .OrderByDescending(f => f.Id)
+            var foodRequests = this.foodRequestService.ListByRecipient(recipient.Id)
                 .Project().To<FoodRequestListViewModel>();
 
-            return View(foodRequests.AsEnumerable());
+            var foodRequestsPagedList = foodRequests.ToPagedList(pageIndex, pageSize);
+
+            return View(foodRequestsPagedList);
         }
 
         public ActionResult Details(int? id)
@@ -61,9 +67,21 @@
                 return HttpNotFound();
             }
 
-            FoodRequestViewModel model = Mapper.Map<FoodRequest, FoodRequestViewModel>(foodRequest);
+            ApplicationUser user = this.currentUserProvider.Get();
+            var recipient = this.recipientProfileService.GetByApplicationUserId(user.Id);
+
+            if (foodRequest.RecipientId != recipient.Id)
+            {
+                throw new HttpException(400, "This is not your request");
+            }
+
+            var model = Mapper.Map<FoodRequest, FoodRequestViewModel>(foodRequest);
+
+            // Mark all comments as read
+            this.foodRequestCommentService.MarkCommentsAsReadFromRecipient(foodRequest.Id);
 
             return View(model);
+
         }
 
         [HttpPost]

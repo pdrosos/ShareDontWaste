@@ -146,6 +146,8 @@
 
                 this.recipientProfileService.Update(recipient);
 
+                this.Flash("Recipient profile is updated", FlashEnum.Success);
+
                 return RedirectToAction("Index", "Recipients");
             }
 

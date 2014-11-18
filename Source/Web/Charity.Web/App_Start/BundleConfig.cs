@@ -34,7 +34,8 @@ namespace Charity.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-cosmo.css",
                       "~/Content/site.css",
-                      "~/Content/PagedList.css"));
+                      "~/Content/PagedList.css",
+                      "~/Content/flash.css"));
 
             bundles.Add(new StyleBundle("~/Content/kendo").Include(
                     "~/Content/kendo/kendo.common-bootstrap.min.css",

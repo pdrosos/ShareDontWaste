@@ -6,7 +6,8 @@
         {
             HttpMethod = "POST",
             InsertionMode = InsertionMode.InsertAfter,
-            UpdateTargetId = "comments"
+            UpdateTargetId = "comments",
+            OnSuccess = "clearCommentText",
         },
         new { @class = "form-horizontal" }))
     {

@@ -1,0 +1,75 @@
+﻿@using Charity.Web.Areas.Recipients.Models
+@using PagedList
+@using PagedList.Mvc;
+
+@model IEnumerable<FoodRequestListViewModel>
+
+@{
+    ViewBag.Title = "My requests";
+    var pagedlist = (IPagedList) Model;
+}
+
+<h2>My food requests</h2>
+
+<div class="table-list">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(m => m.FoodDonation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Donor)                    
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Quantity)                    
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.NeedFrom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.NeedTo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.IsCompleted)
+                </th>
+                <th>
+                    Unread comments
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var foodRequest in Model)
+            { 
+            <tr>
+                <td>                    
+                    @Html.DisplayFor(m => foodRequest.FoodDonation.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => foodRequest.Donor.OrganizationName)
+                </td>
+                <td>                    
+                    @Html.DisplayFor(m => foodRequest.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => foodRequest.NeedFrom)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => foodRequest.NeedTo)
+                </td>
+                <th>
+                    @Html.DisplayFor(m => foodRequest.IsCompleted)
+                </th>
+                <td>
+                    <a href="@Url.Action("Details", "FoodRequests", new { Area = "Recipients", id = foodRequest.Id })">
+                        @foodRequest.UnreadCommentsCount of @foodRequest.CommentsCount
+                    </a>                    
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@Html.PagedListPager(pagedlist, page => Url.Action("MyRequests", "FoodRequests",
+            new { page, area = "Recipients" }))

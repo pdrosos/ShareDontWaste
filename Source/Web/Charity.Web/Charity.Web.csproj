@@ -282,6 +282,7 @@
     <Compile Include="Areas\Recipients\RecipientsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DonorsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FoodDonationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -289,6 +290,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FlashHelpers.cs" />
     <Compile Include="Models\Donors\DonorListViewModel.cs" />
     <Compile Include="Models\HomePageViewModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -308,6 +310,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\flash.css" />
     <Content Include="Content\images\donor-icon.png" />
     <Content Include="Content\images\food-donation-sliced-bread.png" />
     <Content Include="Content\images\food-donation-stake-large.png" />
@@ -428,6 +431,9 @@
     <Content Include="Areas\Recipients\Views\FoodRequests\_FoodRequestComment.cshtml" />
     <Content Include="Areas\Administration\Views\FoodRequests\Index.cshtml" />
     <Content Include="Areas\Administration\Views\FoodRequests\Edit.cshtml" />
+    <Content Include="Areas\Recipients\Views\FoodRequests\Details.cshtml" />
+    <Content Include="Areas\Recipients\Views\FoodRequests\MyRequests.cshtml" />
+    <Content Include="App_Code\Flash.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -504,6 +510,8 @@
     <Content Include="Views\Donors\_DonorsList.cshtml" />
     <Content Include="Views\Donors\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
