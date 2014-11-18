@@ -278,6 +278,7 @@
     <Compile Include="Areas\Recipients\RecipientsAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DonorsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FoodDonationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -496,6 +497,8 @@
     <Content Include="Views\Donors\_DonorsList.cshtml" />
     <Content Include="Views\Donors\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
