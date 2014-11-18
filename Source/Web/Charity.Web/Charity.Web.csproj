@@ -285,6 +285,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FlashHelpers.cs" />
     <Compile Include="Models\Donors\DonorListViewModel.cs" />
     <Compile Include="Models\HomePageViewModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -304,6 +305,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\flash.css" />
     <Content Include="Content\images\donor-icon.png" />
     <Content Include="Content\kendo\Bootstrap\editor.png" />
     <Content Include="Content\kendo\Bootstrap\imagebrowser.png" />
@@ -417,6 +419,7 @@
     <Content Include="Areas\Recipients\Views\FoodRequests\_FoodRequestComment.cshtml" />
     <Content Include="Areas\Recipients\Views\FoodRequests\Details.cshtml" />
     <Content Include="Areas\Recipients\Views\FoodRequests\MyRequests.cshtml" />
+    <Content Include="App_Code\Flash.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

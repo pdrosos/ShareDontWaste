@@ -130,6 +130,8 @@
                 
                 this.donorProfileService.Update(donor);
 
+                this.Flash("Donor profile is updated", FlashEnum.Success);
+
                 return RedirectToAction("Index", "Donors");
             }
 

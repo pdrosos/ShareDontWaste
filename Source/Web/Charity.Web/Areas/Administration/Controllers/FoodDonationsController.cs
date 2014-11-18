@@ -134,6 +134,9 @@
             if (ModelState.IsValid)
             {
                 this.foodDonationService.Update(foodDonation);
+
+                this.Flash("Donation is updated", FlashEnum.Success);
+
                 return RedirectToAction("Index");
             }
 

@@ -1,0 +1,37 @@
+﻿/* Styles for flash messages
+-----------------------------------------------------------*/
+
+.flash
+{
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 18px;
+    border: 1px solid;
+}
+
+.flash-success
+{
+    color: #468847;
+    background-color: #DFF0D8;
+    border-color: #D6E9C6;
+}
+
+.flash-info
+{
+    color: #3A87AD;
+    background-color: #D9EDF7;
+    border-color: #BCE8F1;
+}
+
+.flash-warning
+{
+    color: #C09853;
+    background-color: #FCF8E3;
+    border-color: #FBEED5;
+}
+
+.flash-error
+{
+    color: #B94A48;
+    background-color: #F2DEDE;
+    border-color: #EED3D7;
+}
