@@ -227,6 +227,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\FoodDonationsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\FoodRequestsController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\DonorsController.cs" />
     <Compile Include="Areas\Administration\Controllers\RecipientsController.cs" />
@@ -239,6 +240,9 @@
     <Compile Include="Areas\Administration\Models\FoodDonationEditModel.cs" />
     <Compile Include="Areas\Administration\Models\FoodDonationListViewModel.cs" />
     <Compile Include="Areas\Administration\Models\FoodDonationViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\FoodRequestEditModel.cs" />
+    <Compile Include="Areas\Administration\Models\FoodRequestListViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\FoodRequestViewModel.cs" />
     <Compile Include="Areas\Administration\Models\RecipientDetailsEditModel.cs" />
     <Compile Include="Areas\Administration\Models\RecipientDetailsViewModel.cs" />
     <Compile Include="Areas\Administration\Models\RecipientListViewModel.cs" />
@@ -305,6 +309,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\donor-icon.png" />
+    <Content Include="Content\images\food-donation-sliced-bread.png" />
+    <Content Include="Content\images\food-donation-stake-large.png" />
+    <Content Include="Content\images\food-donation-stake-small.png" />
+    <Content Include="Content\images\food-request-globe.png" />
+    <Content Include="Content\images\food-request-pencil.png" />
+    <Content Include="Content\images\recipients-icon-large.png" />
+    <Content Include="Content\images\recipients-icon.png" />
     <Content Include="Content\kendo\Bootstrap\editor.png" />
     <Content Include="Content\kendo\Bootstrap\imagebrowser.png" />
     <Content Include="Content\kendo\Bootstrap\indeterminate.gif" />
@@ -415,6 +426,8 @@
     <Content Include="Areas\Donors\Views\FoodRequests\MyRequests.cshtml" />
     <Content Include="Areas\Recipients\Views\FoodRequests\_FoodRequestCommentCreate.cshtml" />
     <Content Include="Areas\Recipients\Views\FoodRequests\_FoodRequestComment.cshtml" />
+    <Content Include="Areas\Administration\Views\FoodRequests\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\FoodRequests\Edit.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

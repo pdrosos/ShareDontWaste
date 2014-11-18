@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Food Requests</h2>
+
+@(Html.Kendo()
+    .Grid<Charity.Web.Areas.Administration.Models.FoodRequestListViewModel>()
+    .Name("requests-grid")
+    .Pageable()
+    .Scrollable()
+    .Filterable()
+    .Sortable()
+    .Navigatable()
+    .Editable(editable => editable.Mode(GridEditMode.InCell))
+    .HtmlAttributes(new { style = "height:570px;" })
+    .Columns(col =>
+    {
+        col.Bound(fd => fd.DonationName).Width(320);
+        col.Bound(fd => fd.Quantity).Width(160);
+        col.Bound(fd => fd.NeedFrom).Width(160).Format("{0:dd.MM.yyyy}");
+        col.Bound(fd => fd.NeedTo).Width(160).Format("{0:dd.MM.yyyy}");
+        col.Bound(fd => fd.IsCompleted).Width(120);
+        col.Command(command =>
+            {
+                command.Custom("Edit").Click("redirectToRequestEdit");
+                command.Destroy();
+            }).Width(180);
+    })
+    .ToolBar(toolBar =>
+    {
+        //toolBar.Create();
+        toolBar.Save();
+    })
+    .DataSource(data => data
+        .Ajax()
+        .Batch(true)
+        .ServerOperation(true)
+        .PageSize(10)
+        .Events(events => events.Error("error_handler"))
+        .Model(m =>
+            {
+                m.Id(fd => fd.Id);
+                m.Field(fd => fd.Id).Editable(false);
+                m.Field(fd => fd.DonationName).Editable(false);
+                m.Field(fd => fd.Quantity);
+                m.Field(fd => fd.NeedFrom);
+                m.Field(fd => fd.NeedTo);
+                m.Field(fd => fd.IsCompleted);
+            })
+    .Read(read => read.Action("ReadRequests", "FoodRequests"))
+    .Update(update => update.Action("UpdateRequests", "FoodRequests"))
+    .Destroy(delete => delete.Action("DeleteRequests", "FoodRequests"))
+    )
+)
+
+<script type="text/javascript">
+    function redirectToRequestEdit(e) {
+        e.preventDefault();
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        var requestId = dataItem.Id;
+        var url = "@Url.Action("Edit","FoodRequests", new { id = "request-id" })";
+        window.location.href = url.replace('request-id', requestId);
+    }
+</script>
+
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>

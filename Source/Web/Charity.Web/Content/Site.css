@@ -37,6 +37,11 @@ input, select, textarea
     min-height: 300px;
 }
 
+.list-inline li {
+    margin-right: 50px;
+}
+
+
 .input-group 
 {
     margin: 15px 0;

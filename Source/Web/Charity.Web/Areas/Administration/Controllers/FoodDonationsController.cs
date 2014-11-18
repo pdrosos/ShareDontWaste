@@ -20,10 +20,7 @@
         private readonly IFoodDonationService foodDonationService;
         private readonly IFoodCategoryService foodCategoryService;
 
-        public FoodDonationsController(
-            IFoodDonationService foodDonationService,
-            IFoodCategoryService foodCategoryService
-            )
+        public FoodDonationsController(IFoodDonationService foodDonationService, IFoodCategoryService foodCategoryService)
         {
             this.foodDonationService = foodDonationService;
             this.foodCategoryService = foodCategoryService;
