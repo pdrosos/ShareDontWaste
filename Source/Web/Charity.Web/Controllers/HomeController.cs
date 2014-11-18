@@ -1,6 +1,7 @@
 ﻿namespace Charity.Web.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.UI;
@@ -23,22 +24,31 @@
             this.foodDonationService = foodDonationService;
         }
 
-        [OutputCache(Duration = 60, Location = OutputCacheLocation.Client)]
         public ActionResult Index()
         {
             // TODO: Move this in config
             var donorsCount = 10;
             var latestDonationsCount = 8;
 
-            var mostActiveDonors = this.donorProfileService.GetMostActiveDonors(donorsCount)
-                .Project().To<DonorViewModel>();
+            if (this.HttpContext.Cache["HomePageDonors"] == null)
+            {
+                var mostActiveDonors = this.donorProfileService.GetMostActiveDonors(donorsCount)
+                    .Project().To<DonorViewModel>();
 
-            var latestDonations = this.foodDonationService.GetLatestDonations(latestDonationsCount)
-                .Project().To<FoodDonationViewModel>();
+                this.HttpContext.Cache.Add("HomePageDonors", mostActiveDonors.ToList(), null, DateTime.Now.AddMinutes(5), TimeSpan.Zero, System.Web.Caching.CacheItemPriority.Default, null);
+            }
+
+            if (this.HttpContext.Cache["HomePageDonations"] == null)
+            {
+                var latestDonations = this.foodDonationService.GetLatestDonations(latestDonationsCount)
+                    .Project().To<FoodDonationViewModel>();
+
+                this.HttpContext.Cache.Add("HomePageDonations", latestDonations.ToList(), null, DateTime.Now.AddMinutes(5), TimeSpan.Zero, System.Web.Caching.CacheItemPriority.Default, null);
+            }
 
             var viewModel = new HomePageViewModel();
-            viewModel.MostActiveDonors = mostActiveDonors;
-            viewModel.LatestDonations = latestDonations;
+            viewModel.MostActiveDonors = (List<DonorViewModel>)this.HttpContext.Cache["HomePageDonors"];
+            viewModel.LatestDonations = (List<FoodDonationViewModel>)this.HttpContext.Cache["HomePageDonations"]; ;
 
             return View(viewModel);
         }

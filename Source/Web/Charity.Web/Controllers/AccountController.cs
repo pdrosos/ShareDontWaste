@@ -102,12 +102,12 @@
                 {
                     if (UserManager.IsInRole(userForEmail.Id, GlobalConstants.RecipientRoleName))
                     {
-                        return RedirectToAction("Details", "Profile", new { Area = "Recipients" });
+                        return RedirectToAction("Index", "Home", new { Area = "" });
                     }
 
                     if (UserManager.IsInRole(userForEmail.Id, GlobalConstants.DonorRoleName))
                     {
-                        return RedirectToAction("Details", "Profile", new { Area = "Donors" });
+                        return RedirectToAction("MyDonations", "FoodDonations", new { Area = "Donors" });
                     }
 
                     if (UserManager.IsInRole(userForEmail.Id, GlobalConstants.AdministratorRoleName))
