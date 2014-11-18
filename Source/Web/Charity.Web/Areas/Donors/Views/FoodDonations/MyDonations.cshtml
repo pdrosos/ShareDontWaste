@@ -5,9 +5,7 @@
 <h2>My donations</h2>
 
 <p>
-    <button class="k-button k-button-icontext k-grid-save-changes">
-        @Html.ActionLink("Create New", "Create")
-    </button>
+    @Html.ActionLink("Create New", "Create", new { Area = "Donors" },  new { @class = "k-button" })
 </p>
 
 @(Html.Kendo()
@@ -45,7 +43,7 @@
     .DataSource(data => data
     .Ajax()
     .Batch(true)
-    .Sort(sort => sort.Add("Name").Ascending())
+    .Sort(sort => sort.Add("Id").Descending())
     .ServerOperation(true)
     .PageSize(10)
     .Events(events => events.Error("error_handler"))
