@@ -12,7 +12,7 @@ namespace Charity.Web
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                     "~/Scripts/jquery.validate*",
-                    "~/Scripts/kendo/kendo-validate-date.js"));
+                    "~/Scripts/Kendo/kendo-validate-date.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.js"));
@@ -27,9 +27,9 @@ namespace Charity.Web
                     "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
-                    "~/Scripts/kendo/kendo.all.min.js",
-                    "~/Scripts/kendo/kendo.aspnetmvc.min.js",
-                    "~/Scripts/kendo/cultures/kendo.culture.en-GB.min.js"));
+                    "~/Scripts/Kendo/kendo.all.min.js",
+                    "~/Scripts/Kendo/kendo.aspnetmvc.min.js",
+                    "~/Scripts/Kendo/Cultures/kendo.culture.en-GB.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-cosmo.css",
@@ -38,8 +38,8 @@ namespace Charity.Web
                       "~/Content/flash.css"));
 
             bundles.Add(new StyleBundle("~/Content/kendo").Include(
-                    "~/Content/kendo/kendo.common-bootstrap.min.css",
-                    "~/Content/kendo/kendo.bootstrap.min.css"));
+                    "~/Content/Kendo/kendo.common-bootstrap.min.css",
+                    "~/Content/Kendo/kendo.bootstrap.min.css"));
 
             bundles.IgnoreList.Clear();
 

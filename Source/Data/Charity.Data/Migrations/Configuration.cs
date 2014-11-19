@@ -62,11 +62,11 @@ namespace Charity.Data.Migrations
 
         private readonly List<string> images = new List<string>()
         {
-            "http://brookingsharborfoodbank.org/wp-content/uploads/2013/06/lilac-food-basket1-999x768-960x738.jpg",
-            "http://www.kilsythcommunityfoodbank.com/uploads/1/7/8/0/17801949/2795637_orig.jpeg",
-            "http://geauganews.tekk3.netdna-cdn.com/wp-content/uploads/Food-Donation-158.jpg",
-            "http://i.huffpost.com/gen/838621/thumbs/o-DONATION-BOX-facebook.jpg",
-            "http://www.workingventures.ca/wp-content/uploads/popular-seasonal-thanksgiving-food-donation-list-thanksgiving-food-list-shopping-thanksgiving-food-list-southern-thanksgiving-food-list-in-spanish-thanksgiving-food-list-soul-food-thanksgiving-da-728x400.jpg",
+            "/Content/Images/Donations_Food/food-in-wooden-basket.jpg",
+            "/Content/Images/Donations_Food/cartboxes-with-food.jpeg",
+            "/Content/Images/Donations_Food/packaged-food-on-a-table.jpg",
+            "/Content/Images/Donations_Food/food-in-wooden-donation-box.jpg",
+            "/Content/Images/Donations_Food/fruits-and-vegetables.jpg",
         };
 
         private readonly Random randomGenerator = new Random();
