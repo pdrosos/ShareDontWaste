@@ -325,6 +325,7 @@
     <Content Include="Content\Images\Admin_Panel\food-request-pencil.png" />
     <Content Include="Content\Images\Admin_Panel\recipients-icon-large.png" />
     <Content Include="Content\Images\Admin_Panel\recipients-icon.png" />
+    <Content Include="Content\jasny-bootstrap.css" />
     <Content Include="Content\Kendo\Bootstrap\editor.png" />
     <Content Include="Content\Kendo\Bootstrap\imagebrowser.png" />
     <Content Include="Content\Kendo\Bootstrap\indeterminate.gif" />
@@ -418,6 +419,7 @@
     <Content Include="Areas\Donors\Views\FoodDonations\Details.cshtml" />
     <Content Include="Areas\Donors\Views\FoodDonations\Edit.cshtml" />
     <Content Include="Scripts\globalize.js" />
+    <Content Include="Scripts\jasny-bootstrap.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Libraries\Kendo.Mvc.dll" />
@@ -440,6 +442,7 @@
     <Content Include="Areas\Recipients\Views\FoodRequests\Details.cshtml" />
     <Content Include="Areas\Recipients\Views\FoodRequests\MyRequests.cshtml" />
     <Content Include="App_Code\Flash.cshtml" />
+    <Content Include="Content\jasny-bootstrap.css.map" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

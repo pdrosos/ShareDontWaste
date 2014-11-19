@@ -31,7 +31,6 @@ input, select, textarea
     max-width: 280px;
 }
 
-
 .table-list 
 {
     min-height: 300px;
@@ -40,7 +39,6 @@ input, select, textarea
 .list-inline li {
     margin-right: 50px;
 }
-
 
 .input-group 
 {

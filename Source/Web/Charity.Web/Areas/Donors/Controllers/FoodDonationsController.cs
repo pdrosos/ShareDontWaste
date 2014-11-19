@@ -14,6 +14,8 @@
     using Charity.Web.Infrastructure.Identity;
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
+using System.Web;
+using System.IO;
 
     [Authorize(Roles = GlobalConstants.DonorRoleName)]
     public class FoodDonationsController : Controller
@@ -95,21 +97,52 @@
         [ValidateAntiForgeryToken]
         public ActionResult Create(FoodDonationRegisterModel model)
         {
-            FoodDonation foodDonation = Mapper.Map<FoodDonationRegisterModel, FoodDonation>(model);
-            
-            ApplicationUser user = this.currentUserProvider.Get();
-            Donor donor = this.donorProfileService.GetByApplicationUserId(user.Id);
-            
-            foodDonation.DonorId = donor.Id;
+            List<string> validImageTypes = new List<string>()
+            {
+                "image/gif",
+                "image/jpeg",
+                "image/pjpeg",
+                "image/png"
+            };
 
             if (ModelState.IsValid)
             {
+                if (model.ImageUpload != null && !validImageTypes.Contains(model.ImageUpload.ContentType))
+                {
+                    ModelState.AddModelError("", "Please choose either a GIF, JPG or PNG image.");
+                    ViewBag.FoodCategoryId = new SelectList(this.foodCategoryService.GetAll(), "Id", "Name", model.FoodCategoryId);
+                    return View(model);
+                }
+
+                if (model.ImageUpload != null && model.ImageUpload.ContentLength > 0)
+                {
+                    string uploadDir = "/Content/Images/Donations_Food";
+                    //string imagePath = Path.Combine(Server.MapPath(uploadDir), model.ImageUpload.FileName);
+
+                    string extension = Path.GetExtension(model.ImageUpload.FileName);
+
+                    string imageFileName = String.Format(
+                        "Food-Donations-{0}{1}",
+                        DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"), extension);
+
+                    string imagePath = Path.Combine(Server.MapPath(uploadDir), imageFileName);
+                    model.ImageUrl = uploadDir + "/" + imageFileName;
+                    model.ImageUpload.SaveAs(imagePath);
+                }
+
+                ApplicationUser user = this.currentUserProvider.Get();
+                Donor donor = this.donorProfileService.GetByApplicationUserId(user.Id);
+
+                FoodDonation foodDonation = Mapper.Map<FoodDonationRegisterModel, FoodDonation>(model);
+
+                foodDonation.DonorId = donor.Id;
+
                 this.foodDonationService.Add(foodDonation);
                 return RedirectToAction("MyDonations");
             }
 
-            ViewBag.FoodCategoryId = new SelectList(this.foodCategoryService.GetAll(), "Id", "Name", foodDonation.FoodCategoryId);
-            return View(foodDonation);
+            ViewBag.FoodCategoryId = new SelectList(this.foodCategoryService.GetAll(), "Id", "Name", model.FoodCategoryId);
+            return View(model);
         }
 
         // GET: Donors/FoodDonations/Edit/5
@@ -240,6 +273,40 @@
                              });
 
             return new SelectList(foodCategories, "Value", "Text");
+        }
+
+        private string UploadImage(HttpPostedFileBase image)
+        {
+            string imageUrl = string.Empty;
+            List<string> validImageTypes = new List<string>()
+            {
+                "image/gif",
+                "image/jpeg",
+                "image/pjpeg",
+                "image/png"
+            };
+
+            if (image == null || image.ContentLength == 0)
+            {
+                ModelState.AddModelError("", "This field is required");
+            }
+            else if (!validImageTypes.Contains(image.ContentType))
+            {
+                ModelState.AddModelError("", "Please choose either a GIF, JPG or PNG image.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                if (image != null && image.ContentLength > 0)
+                {
+                    var uploadDir = "~/Content/Images/Donations_Food";
+                    var imagePath = Path.Combine(Server.MapPath(uploadDir), image.FileName);
+                    imageUrl = Path.Combine(uploadDir, image.FileName);
+                    image.SaveAs(imagePath);
+                }
+            }
+
+            return imageUrl;
         }
     }
 }

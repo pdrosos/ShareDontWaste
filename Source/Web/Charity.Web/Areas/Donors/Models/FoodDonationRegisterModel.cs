@@ -5,6 +5,7 @@
     using System.Linq;
     using Charity.Data.Models;
     using Charity.Web.Infrastructure.Mapping;
+    using System.Web;
 
     public class FoodDonationRegisterModel : IMapFrom<FoodDonation>
     {
@@ -41,5 +42,10 @@
 
         [StringLength(600, ErrorMessage = "The {0} must not be more than {1} characters.")]
         public string Description { get; set; }
+
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase ImageUpload { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }
