@@ -274,39 +274,5 @@ using System.IO;
 
             return new SelectList(foodCategories, "Value", "Text");
         }
-
-        private string UploadImage(HttpPostedFileBase image)
-        {
-            string imageUrl = string.Empty;
-            List<string> validImageTypes = new List<string>()
-            {
-                "image/gif",
-                "image/jpeg",
-                "image/pjpeg",
-                "image/png"
-            };
-
-            if (image == null || image.ContentLength == 0)
-            {
-                ModelState.AddModelError("", "This field is required");
-            }
-            else if (!validImageTypes.Contains(image.ContentType))
-            {
-                ModelState.AddModelError("", "Please choose either a GIF, JPG or PNG image.");
-            }
-
-            if (ModelState.IsValid)
-            {
-                if (image != null && image.ContentLength > 0)
-                {
-                    var uploadDir = "~/Content/Images/Donations_Food";
-                    var imagePath = Path.Combine(Server.MapPath(uploadDir), image.FileName);
-                    imageUrl = Path.Combine(uploadDir, image.FileName);
-                    image.SaveAs(imagePath);
-                }
-            }
-
-            return imageUrl;
-        }
     }
 }
