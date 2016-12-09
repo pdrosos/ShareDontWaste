@@ -1,6 +1,8 @@
 FoodShare
 ==================
 
+[![Join the chat at https://gitter.im/ShareDontWaste/Lobby](https://badges.gitter.im/ShareDontWaste/Lobby.svg)](https://gitter.im/ShareDontWaste/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Telerik Academy ASP.NET MVC Project
 
 This is a charity website which goal is to connect donors and recipients, and to smooth the donation process. There are 4 main sections in the website:
